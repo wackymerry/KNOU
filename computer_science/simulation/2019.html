@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>시뮬레이션 2019 기출 (35문항)</title>
+<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795339216632&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_0000000084e48211ab28a2493ebc974b%26ts%3D498705%26p%3Dfs%26cid%3D1%26sig%3Df32f27a833a912a76a1288541646724fa67aa2f2ee0427ad46ebc19f6621fe2c%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795339216632&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link rel="stylesheet" href="../quiz.css">
+<style>
+.sim-passage {margin:12px 0 16px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;font-size:13px;line-height:1.65;overflow-x:auto}
+.sim-passage pre {font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;white-space:pre;overflow-x:auto;margin:8px 0;color:#172033}
+.sim-passage .sim-note {margin:0 0 8px;font-weight:600}
+.sim-passage ul {margin:4px 0 10px;padding-left:22px}
+.sim-passage table {border-collapse:collapse;min-width:480px;width:100%;font-size:12px}
+.sim-passage th,.sim-passage td {border:1px solid #94a3b8;padding:5px 7px;text-align:center}
+.sim-passage th {background:#e2e8f0}
+.sim-math {font-family:Georgia,"Times New Roman",serif;font-size:16px;text-align:center;padding:9px 6px}
+.sim-conditions {margin:4px 0 12px 12px;line-height:1.7}
+.sim-conditions > div {margin:0;padding:0}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-left">
+    <a class="btn-home" href="../index.html">← 메인</a>
+    <div>
+      <div class="top-title">시뮬레이션 2019 기출 (35문항)</div>
+    <div class="top-sub" id="answered-count">진행: 0 / 35 문항</div>
+    </div>
+  </div>
+  <div class="timer-box">
+    <span class="timer-val" id="timer">00:00</span>
+    <button class="btn-pause" id="pauseBtn" onclick="togglePause()">일시정지</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="intro-card">
+    <p style="font-size:13px;color:#a34b16">※ 공통 지문·표·수식·도식은 HTML 및 인라인 SVG로 표시됩니다.</p>
+    <h2>2019학년도 2학기 기말시험 문제은행 (36~70번)</h2>
+    <p>라디오버튼으로 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
+    (A: 개념 알고 품 / B: 원리 모름 / C: 개념 생소 / D: 계산·적용 막힘)</p>
+    <div class="progress-wrap"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div id="quiz-list"></div>
+
+  <div class="submit-wrap">
+    <button class="btn-submit" onclick="gradeQuiz()">35문항 제출 및 종합 진단 받기</button>
+  </div>
+
+  <div id="report-section">
+    <h2 style="margin-top:0;">📊 2019학년도 2학기 기말시험 문제은행 진단 결과</h2>
+    <div class="stat-grid" id="stat-grid"></div>
+    <div id="unit-breakdown"></div>
+    <h3 style="margin:16px 0 6px; font-size:15px;">📋 일정 관리 대화 전달용 요약 보고서</h3>
+    <textarea class="report-text" id="report-textarea" readonly></textarea>
+    <button class="btn-copy" onclick="copyReport()">보고서 텍스트 복사하기</button>
+    <a class="btn-home-bottom" href="../index.html">🏠 과목 메인 포털로 돌아가기</a>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    "num": 36,
+    "unit": "2장. 시스템과 모델링",
+    "q": "시뮬레이션 모델은 다음과 같은 4가지 수준에서 이용될 수 있다. 이 중에서 공장의 제조공정이나 물류시스템을 분석하고 개선점을 찾는 시뮬레이션과 관련 있는 것은?",
+    "options": [
+      "시스템이나 문제를 정의하는 설명적 장치",
+      "한계점(critical) 구성요소를 결정하는 분석 도구",
+      "제안된 해결방안을 종합하고 평가하는 설계평가도구",
+      "해석적 문제를 풀이하고 해를 구하는 계산 도구"
+    ],
+    "ans": 2,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 37,
+    "unit": "2장. 시스템과 모델링",
+    "q": "다음은 시스템에 대한 설명이다. 설명이 틀린 것은?",
+    "options": [
+      "관심의 대상이 되는 실세계의 부분집합.",
+      "어느 목적을 위하여 하나 이상 서로 관련 있는 구성요소가 결합된 것",
+      "따라서 이러한 시스템은 상대적인 것이 된다.",
+      "범위를 고려할 때 모든 외적요인들은 입력 데이터가 된다."
+    ],
+    "ans": 3,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 38,
+    "unit": "2장. 시스템과 모델링",
+    "q": "다음 중 모델링을 하기 쉬운 경우는?",
+    "options": [
+      "인간의 의사결정이 시스템의 절대적인 부분을 차지한다.",
+      "시스템에 부수되는 물리적인 규칙이 이용 가능하다.",
+      "랜덤한 구성요소들이 중요한 요인이 된다.",
+      "이용 가능한 기본 규칙이 거의 없다."
+    ],
+    "ans": 1,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 39,
+    "unit": "2장. 시스템과 모델링",
+    "q": "다음 중 특정 시각에서의 시스템 표현으로 몬테칼로 시뮬레이션 등과 관계있는 모델은?",
+    "options": [
+      "결정적 모델",
+      "정적모델",
+      "이산모델",
+      "수리적 모델"
+    ],
+    "ans": 1,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 40,
+    "unit": "7장. 난수 발생",
+    "q": "<div class=\"sim-passage\"><p class=\"sim-note\">※ (40~41) 다음은 2차원 난수를 사용하여 π를 구하는 몬테칼로 시뮬레이션의 예이다.</p><p><strong>〈해결방법〉</strong></p><p>반지름의 길이가 1인 원의 면적은 π 이므로 이 면적을 구하면 곧 π 값을 구하게 된다. 난수 U[0,1]를 두 개씩 발생시킨 후 앞의 것을 x축의 값 x, 뒤의 것을 y축의 값 y라 하면 좌표 (x, y)는 2차원 좌표에서 하나의 난수가 되어 아래 그림처럼 점으로 표현된다. 즉, 1사분면에 있는 면적이 1인 사각형과 1/4 원 A 안에 들어가는 각각의 점의 개수를 비율로 계산하면 π/4 값에 근사한 값을 구할 수 있다. 다음은 전체 알고리즘으로 2차원 난수 50,000개를 발생시켰다.</p><div class=\"sim-math\">50,000 : 사각형의 면적 = count : A<br>⇒ 50,000 : 1 = count : A<br>⇒ A = count / 50,000<br>⇒ π = 4 × A</div><svg viewBox=\"0 0 290 240\" role=\"img\" aria-label=\"1사분면의 사분원 A\" style=\"max-width:290px;width:100%;display:block;margin:auto\"><defs><pattern id=\"dots19\" width=\"6\" height=\"6\" patternUnits=\"userSpaceOnUse\"><circle cx=\"2\" cy=\"2\" r=\"0.8\" fill=\"#3676bc\"/></pattern></defs><path d=\"M55 200 V40 A160 160 0 0 1 215 200 Z\" fill=\"url(#dots19)\" stroke=\"#1e293b\" stroke-width=\"2\"/><path d=\"M55 40 H215 V200\" fill=\"none\" stroke=\"#1e293b\"/><path d=\"M55 200 H250 M55 200 V15\" stroke=\"#1e293b\" stroke-width=\"2\"/><text x=\"40\" y=\"216\">0</text><text x=\"44\" y=\"35\">1</text><text x=\"210\" y=\"218\">1</text><text x=\"252\" y=\"207\">x</text><text x=\"38\" y=\"118\">y</text><text x=\"100\" y=\"138\" font-size=\"19\">A = π/4</text></svg><pre>while i ≤ limit do\n{\n    call random(n,U)\n        x=U\n    call random(n,U)\n        y=U\n    if x² + y² ≤ 1 then\n        count=count+1\n    i=i+1\n}\ns = count/limit\ns = s*4\nprint 'result', s</pre></div>난수 U는 총 몇 개 발생되는가?",
+    "options": [
+      "30,000",
+      "50,000",
+      "100,000",
+      "150,000"
+    ],
+    "ans": 2,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 41,
+    "unit": "7장. 난수 발생",
+    "q": "원안에 들어가는 점의 개수를 나타내는 변수는?",
+    "options": [
+      "s",
+      "y",
+      "limit",
+      "count"
+    ],
+    "ans": 3,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 42,
+    "unit": "2장. 시스템과 모델링",
+    "q": "시뮬레이션의 장점들이다. 관계없는 것은?",
+    "options": [
+      "실시스템의 실질적인 구축 없이도 평가할 수 있다.",
+      "확률적 시뮬레이션은 정확한 값이 아니라 추정량을 산출한다.",
+      "실시스템이 위험성을 내포한 경우 시뮬레이션이 유용하다.",
+      "실현 불가능한 경우도 시뮬레이션으로 실험 및 평가가 가능하다."
+    ],
+    "ans": 1,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 43,
+    "unit": "2장. 시스템과 모델링",
+    "q": "다음은 시뮬레이션 과정에 대한 설명이다. 틀린 것은?",
+    "options": [
+      "문제의 정의 : 문제해결의 목적을 포함하여 연구하고자 하는 문제를 정의 함.",
+      "모델 설계 : 문제의 정의에 따라서 시스템을 수학적이고 논리적인 관계로 추상화 함.",
+      "모델 변환 : 컴퓨터에서의 처리에 적절하게 모델을 변환 함.",
+      "타당성 검토 : 모델이 의도한 대로 컴퓨터 프로그램이 수행될 수 있도록 준비함."
+    ],
+    "ans": 3,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 44,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "<div class=\"sim-passage\"><p class=\"sim-note\">※ (44~50) 다음은 복수창구 대기행렬 시뮬레이션의 조건과 알고리즘을 나타낸다.</p><p class=\"sim-note\">〈조건〉</p><div class=\"sim-conditions\"><div>도착상태 = 시간당 평균 15대</div><div>봉사시간 = 평균 5분의 포아송 분포</div><div>봉사창구 = 2</div><div>시뮬레이션 시간 = 150</div><div>난수의 초기값 = 35213</div></div><p class=\"sim-note\">〈알고리즘〉</p><pre>{\n    :\n    while time &lt; tlimit do\n    { time = time+tstep\n      arrive = 0\n      call random(seed, U)\n      if U &lt; prarr*tstep then\n      { arrive = 1\n        queue = queue+arrive\n        totarr=totarr+1 }\n      i = 0\n      while(i &lt; 2) do\n      { i = i + 1\n        if (tpump(i) &gt; 0.0) then\n        { tpump(i) = tpump(i) - tstep\n          if (tpump(i) &lt; 0.0) then\n              tpump(i) = 0.0 }\n        if (tpump(i) = 0.0 and queue ≠ 0) then\n        { queue = queue - 1\n          call poissn(seed,mean,p)\n          tpump(i) = p }\n      }// end of while1\n      totque = totque+queue\n    }// end of while2\n    aveque = totque/(tlimit/tstep)\n    print aveque, totarr\n    stop\n}</pre></div>35213을 초기값으로 갖는 변수는?",
+    "options": [
+      "tlimit",
+      "prarr",
+      "seed",
+      "mean"
+    ],
+    "ans": 2,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 45,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "0.25를 초기값으로 갖는 변수는?",
+    "options": [
+      "tstep",
+      "prarr",
+      "seed",
+      "mean"
+    ],
+    "ans": 1,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 46,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "150을 초기값으로 갖는 변수는?",
+    "options": [
+      "tlimit",
+      "prarr",
+      "seed",
+      "mean"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 47,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "5를 초기값으로 갖는 변수는?",
+    "options": [
+      "tlimit",
+      "prarr",
+      "seed",
+      "mean"
+    ],
+    "ans": 3,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 48,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "현재 봉사하려는 고객의 봉사시간을 구한 것은?",
+    "options": [
+      "p",
+      "queue",
+      "prarr",
+      "totque"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 49,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "평균 대기행렬길이는?",
+    "options": [
+      "aveque",
+      "queue",
+      "prarr",
+      "tpump"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 50,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "평균 대기시간을 구하는 공식을 만들려고 한다. 가장 적당한 것은?",
+    "options": [
+      "totque / totarr",
+      "totque / arrive",
+      "totque / queue",
+      "totque / (tlimit / tstep)"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 51,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "<div class=\"sim-passage\"><p class=\"sim-note\">※ (51~54) 다음은 복수창구 대기행렬 시뮬레이션 출력결과의 일부이다. 결과를 보고 다음 물음에 답하라. 단, 시뮬레이션 시간은 1부터 시작한다.</p><table><thead><tr><th>TIME</th><th>ARRIVE</th><th>QUEUE</th><th>TPUMP[1]</th><th>TPUMP[2]</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>4</td><td>0</td></tr><tr><td>2</td><td>1</td><td>0</td><td>3</td><td>5</td></tr><tr><td>3</td><td>0</td><td>0</td><td>2</td><td>4</td></tr><tr><td>4</td><td>1</td><td>1</td><td>1</td><td>3</td></tr><tr><td>5</td><td>0</td><td>0</td><td>4</td><td>2</td></tr><tr><td>6</td><td>1</td><td>1</td><td>3</td><td>1</td></tr><tr><td>7</td><td>0</td><td>0</td><td>2</td><td>3</td></tr><tr><td>8</td><td>1</td><td>1</td><td>1</td><td>2</td></tr><tr><td>9</td><td>0</td><td>0</td><td>6</td><td>1</td></tr></tbody></table></div>고객들에 대한 도착 시간을 순서대로 나열한 것은?",
+    "options": [
+      "1,2,4,6,8",
+      "1,2,3,5,9",
+      "3,5,6,7,8",
+      "4,6,7,8,9"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 52,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "고객들의 도착시간 간격을 순서대로 구한 것은?",
+    "options": [
+      "0,1,2,2,2",
+      "1,1,2,2,2",
+      "1,1,1,2,3",
+      "1,1,2,3,2"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 53,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "고객들에 대한 봉사 시간을 순서대로 구한 것은?",
+    "options": [
+      "4,2,4,4,6",
+      "4,3,4,3,6",
+      "4,5,4,3,6",
+      "4,4,4,5,6"
+    ],
+    "ans": 2,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 54,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "4번 고객까지 출발 시간을 순서대로 구한 것은?",
+    "options": [
+      "1,4,6,8",
+      "4,6,8,9",
+      "5,7,9,10",
+      "5,6,10,12"
+    ],
+    "ans": 2,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 55,
+    "unit": "4장. 대기행렬 시뮬레이션",
+    "q": "단일 창구 대기행렬 시뮬레이션에서 봉사시간에 다음과 같은 조건을 추가하였다.<div class=\"sim-passage\"><p class=\"sim-note\">〈조건〉</p><div class=\"sim-conditions\"><div>고객의 도착상태 : 시간당 평균 15대의 일양분포</div><div>연료탱크 : 평균 = 20 liter, 표준편차 = 3인 정규분포</div><div>급유시간계산 : 1 liter 당 1/8분</div></div><p>다음은 이를 위하여 봉사시간을 계산하는 알고리즘을 수정한 것이다.</p><pre>if (tpump &gt; 0.0) then\n    { tpump = tpump - tstep\n      if (tpump &lt; 0.0) then\n          tpump = 0.0\n    }\nif ((tpump = 0) &amp; (queue ≠ 0)) then\n    { queue = queue - 1\n      call normal(nseed,nmean,stdev,liters);\n      tpump = 1.0 + 1.0 / 8.0 * liters;\n    }\ntotque = totque + queue;\nprint, time,arrive,queue,tpump</pre></div>다음 중 정규확률변수의 평균 값으로 연료탱크의 평균을 나타내는 것은?",
+    "options": [
+      "liters",
+      "nseed",
+      "nmean",
+      "stdev"
+    ],
+    "ans": 2,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 56,
+    "unit": "6장. 시뮬레이션 언어",
+    "q": "다음 중 모델링 월드뷰에 대한 설명 중 틀린 것은?",
+    "options": [
+      "시뮬레이션 모델 개발에 있어서 분석가는 모델 대상이 되는 시스템을 설명하기 위하여 개념적인 기본구조(frame work)를 갖고 있어야 한다.",
+      "이 기본구조는 시스템의 기능적인 관계를 잘 이해해서 그것을 표현할 수 있는 전체적인 시각인 월드뷰(world view)에 의하여 결정된다.",
+      "만일 모델 작성자가 시뮬레이션 언어를 사용한다면 기본구조는 언어에 의해 자연히 암시적으로 표현된다.",
+      "혼합형 시뮬레이션 모델링의 경우 사건중심 진행방법, 액티비티 관찰중심방법, 프로세스중심 진행방법들이 있다."
+    ],
+    "ans": 3,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 57,
+    "unit": "5장. 이산사건 시뮬레이션",
+    "q": "다음 중 고정시간법의 특징은?",
+    "options": [
+      "사건중심으로 진행하는 경우 효율적이다.",
+      "종료조건을 봉사 고객 수로 한다.",
+      "종료조건을 처리 시간으로 한다.",
+      "언제 끝날지 종료 시간을 미리 알 수 없다."
+    ],
+    "ans": 2,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 58,
+    "unit": "5장. 이산사건 시뮬레이션",
+    "q": "<div class=\"sim-passage\"><p class=\"sim-note\">※ (58~60) 다음은 대기행렬 문제를 이산사건 진행 방식으로 시뮬레이션 한 것이다.<br>다음은 주 프로그램에 대한 알고리즘이다.</p><pre>main\n{\n    marrvt = 5.0\n    mservt = 2.5\n    totarr = 1000\n    call init\n    while( numcus &lt; totarr )\n    {   call timing\n        if(next = 1) then\n            call arrive\n        else\n            call depart }\n\n    call report }</pre></div>고객의 평균 도착시간 간격을 나타내는 변수는?",
+    "options": [
+      "marrvt",
+      "mservt",
+      "totarr",
+      "numcus"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 59,
+    "unit": "5장. 이산사건 시뮬레이션",
+    "q": "고객의 평균 봉사시간을 나타내는 변수는?",
+    "options": [
+      "marrvt",
+      "mservt",
+      "totarr",
+      "numcus"
+    ],
+    "ans": 1,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 60,
+    "unit": "5장. 이산사건 시뮬레이션",
+    "q": "시뮬레이션 종료조건으로 총 고객 수를 나타내는 것은?",
+    "options": [
+      "totarr",
+      "timing",
+      "next",
+      "marrvt"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 61,
+    "unit": "6장. 시뮬레이션 언어",
+    "q": "다음 중 네트워크 설계 및 성능평가, 네트워크상의 문제해결, 응용프로그램 성능 분석 및 진단 등 네트워크 전반에 걸쳐서 활용되는 네트워크 시뮬레이션 전용언어는?",
+    "options": [
+      "Riverbed Modeler(OPNET)",
+      "AweSim",
+      "ProModel",
+      "SLAM"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 62,
+    "unit": "6장. 시뮬레이션 언어",
+    "q": "다음 중 시뮬레이션에서 범용언어를 사용하는 경우의 장점은?",
+    "options": [
+      "시뮬레이션 모델 설계에 일반화된 구조를 제공한다.",
+      "사용자가 사용하기 쉽고 융통성이 많다.",
+      "모델링과 프로그래밍 시간이 적게 걸린다.",
+      "출력결과를 다양한 그래픽과 애니메이션으로 표현한다."
+    ],
+    "ans": 1,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 63,
+    "unit": "7장. 난수 발생",
+    "q": "컴퓨터를 이용하여 난수를 발생하는 경우 갖추어야 할 점이 아닌 것은?",
+    "options": [
+      "반복발생이 가능해야 한다.",
+      "상관관계가 없어야 한다.",
+      "난수들 상호간에 종속적이어야 한다.",
+      "[0,1) 범위에서 일양분포를 만족해야 한다."
+    ],
+    "ans": 2,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 64,
+    "unit": "7장. 난수 발생",
+    "q": "<div class=\"sim-passage\"><p class=\"sim-note\">※ (64~67) 다음은 난수의 발생식이다. 물음에 답하라.</p><div class=\"sim-math\">X<sub>i</sub> = 2X<sub>i−1</sub> + 3 &nbsp;(mod 10)</div></div>이 방법의 이름은?",
+    "options": [
+      "중앙 이승법",
+      "shift 연산법",
+      "승산식 합동법",
+      "혼합식 합동법"
+    ],
+    "ans": 3,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 65,
+    "unit": "7장. 난수 발생",
+    "q": "X₀ = 3 을 대입하여 X₁을 구하면?",
+    "options": [
+      "1",
+      "3",
+      "5",
+      "9"
+    ],
+    "ans": 3,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 66,
+    "unit": "7장. 난수 발생",
+    "q": "계속해서 X₂를 구하면?",
+    "options": [
+      "1",
+      "3",
+      "5",
+      "9"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 67,
+    "unit": "7장. 난수 발생",
+    "q": "주기는?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "ans": 1,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 68,
+    "unit": "7장. 난수의 검정",
+    "q": "<div class=\"sim-passage\"><p class=\"sim-note\">※ (68~69) χ²-검정에 관한 사항이다.</p><p>6000개의 난수를 발생시켜서 100개의 구간으로 나누었다.</p><div class=\"sim-math\">χ² = k/n &nbsp;∑<sub>i=1</sub><sup>k</sup> (f<sub>i</sub> − n/k)²</div></div>구간별 기대값인 n/k 의 값은?",
+    "options": [
+      "30",
+      "40",
+      "50",
+      "60"
+    ],
+    "ans": 3,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 69,
+    "unit": "7장. 난수의 검정",
+    "q": "계속해서 2차원의 연속형 검정을 하려고 한다. 다음 수의 난수 6000개로 2차원의 (x, y)난수를 만들고 100(10*10)개의 2차원 구간을 선정하였다. 기대 값 n/k² 은?",
+    "options": [
+      "30",
+      "40",
+      "50",
+      "60"
+    ],
+    "ans": 0,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  },
+  {
+    "num": 70,
+    "unit": "2장. 시스템과 모델링",
+    "q": "다음은 시뮬레이션의 응용사례들이다. 시뮬레이션 목적이 미래를 예측하는 것으로 나머지 셋과 가장 관련 없는 것은?",
+    "options": [
+      "원자력 발전소 시뮬레이터",
+      "운전연습 시뮬레이터",
+      "서행 시뮬레이션",
+      "파일러트(조종사) 시뮬레이션"
+    ],
+    "ans": 2,
+    "exp": "2019년 공식 정답표 기준 정답입니다. 원문과 함께 복습하세요."
+  }
+];
+
+const userAns = new Array(QUESTIONS.length).fill(null);
+const userType = new Array(QUESTIONS.length).fill(null);
+let seconds = 0;
+let paused = false;
+let submitted = false;
+
+const timerInterval = setInterval(() => {
+  if (!paused && !submitted) {
+    seconds++;
+    document.getElementById("timer").textContent = formatTime(seconds);
+  }
+}, 1000);
+
+function formatTime(sec) {
+  const m = String(Math.floor(sec / 60)).padStart(2, "0");
+  const s = String(sec % 60).padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById("pauseBtn").textContent = paused ? "재개" : "일시정지";
+}
+
+function renderQuiz() {
+  const list = document.getElementById("quiz-list");
+  const numCircles = ["①", "②", "③", "④"];
+  list.innerHTML = QUESTIONS.map((item, idx) => `
+    <div class="q-card" id="card-${idx}">
+      <div class="q-meta">
+        <span class="q-num">문제 ${item.num}</span>
+        <span class="q-unit">${item.unit}</span>
+      </div>
+      <div class="q-text">${item.q}</div>
+      <div class="opt-list">
+        ${item.options.map((opt, oIdx) => `
+          <label class="opt-label" id="lbl-${idx}-${oIdx}">
+            <input type="radio" name="q${idx}" value="${oIdx}" onchange="selectOpt(${idx}, ${oIdx})">
+            <span>${numCircles[oIdx]} ${opt}</span>
+          </label>
+        `).join("")}
+      </div>
+      <div class="type-row">
+        <span class="type-title">자가 유형 분류:</span>
+        <div class="type-btns">
+          ${["A", "B", "C", "D"].map(t => `
+            <button type="button" class="t-btn" id="tbtn-${idx}-${t}" onclick="selectType(${idx}, '${t}')">${t}</button>
+          `).join("")}
+        </div>
+      </div>
+      <div class="exp-box" id="exp-${idx}">
+        <b>${item.disputed ? "원본 선택지 오류 의심 · 채점 제외" : "정답: " + numCircles[item.ans]}</b><br>${item.exp}
+      </div>
+    </div>
+  `).join("");
+}
+
+function selectOpt(qIdx, oIdx) {
+  if (submitted) return;
+  userAns[qIdx] = oIdx;
+  for (let i = 0; i < 4; i++) {
+    document.getElementById(`lbl-${qIdx}-${i}`).classList.toggle("selected", i === oIdx);
+  }
+  const done = userAns.filter(v => v !== null).length;
+  document.getElementById("answered-count").textContent = `진행: ${done} / 35 문항`;
+  document.getElementById("progress-fill").style.width = `${(done / 35) * 100}%`;
+}
+
+function selectType(qIdx, t) {
+  userType[qIdx] = (userType[qIdx] === t) ? null : t;
+  ["A", "B", "C", "D"].forEach(code => {
+    document.getElementById(`tbtn-${qIdx}-${code}`).classList.toggle("active", userType[qIdx] === code);
+  });
+}
+
+function gradeQuiz() {
+  const unanswered = userAns.filter(v => v === null).length;
+  if (unanswered > 0 && !confirm(`아직 풀지 않은 문제가 ${unanswered}개 있습니다. 그래도 제출하고 진단할까요?`)) {
+    return;
+  }
+  submitted = true;
+  clearInterval(timerInterval);
+
+  let correctCnt = 0;
+  const unitStats = {};
+  const typeStats = { A: [], B: [], C: [], D: [] };
+  const wrongList = [];
+
+  QUESTIONS.forEach((item, idx) => {
+    if (!unitStats[item.unit]) unitStats[item.unit] = { total: 0, ok: 0 };
+    unitStats[item.unit].total++;
+
+    const card = document.getElementById(`card-${idx}`);
+    const exp = document.getElementById(`exp-${idx}`);
+    exp.classList.add("show");
+
+    const chosen = userAns[idx];
+    const isOk = chosen === item.ans;
+    if (isOk) {
+      correctCnt++;
+      unitStats[item.unit].ok++;
+      card.classList.add("correct");
+    } else {
+      card.classList.add("wrong");
+      wrongList.push(item.num);
+      if (chosen !== null) {
+        document.getElementById(`lbl-${idx}-${chosen}`).classList.add("ans-bad");
+      }
+    }
+    document.getElementById(`lbl-${idx}-${item.ans}`).classList.add("ans-ok");
+
+    const finalType = userType[idx] || (isOk ? "A" : "B");
+    typeStats[finalType].push(item.num);
+  });
+
+  const score = Math.round((correctCnt / 35) * 100);
+  const avgSec = Math.round(seconds / 35);
+
+  document.getElementById("stat-grid").innerHTML = `
+    <div class="stat-box"><div class="stat-num">${correctCnt} / 35 (${score}점)</div><div class="stat-lbl">정답 수 및 환산 점수</div></div>
+    <div class="stat-box"><div class="stat-num">${formatTime(seconds)}</div><div class="stat-lbl">총 소요 시간 (문항당 ${avgSec}초)</div></div>
+    <div class="stat-box"><div class="stat-num">A:${typeStats.A.length} / B:${typeStats.B.length}</div><div class="stat-lbl">유형 A(완벽) / B(원리부족)</div></div>
+    <div class="stat-box"><div class="stat-num">C:${typeStats.C.length} / D:${typeStats.D.length}</div><div class="stat-lbl">유형 C(생소) / D(계산·적용)</div></div>
+  `;
+
+  let unitHtml = "<h3 style='font-size:15px; margin:12px 0 6px;'>📚 단원별 성취도</h3><table class='mini-tbl' style='width:100%;'><tr><th>단원</th><th>정답/문항</th><th>정답률</th></tr>";
+  const unitLines = [];
+  for (const [u, st] of Object.entries(unitStats)) {
+    const pct = Math.round((st.ok / st.total) * 100);
+    unitHtml += `<tr><td style='text-align:left;'>${u}</td><td>${st.ok} / ${st.total}</td><td><b>${pct}%</b></td></tr>`;
+    unitLines.push(`- ${u}: ${st.ok}/${st.total} (${pct}%)`);
+  }
+  unitHtml += "</table>";
+  document.getElementById("unit-breakdown").innerHTML = unitHtml;
+
+  const speedEval = avgSec <= 60 ? "빠름 (실전 시간 충분)" : avgSec <= 90 ? "적정 (계산 문항 시간 배분 유의)" : "다소 느림 (개념 정립 후 반복 숙달 필요)";
+
+  const reportText = `[시뮬레이션 2019학년도 2학기 기말시험 문제은행 학습 진단 보고서]
+1. 학습 범위 및 문항 수: 2장~8장2절 35문항 (36~70번)
+2. 실제 풀이 시간: 총 ${formatTime(seconds)} (문항당 평균 ${avgSec}초)
+3. 득점 결과: ${correctCnt} / 35문항 정답 (${score}점)
+4. A~D 유형 분포:
+   - A (개념 알고 품): ${typeStats.A.length}문항 ${typeStats.A.length ? '(' + typeStats.A.join(', ') + '번)' : ''}
+   - B (원리 부족): ${typeStats.B.length}문항 ${typeStats.B.length ? '(' + typeStats.B.join(', ') + '번)' : ''}
+   - C (개념 생소): ${typeStats.C.length}문항 ${typeStats.C.length ? '(' + typeStats.C.join(', ') + '번)' : ''}
+   - D (계산·적용 막힘): ${typeStats.D.length}문항 ${typeStats.D.length ? '(' + typeStats.D.join(', ') + '번)' : ''}
+5. 단원별 정답률:
+${unitLines.join("\n")}
+6. 오답 문항(재풀이 대상): ${wrongList.length ? wrongList.join(", ") + "번" : "없음 (만점)"}
+7. 학습 속도 평가: ${speedEval}`;
+
+  document.getElementById("report-textarea").value = reportText;
+  const repSec = document.getElementById("report-section");
+  repSec.style.display = "block";
+  repSec.scrollIntoView({ behavior: "smooth" });
+}
+
+function copyReport() {
+  const ta = document.getElementById("report-textarea");
+  ta.select();
+  document.execCommand("copy");
+  alert("진단 보고서가 클립보드에 복사되었습니다!");
+}
+
+renderQuiz();
+document.querySelectorAll('.mini-tbl').forEach(tbl => {
+  if (!tbl.closest('.mem-wrap') && !tbl.parentElement.classList.contains('tbl-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'tbl-wrap';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  }
+});
+</script>
+</body>
+</html>
