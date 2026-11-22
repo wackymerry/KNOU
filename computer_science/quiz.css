@@ -212,3 +212,7 @@ body {
 .btn-home-bottom:hover {
   background: var(--primary); color: #fff;
 }
+
+/* 원본 시험지에서 잘라낸 공통 지문과 표 */
+.original-passage { max-width:100%; margin:10px 0 14px; overflow-x:auto; }
+.original-passage img { display:block; width:100%; max-width:740px; height:auto; border:1px solid #ddd; background:white; }
