@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>시뮬레이션 2017 기출 (35문항)</title>
-<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795335614093&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_00000000852c82118a61445b2e36b14a%26fn%3D2017-simulation-clean.html%26cd%3Dattachment%26ts%3D498704%26p%3Dfs%26cid%3D1%26sig%3Dfa43d25a41ad9c7822360184b428c6e21fb289eed94709b3fd865b3264a361b7%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795335614093&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link rel="stylesheet" href="../quiz.css">
+<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795335614093&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_000000006edc8211b83e864533bdc395%26fn%3D2017-simulation-layout-fixed.html%26cd%3Dattachment%26ts%3D498704%26p%3Dfs%26cid%3D1%26sig%3D31a81b77779500947e8ebd910c7caa455eec1fcf472fb2dc76071c997594656f%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795335614093&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link rel="stylesheet" href="../quiz.css">
 <style>
 .sim-passage {margin:12px 0 16px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;font-size:13px;line-height:1.65;overflow-x:auto}
 .sim-passage pre {font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;white-space:pre;overflow-x:auto;margin:8px 0;color:#172033}
@@ -14,6 +14,8 @@
 .sim-passage th,.sim-passage td {border:1px solid #94a3b8;padding:5px 7px;text-align:center}
 .sim-passage th {background:#e2e8f0}
 .sim-math {font-family:Georgia,"Times New Roman",serif;font-size:16px;text-align:center;padding:9px 6px}
+.sim-conditions {margin:4px 0 12px 12px;line-height:1.7}
+.sim-conditions > div {margin:0;padding:0}
 </style>
 </head>
 <body>
@@ -59,7 +61,7 @@
 </div>
 
 <template id="tpl-42-48">
-<div class="sim-passage"><p class="sim-note">※ (42~48) 다음은 평균대기행렬과 평균대기시간을 구하는 단일 창구 대기행렬 시뮬레이션이다. 조건은 다음과 같다.</p><p class="sim-note">&lt;조건&gt;</p><ul><li>고객의 도착 상황 : 시간당 15명</li><li>고객의 서비스 상황 : 평균 4분의 포아송분포</li></ul><pre>
+<div class="sim-passage"><p class="sim-note">※ (42~48) 다음은 평균대기행렬과 평균대기시간을 구하는 단일 창구 대기행렬 시뮬레이션이다. 조건은 다음과 같다.</p><p class="sim-note">&lt;조건&gt;</p><div class="sim-conditions"><div>고객의 도착 상황 : 시간당 15명</div><div>고객의 서비스 상황 : 평균 4분의 포아송분포</div></div><pre>
 {
     tstep=1, prarr=0.25, seed=35213, mean=4
     queue = 0
