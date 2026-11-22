@@ -9,9 +9,12 @@
 <body>
 
 <div class="top-bar">
-  <div>
-    <div class="top-title">시뮬레이션 2017 기출 (35문항)</div>
+  <div class="top-left">
+    <a class="btn-home" href="../index.html">← 메인</a>
+    <div>
+      <div class="top-title">시뮬레이션 2017 기출 (35문항)</div>
     <div class="top-sub" id="answered-count">진행: 0 / 35 문항</div>
+    </div>
   </div>
   <div class="timer-box">
     <span class="timer-val" id="timer">00:00</span>
@@ -40,6 +43,7 @@
     <h3 style="margin:16px 0 6px; font-size:15px;">📋 일정 관리 대화 전달용 요약 보고서</h3>
     <textarea class="report-text" id="report-textarea" readonly></textarea>
     <button class="btn-copy" onclick="copyReport()">보고서 텍스트 복사하기</button>
+    <a class="btn-home-bottom" href="../index.html">🏠 과목 메인 포털로 돌아가기</a>
   </div>
 </div>
 
@@ -369,6 +373,14 @@ function copyReport() {
 }
 
 renderQuiz();
+document.querySelectorAll('.mini-tbl').forEach(tbl => {
+  if (!tbl.closest('.mem-wrap') && !tbl.parentElement.classList.contains('tbl-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'tbl-wrap';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  }
+});
 </script>
 </body>
 </html>

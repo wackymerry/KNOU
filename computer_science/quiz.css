@@ -71,7 +71,7 @@ body {
   height: 100%; background: var(--primary); width: 0%; transition: width 0.2s;
 }
 
-/* 문제 카드 & 지문 */
+/* 문제 카드 & 지문/코드/다이어그램 */
 .q-card {
   background: var(--card); border-radius: 12px; padding: 16px;
   margin-bottom: 14px; border: 1px solid var(--border);
@@ -105,8 +105,15 @@ body {
   font-family: "SFMono-Regular", Consolas, "Malgun Gothic", monospace;
   white-space: pre-wrap; overflow-x: auto;
 }
+.code-box, .diagram-box, .quote-box {
+  background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px;
+  padding: 10px 12px; margin: 10px 0; font-size: 13px; font-weight: 500;
+  font-family: "SFMono-Regular", Consolas, "Malgun Gothic", monospace;
+  overflow-x: auto;
+}
+.mem-wrap { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
 
-/* 표(Table) 깨짐 방지 (시뮬레이션 등 다열 표 대응) */
+/* 표(Table) 깨짐 방지 (시뮬레이션/컴퓨터구조 다열 표 대응) */
 .tbl-wrap {
   width: 100%;
   overflow-x: auto;
@@ -117,6 +124,7 @@ body {
   border-collapse: collapse; font-size: 12.5px; margin: 8px 0;
   background: #fff; width: 100%;
 }
+.mem-wrap .mini-tbl { width: auto; }
 .tbl-wrap .mini-tbl { margin: 0; }
 .mini-tbl th, .mini-tbl td {
   border: 1px solid #cbd5e1; padding: 7px 9px;
@@ -138,6 +146,7 @@ body {
   cursor: pointer; font-size: 14px; background: #fff; transition: all 0.15s;
   -webkit-tap-highlight-color: transparent;
 }
+.opt-label:hover { background: #f8fafc; border-color: #94a3b8; }
 .opt-label:active { background: #f1f5f9; }
 .opt-label input[type="radio"] {
   margin-top: 3px; width: 18px; height: 18px; accent-color: var(--primary); flex-shrink: 0;
@@ -165,7 +174,7 @@ body {
 .exp-box.show { display: block; }
 
 /* 제출 및 진단 리포트 */
-.submit-wrap { margin-top: 24px; text-align: center; }
+.submit-wrap, .submit-area { margin-top: 24px; text-align: center; }
 .btn-submit {
   width: 100%; padding: 15px; font-size: 16px; font-weight: 800;
   background: var(--primary); color: #fff; border: none; border-radius: 12px;
