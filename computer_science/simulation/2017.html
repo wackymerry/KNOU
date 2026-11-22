@@ -125,7 +125,7 @@ aveque = totque / (tlimit/tstep)</pre></div>
 </template>
 
 <template id="tpl-58-60">
-<div class="sim-passage"><p class="sim-note">※ (58~60) 다음은 대기행렬 문제를 이산사건 진행 방식으로 시뮬레이션한 슈퍼프로그램과 arrive 부프로그램 알고리즘이다.</p><pre>main
+<div class="sim-passage"><p class="sim-note">※ (58~60) 다음은 대기행렬 문제를 이산사건 진행 방식으로 시뮬레이션 한 것이다. </p><p>※ 다음은 주프로그램과 arrive 부프로그램 알고리즘이다.</p><pre>main
 {   marrvt = 1.0
     mservt = 0.5
     totarr = 1000
@@ -151,7 +151,8 @@ subprogram arrive
         tne[2] = time + e_dep
     }
     else
-        -- 이하 생략 --
+        -- 이하 중략 --
+    }
 }</pre></div>
 </template>
 
@@ -193,8 +194,8 @@ const QUESTIONS = [
   {"num": 64, "unit": "7장. 난수 발생", "q": "※ (64~66) 다음은 난수의 발생식이다. 물음에 답하라. <div class='sim-passage'><div class='sim-math'>X<sub>i</sub> = 2X<sub>i−1</sub> + 3 (mod 10)</div></div>64. X₀ = 5 일 때 X₁을 구하면?", "options": ["3", "5", "6", "9"], "ans": 0, "exp": "X₁ = (2 × 5 + 3) mod 10 = 13 mod 10 = 3입니다."},
   {"num": 65, "unit": "7장. 난수 발생", "q": "<div class='sim-passage'><div class='sim-math'>X<sub>i</sub> = 2X<sub>i−1</sub> + 3 (mod 10)</div></div>65. 계속해서 X₂를 구하면?", "options": ["3", "5", "6", "9"], "ans": 3, "exp": "X₂ = (2 × 3 + 3) mod 10 = 9 mod 10 = 9입니다."},
   {"num": 66, "unit": "7장. 난수 발생", "q": "<div class='sim-passage'><div class='sim-math'>X<sub>i</sub> = 2X<sub>i−1</sub> + 3 (mod 10)</div></div>66. 주기는?", "options": ["3", "5", "4", "6"], "ans": 1, "exp": "[공식 정답표 확인: 2번] 해설은 별도 검토가 필요합니다."},
-  {"num": 67, "unit": "7장. 난수의 검정", "q": "※ (67~68) 카이제곱 검정에 관한 사항이다. 6000개의 난수를 발생시켜 100개의 구간으로 나누었다. <div class='sim-passage'><div class='sim-math'>χ² = k/n ∑<sub>i=1</sub><sup>k</sup> (O<sub>i</sub> − n/k)²</div></div>6000개의 난수를 발생시켜서 100개의 구간으로 나누었다.67. 자유도는?", "options": ["99", "100", "101", "102"], "ans": 0, "exp": "구간 수 k = 100일 때 카이제곱 검정의 자유도는 k - 1 = 100 - 1 = 99입니다."},
-  {"num": 68, "unit": "7장. 난수의 검정", "q": "<div class='sim-passage'><div class='sim-math'>χ² = k/n ∑<sub>i=1</sub><sup>k</sup> (O<sub>i</sub> − n/k)²</div></div>6000개의 난수를 발생시켜서 100개의 구간으로 나누었다.68. 구간별 기대값인 n/k의 값은?", "options": ["30", "40", "50", "60"], "ans": 3, "exp": "전체 난수 수 n = 6000, 구간 수 k = 100이므로 구간별 기대빈도 n/k = 6000 / 100 = 60입니다."},
+  {"num": 67, "unit": "7장. 난수의 검정", "q": "※ (67~68) χ² - 검정에 관한 사항이다. 물음에 답하라.<br>6000개의 난수를 발생시켜 100개의 구간으로 나누었다. <div class='sim-passage'><div class='sim-math'>χ² = k/n ∑<sub>i=1</sub><sup>k</sup> (O<sub>i</sub> − n/k)²</div></div>67. 자유도는?", "options": ["99", "100", "101", "102"], "ans": 0, "exp": "구간 수 k = 100일 때 카이제곱 검정의 자유도는 k - 1 = 100 - 1 = 99입니다."},
+  {"num": 68, "unit": "7장. 난수의 검정", "q": "<div class='sim-passage'><div class='sim-math'>χ² = k/n ∑<sub>i=1</sub><sup>k</sup> (O<sub>i</sub> − n/k)²</div></div>68. 구간별 기대값인 n/k의 값은?", "options": ["30", "40", "50", "60"], "ans": 3, "exp": "전체 난수 수 n = 6000, 구간 수 k = 100이므로 구간별 기대빈도 n/k = 6000 / 100 = 60입니다."},
   {"num": 69, "unit": "8장. 확률변수의 발생", "q": "<div class='sim-passage'><div class='sim-math'>F(x) = 1 − e<sup>−x/m</sup> = U<br>log<sub>e</sub>(1 − U) = −x/m<br>x = −m · log<sub>e</sub>(U)</div></div>다음은 지수 확률변수를 발생시키는 과정이다. 역함수를 이용하는 이 방법의 이름은?", "options": ["역변환법", "합성법", "결합법", "채택기각법"], "ans": 0, "exp": "누적분포함수 F(x) = U를 x에 대해 풀어 역함수 x = F⁻¹(U)로 확률변수를 생성하는 기법은 역변환법(Inverse Transform Method)입니다."},
   {"num": 70, "unit": "2장. 시스템과 모델링", "q": "다음은 시뮬레이션의 응용사례들이다. 시뮬레이션 목적이 나머지 셋과 가장 다른 것은?", "options": ["원자력 발전소 시뮬레이터", "운전연습 시뮬레이터", "일기예보", "파일러트(조종사) 시뮬레이션"], "ans": 0, "exp": "[공식 정답표 확인: 1번] 해설은 별도 검토가 필요합니다."}
 ];
