@@ -190,4 +190,206 @@
 const QUESTIONS = [
   {"num": 1, "unit": "1. 명령어와 주소지정방식", "q": "다음 중 컴퓨터 명령어를 구성하는 주소 필드(address field)에 대한 설명으로 가장 적절한 것은?", "options": ["기억장치 주소 혹은 처리장치 레지스터를 선택하기 위한 필드이다.", "명령어의 해석방법을 지정하는 필드이다.", "중앙처리장치에서 수행할 연산을 지정하는 필드이다.", "인터럽트 요청을 위한 제어 필드이다."], "ans": 0, "exp": "주소 필드(address field)는 연산에 사용할 데이터가 저장된 기억장치 주소나 처리장치 레지스터를 지정합니다."},
   {"num": 2, "unit": "1. 명령어와 주소지정방식", "q": "다음 중 <code>TOS ← M[X]</code>의 기능을 수행하는 컴퓨터 명령어는? (여기서 M은 Memory, TOS는 Top of Stack을 의미한다.)", "options": ["POP X", "PUSH X", "STORE X", "LOAD X"], "ans": 1, "exp": "기억장치 X번지의 내용(M[X])을 스택의 최상위(TOS)에 삽입하는 연산은 PUSH X입니다. (반대로 M[X] ← TOS는 POP X)"},
-  {"num": 3, "unit": "1. 명령어와 주소지정방식", "q": "다음 중 컴퓨터 명령과 컴퓨터의 내부구조와의 관계가 적절하게 연결된 것은?", "options": ["0-주소 명령 : 스택을 이용한 구조", "1-주소 명령 : 다중 레지스터를 이용한 구조", "2-주소 명령 : 프로그램 카운터를 이용한 구조", "3-주소 명령 : 단일 누산기를 이용한 구조"], "ans": 0, "exp": "0-주소 명령은 스택(Stack) 구조, 1-주소는 단일 누산기(AC) 구조, 2·3-주소는 다중 범용 레지스터 구조
+  {"num": 3, "unit": "1. 명령어와 주소지정방식", "q": "다음 중 컴퓨터 명령과 컴퓨터의 내부구조와의 관계가 적절하게 연결된 것은?", "options": ["0-주소 명령 : 스택을 이용한 구조", "1-주소 명령 : 다중 레지스터를 이용한 구조", "2-주소 명령 : 프로그램 카운터를 이용한 구조", "3-주소 명령 : 단일 누산기를 이용한 구조"], "ans": 0, "exp": "0-주소 명령은 스택(Stack) 구조, 1-주소는 단일 누산기(AC) 구조, 2·3-주소는 다중 범용 레지스터 구조와 연결됩니다."},
+  {"num": 4, "unit": "1. 명령어와 주소지정방식", "q": "다음 프로그램을 보고 물음에 답하시오. 위의 프로그램은 다음 중 어느 수식을 계산하는 것인가?<br><table class='mini-tbl'><tr><th>명령어</th><th>동작</th><th>단계</th></tr><tr><td>LOAD A</td><td>AC ← M[A]</td><td>(a)</td></tr><tr><td>MUL B</td><td>AC ← AC × M[B]</td><td>(b)</td></tr><tr><td>STORE X</td><td>M[X] ← AC</td><td>(c)</td></tr><tr><td>LOAD C</td><td>( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )</td><td>(d)</td></tr><tr><td>ADD X</td><td>AC ← AC + M[X]</td><td>(e)</td></tr><tr><td>STORE X</td><td>M[X] ← AC</td><td>(f)</td></tr></table>", "options": ["X = A × B + C", "X = (A + B) × C", "AC = (A + B) × C", "AC = A × B + C"], "ans": 0, "exp": "(a)~(c)에서 M[X]에 A × B가 저장되고, (d)에서 AC에 C를 적재한 뒤 (e)에서 C + (A × B)를 계산해 (f)에서 M[X]에 저장하므로 X = A × B + C입니다."},
+  {"num": 5, "unit": "1. 명령어와 주소지정방식", "q": "위 (4번) 프로그램에서 (d)의 괄호 안에 들어갈 식으로 알맞은 것은?", "options": ["M[C] ← M[X]", "AC ← AC × M[C]", "AC ← M[C]", "M[X] ← AC"], "ans": 2, "exp": "LOAD C 명령어는 기억장치 C번지의 데이터(M[C])를 누산기(AC)에 적재하므로 AC ← M[C]입니다."},
+  {"num": 6, "unit": "2. 마이크로연산과 버스", "q": "다음 마이크로 연산에 관한 설명으로 잘못된 것은?<br><div class='code-box'>T₁ + T₂ : R0 ← R2' + 1, R3 ← R4 ∧ R5</div>", "options": ["T₁ + T₂ 은 두 변수의 OR 연산이다.", "R0에는 R2의 2의 보수가 저장된다.", "R0에는 R2의 1의 보수가 저장된다.", "R3에는 R4와 R5의 논리 곱 연산 결과가 저장된다."], "ans": 2, "exp": "R2' + 1은 1의 보수(R2')에 1을 더한 것이므로 1의 보수가 아니라 2의 보수입니다. 따라서 ③번이 잘못된 설명입니다."},
+  {"num": 7, "unit": "1. 명령어와 주소지정방식", "q": "PC의 현재 내용이 256이고 주소 필드의 값이 500, R1 = 400일 때, <b>직접 주소지정방식</b>과 <b>간접 주소지정방식</b>을 이용한다면 각각의 유효주소는?<br><div class='mem-wrap'><table class='mini-tbl'><tr><th>레지스터</th><th>값</th></tr><tr><td>PC</td><td>256 (다음 명령어 258)</td></tr><tr><td>R1</td><td>400</td></tr><tr><td>주소필드</td><td>500</td></tr></table><table class='mini-tbl'><tr><th>번지</th><th>내용</th></tr><tr><td>256</td><td>연산코드 | 주소방식</td></tr><tr><td>257</td><td>ADRS, NBR = 500</td></tr><tr><td>258</td><td>다음 명령어</td></tr><tr><td>400</td><td>800</td></tr><tr><td>500</td><td>818</td></tr><tr><td>756</td><td>502</td></tr><tr><td>757</td><td>600</td></tr><tr><td>758</td><td>700</td></tr><tr><td>800</td><td>300</td></tr><tr><td>818</td><td>456</td></tr><tr><td>900</td><td>458</td></tr></table></div>", "options": ["500, 400", "500, 818", "818, 456", "818, 900"], "ans": 1, "exp": "직접 주소지정방식의 유효주소는 주소 필드 값 자체(500)이고, 간접 주소지정방식의 유효주소는 M[500]의 값인 818입니다."},
+  {"num": 8, "unit": "1. 명령어와 주소지정방식", "q": "위 (7번) 그림에서 <b>간접 주소지정방식</b>과 <b>상대 주소지정방식</b>을 이용한다면 각각 어떤 값이 AC에 적재될 것인가?", "options": ["456, 502", "456, 700", "500, 818", "818, 456"], "ans": 1, "exp": "간접 방식은 유효주소 818번지의 내용(456)이 적재되고, 상대 방식은 유효주소 258 + 500 = 758번지의 내용(700)이 적재됩니다."},
+  {"num": 9, "unit": "2. 마이크로연산과 버스", "q": "상태 레지스터(Flag Register) 구조에서 산술논리연산장치(ALU)의 최상위 비트 캐리(Cₙ₊₁)와 출력 캐리(C_out)를 XOR 연산하여 저장하는 <b>가</b>에 들어갈 상태비트로서 올바른 것은?<br><div class='diagram-box'>Flag Register: [ S | Z | <b>가</b> | 나 ] &nbsp; (가 ← Cₙ₊₁ ⊕ C_out, &nbsp; 나 ← C_out)</div>", "options": ["부호 비트", "제로 비트", "캐리 비트", "오버플로우 비트"], "ans": 3, "exp": "최상위 자리올림(Cₙ₊₁)과 부호 비트 자리올림(C_out)의 XOR 연산으로 검출하는 상태비트는 오버플로우 비트(V)입니다."},
+  {"num": 10, "unit": "3. 처리장치와 제어장치", "q": "다음 제어단어의 각 필드(A, B, D, F, H)에 관한 설명 중에서 올바른 것은?<br><table class='mini-tbl'><tr><th>비트</th><td>1~3</td><td>4~6</td><td>7~9</td><td>10~13</td><td>14~16</td></tr><tr><th>필드</th><td><b>A</b></td><td><b>B</b></td><td><b>D</b></td><td><b>F</b></td><td><b>H</b></td></tr></table>", "options": ["A와 D는 출발 레지스터를 선택하는 필드이다.", "B는 도착 레지스터를 선택하는 필드이다.", "F는 상태 레지스터의 상태 값을 선택하는 필드이다.", "H는 쉬프터에서 수행되는 연산의 하나를 선택하는 필드이다."], "ans": 3, "exp": "A와 B는 출발 레지스터, D는 도착 레지스터, F는 ALU 연산, H는 쉬프터(Shifter) 연산을 선택하는 필드입니다."},
+  {"num": 11, "unit": "3. 처리장치와 제어장치", "q": "위의 제어단어(A:3비트, B:3비트, D:3비트, F:4비트, H:3비트)로부터 알 수 있는 사실로서 올바른 것은?", "options": ["A가 3비트이므로 외부 입력까지 고려한다면 레지스터 세트에는 최대한 7개의 레지스터가 포함될 수 있다.", "D가 3비트이므로 외부 출력까지 고려한다면 레지스터 세트에는 최대한 8개의 레지스터가 포함될 수 있다.", "F가 4비트이므로 쉬프터에서 이루어지는 연산의 종류가 최대한 16개이다.", "H가 3비트이므로 최대 8개의 상태 값이 존재한다."], "ans": 0, "exp": "A가 3비트(8가지 조합)이고 그중 1가지를 외부 입력 선택에 사용하므로 레지스터 세트에는 최대 7개의 레지스터가 포함될 수 있습니다."},
+  {"num": 12, "unit": "3. 처리장치와 제어장치", "q": "처리장치의 블록도에서 상태 비트를 보관하는데 사용되는 것은?<br><div class='diagram-box'>[레지스터 세트] ─(D)─▶ [가: Decoder]<br>[나: Flag Register] ──▶ [다: ALU] ─(F)─▶ [라: Shifter] ─(H)─▶ 출력</div>", "options": ["가", "나", "다", "라"], "ans": 1, "exp": "ALU 연산 결과로 발생하는 상태 비트(C, Z, S, V 등)를 보관하는 장치는 Flag Register(그림의 '나')입니다."},
+  {"num": 13, "unit": "3. 처리장치와 제어장치", "q": "위 그림에서 <b>가(Decoder)</b>에 관한 설명으로 적절한 것은?", "options": ["출발 레지스터의 내용을 ALU로 보내는데 필요하다.", "도착 레지스터를 결정하는데 필요하다.", "상태비트를 보관하는데 필요하다.", "ALU의 결과를 비트 단위의 이동을 위해 필요하다."], "ans": 1, "exp": "가(Decoder)는 D 필드의 비트 값을 해독해 연산 결과가 저장될 도착 레지스터의 Load 신호를 활성화합니다."},
+  {"num": 14, "unit": "3. 처리장치와 제어장치", "q": "위 그림에서 레지스터 세트에 <b>25개</b>의 레지스터가 있고, <b>다(ALU)</b>는 <b>20개</b>의 연산, <b>라(Shifter)</b>는 <b>9개</b>의 연산을 수행한다고 가정했을 때 제어단어는 몇 비트가 되겠는가?", "options": ["20", "22", "23", "24"], "ans": 3, "exp": "레지스터 25개 구분(2⁴ < 25 ≤ 2⁵ → 5비트)이 A, B, D 3개 필드이므로 5×3=15비트, ALU 20개 연산(5비트), 쉬프터 9개 연산(2³ < 9 ≤ 2⁴ → 4비트) → 총 15 + 5 + 4 = 24비트입니다."},
+  {"num": 15, "unit": "3. 처리장치와 제어장치", "q": "다음 중 처리장치에 있는 각 구성요소의 선택신호를 설명하는 것으로 잘못된 것은?", "options": ["처리장치에서 수행되는 마이크로연산을 선택하는 신호", "처리장치의 각 구성요소를 제어", "선택신호로서 특정 마이크로연산을 선택", "처리장치를 구동하는 클럭 신호"], "ans": 3, "exp": "선택신호(제어단어)는 각 구성요소의 동작 경로와 연산을 지정하는 제어 신호이며, 동기 타이밍을 제공하는 클럭 신호와는 다릅니다."},
+  {"num": 16, "unit": "3. 처리장치와 제어장치", "q": "마이크로프로그램 제어기의 블록도에서 제어기억장치 ROM의 1~16번 비트를 입력받는 <b>다</b>에 관련된 내용으로 적절한 것은?<br><div class='diagram-box'>내부주소(7bit) / 외부주소(7bit) ─(MUX1)─▶ [가: CAR(7bit)] ──▶ [제어기억장치 ROM 128×27 (나)] ──▶ [다]</div>", "options": ["처리장치로서 입력 16비트는 제어단어이다.", "인코더로서 입력 16비트를 상태비트로 인코딩한다.", "쉬프터로서 입력 16비트는 쉬프트 연산의 종류를 결정한다.", "산술논리연산장치로서 입력 16비트는 산술논리연산의 종류를 결정한다."], "ans": 0, "exp": "제어기억장치 ROM의 1~16번 비트(제어단어)를 입력받아 실제 연산을 수행하는 장치는 처리장치(그림의 '다')입니다."},
+  {"num": 17, "unit": "3. 처리장치와 제어장치", "q": "위 그림에서 만일 MUX1에서 <b>가(CAR)</b>로 입력되는 데이터가 <b>6비트</b>이고 다른 것은 변동이 없다면 <b>나(제어기억장치 ROM)</b>는 어떻게 바뀌는가?", "options": ["64 × 26", "128 × 27", "256 × 28", "512 × 28"], "ans": 0, "exp": "CAR이 7비트에서 6비트로 줄면 ROM의 워드 수는 2⁶ = 64개, 분기주소 필드(21번 이후)도 6비트가 되어 총 폭이 26비트로 바뀌므로 64 × 26입니다."},
+  {"num": 18, "unit": "3. 처리장치와 제어장치", "q": "위 그림에서 <b>가</b>에 들어갈 내용으로 적절한 것은?", "options": ["MUX 3", "처리장치", "제어주소 레지스터", "제어장치"], "ans": 2, "exp": "MUX1에서 선택된 다음 마이크로명령어 주소를 보관하는 레지스터는 제어주소 레지스터(CAR)입니다."},
+  {"num": 19, "unit": "3. 처리장치와 제어장치", "q": "위 그림에서 처리장치로 전달되는 <b>라</b>와 처리장치에서 나오는 <b>마</b>에 들어갈 내용으로 가장 적절한 것은?", "options": ["입력신호, 출력신호", "제어 단어, 마이크로 연산", "제어 단어, 상태 비트", "입력 신호, 연산 결과"], "ans": 2, "exp": "제어기억장치에서 처리장치로 전달되는 16비트 신호(라)는 제어 단어(Control Word), 처리장치에서 MUX2로 전달되는 신호(마)는 상태 비트(Flag)입니다."},
+  {"num": 20, "unit": "3. 처리장치와 제어장치", "q": "다음과 같은 연산을 수행하려 할 때 위 그림에서 제어기억장치의 27개 비트에 대한 설명으로 올바른 것은?<br><div class='code-box'>R5 ← R6 + R3, if (C = 0) then (CAR ← 62) else (CAR ← CAR + 1)</div>", "options": ["1~16번 비트는 조건문 if(C=0)를 수행한다.", "17번 비트는 (1)₂이어야 한다.", "18~20번 비트는 마이크로연산 R5 ← R6 + R3 를 수행한다.", "21~27번 비트는 주소 62번지를 나타낸다."], "ans": 3, "exp": "1~16번은 마이크로연산 제어단어, 17번은 내부주소 선택을 위한 (0)₂, 18~20번은 분기 조건(C=0) 선택, 21~27번은 분기 목적지 주소(62번지)를 나타냅니다."},
+  {"num": 21, "unit": "3. 처리장치와 제어장치", "q": "다음의 CPU에 있는 특수 레지스터 중에서 데이터를 기억하는 레지스터는?", "options": ["IR(Instruction Register)", "SP(Stack Pointer)", "PC(Program Counter)", "AC(Accumulator)"], "ans": 3, "exp": "IR은 명령어를, SP와 PC는 기억장치 주소를 기억하며, 누산기(AC)는 연산 대상 데이터와 연산 결과를 기억합니다."},
+  {"num": 22, "unit": "3. 처리장치와 제어장치", "q": "다음과 같은 일련의 마이크로연산은 무엇을 수행하는 것인가?<br><div class='code-box'>T₀ : MAR ← IR(adrs)<br>T₁ : MBR ← M[MAR]<br>T₂ : AC ← MBR</div>", "options": ["LOAD 명령어", "STORE 명령어", "AND 명령어", "ADD 명령어"], "ans": 0, "exp": "유효주소 M[MAR]의 데이터를 읽어 MBR을 거쳐 누산기(AC)에 적재하는 과정이므로 LOAD 명령어입니다."},
+  {"num": 23, "unit": "3. 처리장치와 제어장치", "q": "다음 중 명령어 수행 사이클에 해당되지 않는 것은?", "options": ["인출 사이클", "저장 사이클", "인터럽트 사이클", "실행 사이클"], "ans": 1, "exp": "명령어 사이클의 4대 부사이클은 인출 사이클, 간접 사이클, 실행 사이클, 인터럽트 사이클입니다."},
+  {"num": 24, "unit": "3. 처리장치와 제어장치", "q": "다음 중 IR(Instruction Register)의 설명으로 올바른 것은?", "options": ["다음에 수행되어질 명령어가 들어있는 주소를 갖고 있다.", "비트 수는 기억장치의 용량에 따라 결정된다.", "현재 수행되는 명령어를 갖고 있다.", "스택 공간의 최상위 주소를 갖고 있다."], "ans": 2, "exp": "명령어 레지스터(IR)는 주기억장치에서 인출되어 현재 해독·실행 중인 명령어 자체를 보관합니다. (①·②는 PC, ④는 SP)"},
+  {"num": 25, "unit": "3. 처리장치와 제어장치", "q": "다음 설명에서 괄호 안에 들어갈 용어로서 알맞은 것은?<br><div class='quote-box'>명령어 수행 사이클에서 명령어 인출이란 기억장치로부터 명령어를 가져오는 것을 말한다. 인출될 명령어의 주소는 ( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )에 들어있고, 인출된 명령어는 ( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )로 옮겨진다.</div>", "options": ["스택 포인터, 프로그램 카운터", "프로그램 카운터, 제어주소 레지스터", "프로그램 카운터, 명령어 레지스터", "명령어 버퍼 레지스터, 누산기"], "ans": 2, "exp": "가져올 명령어의 주소는 프로그램 카운터(PC)에 들어 있고, 가져온 명령어는 명령어 레지스터(IR)로 옮겨집니다."},
+  {"num": 26, "unit": "4. 기억장치 계층구조", "q": "다음의 내용과 관계가 깊은 것은?<br><div class='quote-box'>\"어떤 내용이 한번 참조되면, 곧바로 다시 참조되기 쉽다.\"</div>", "options": ["공간적 지역성", "시간적 지역성", "내부적 참조성", "외부적 참조성"], "ans": 1, "exp": "최근에 참조된 기억장소가 가까운 미래에 다시 참조될 가능성이 높은 성질(반복문 등)은 시간적 지역성(Temporal Locality)입니다."},
+  {"num": 27, "unit": "4. 기억장치 계층구조", "q": "캐시기억장치의 사상 방식에 해당되지 않는 것은?", "options": ["직접 사상", "연관 사상", "집합 연관 사상", "직접 분리 사상"], "ans": 3, "exp": "캐시 사상(Mapping) 방식에는 직접 사상(Direct), 연관 사상(Associative), 집합 연관 사상(Set-Associative) 3가지가 있습니다."},
+  {"num": 28, "unit": "4. 기억장치 계층구조", "q": "다음 중 주기억장치와 중앙처리장치의 속도차이를 보완하고자 하는 목적의 기억장치는?", "options": ["보조기억장치", "가상기억장치", "단일모듈기억장치", "캐시기억장치"], "ans": 3, "exp": "캐시기억장치는 빠른 SRAM 소자로 구성되어 CPU와 주기억장치 사이의 속도 차이를 완화합니다."},
+  {"num": 29, "unit": "4. 기억장치 계층구조", "q": "다음 기억장치들에 대한 설명 중 <b>복수모듈 기억장치</b>를 설명하고 있는 것은?<br><div class='quote-box'><b>A.</b> 저장되어 있는 데이터의 내용을 이용하여 원하는 데이터를 검색하여 읽어낼 수 있는 기억장치이다.<br><b>B.</b> 프로그램에서 사용할 수 있게 허용된 주소 공간의 크기보다 주기억장치의 크기가 작아서 보조기억장치의 일부까지 포함하는 기억장치이다.<br><b>C.</b> 주기억장치보다 속도가 빠른 기억소자로 구성되어 중앙처리장치와 주기억장치 간의 속도 차이를 줄여 준다.<br><b>D.</b> 하나의 기억장치 사이클 동안 여러 개의 단어를 읽을 수 있기 때문에 읽어 내는 속도를 향상시킨다.</div>", "options": ["A", "B", "C", "D"], "ans": 3, "exp": "D는 메모리 인터리빙(복수모듈 기억장치)에 대한 설명입니다. (A: 연관기억장치, B: 가상기억장치, C: 캐시기억장치)"},
+  {"num": 30, "unit": "4. 기억장치 계층구조", "q": "위 (29번) 보기 중 주소 변환 시간을 단축시키기 위해 주소 변환표(address translation table)를 사용하는 기억장치는?", "options": ["A", "B", "C", "D"], "ans": 1, "exp": "가상기억장치(B)는 논리주소를 물리주소로 빠르게 사상하기 위해 페이지 테이블(주소 변환표) 및 TLB를 사용합니다."},
+  {"num": 31, "unit": "4. 기억장치 계층구조", "q": "다음 중 가상기억장치를 설명한 것 중 올바른 것은?", "options": ["컴퓨터의 구조 및 조작이 간단", "주기억장치의 물리적 용량이 증대", "주소공간이 확대되어 주기억장치의 용량이 큰 것처럼 동작", "명령어 수행시간의 단축"], "ans": 2, "exp": "가상기억장치는 보조기억장치의 일부를 주기억장치처럼 활용해 사용자 프로그램의 논리적 주소 공간을 확장합니다."},
+  {"num": 32, "unit": "5. 입출력 및 병렬처리", "q": "데이터의 입출력 전송이 직접 주기억장치와 입출력 장치 사이에서 이루어지는 인터페이스를 무엇이라 하는가?", "options": ["DMA", "캐시", "데이지 체인", "가상 메모리"], "ans": 0, "exp": "DMA(Direct Memory Access) 제어기는 CPU의 개입 없이 주기억장치와 입출력장치 간 데이터를 직접 전송합니다."},
+  {"num": 33, "unit": "5. 입출력 및 병렬처리", "q": "다음 중 버스의 사용을 중재하는 방식에 해당되는 것은?", "options": ["DMA", "핸드쉐이킹", "벤치마크", "데이지 체인"], "ans": 3, "exp": "버스 중재(Bus Arbitration) 방식에는 데이지 체인(Daisy Chain), 폴링(Polling), 독립 요구(중앙집중식 병렬중재) 방식이 있습니다."},
+  {"num": 34, "unit": "5. 입출력 및 병렬처리", "q": "다음 중 DMA 제어기 내부의 구성요소가 아닌 것은?", "options": ["주소 레지스터", "단어 계수 레지스터", "누산기(Accumulator)", "제어 회로"], "ans": 2, "exp": "DMA 제어기는 주소 레지스터(AR), 단어 계수 레지스터(WC), 데이터 버퍼 레지스터(DR), 제어 논리회로로 구성되며 누산기(AC)는 CPU 내부 ALU 레지스터입니다."},
+  {"num": 35, "unit": "5. 입출력 및 병렬처리", "q": "다음 중 병렬 알고리즘을 직접 하드웨어로 구현하는 새로운 처리기 구조는?", "options": ["데이터 흐름 컴퓨터", "VLSI 처리기", "배열처리기", "다중처리기"], "ans": 1, "exp": "특정 병렬 알고리즘의 데이터 흐름과 연산 구조를 초고집적회로(VLSI) 칩 내부에 직접 하드웨어로 구현한 처리기를 VLSI 처리기(Systolic Array 등)라 합니다."}
+];
+
+const userAns = new Array(QUESTIONS.length).fill(null);
+const userType = new Array(QUESTIONS.length).fill(null);
+let seconds = 0;
+let paused = false;
+let submitted = false;
+
+const timerInterval = setInterval(() => {
+  if (!paused && !submitted) {
+    seconds++;
+    document.getElementById("timer").textContent = formatTime(seconds);
+  }
+}, 1000);
+
+function formatTime(sec) {
+  const m = String(Math.floor(sec / 60)).padStart(2, "0");
+  const s = String(sec % 60).padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById("pauseBtn").textContent = paused ? "재개" : "일시정지";
+}
+
+function renderQuiz() {
+  const list = document.getElementById("quiz-list");
+  const numCircles = ["①", "②", "③", "④"];
+  list.innerHTML = QUESTIONS.map((item, idx) => `
+    <div class="q-card" id="card-${idx}">
+      <div class="q-meta">
+        <span class="q-num">문제 ${item.num}</span>
+        <span class="q-unit">${item.unit}</span>
+      </div>
+      <div class="q-text">${item.q}</div>
+      <div class="opt-list">
+        ${item.options.map((opt, oIdx) => `
+          <label class="opt-label" id="lbl-${idx}-${oIdx}">
+            <input type="radio" name="q${idx}" value="${oIdx}" onchange="selectOpt(${idx}, ${oIdx})">
+            <span>${numCircles[oIdx]} ${opt}</span>
+          </label>
+        `).join("")}
+      </div>
+      <div class="type-row">
+        <span class="type-title">자가 유형 분류:</span>
+        <div class="type-btns">
+          ${["A", "B", "C", "D"].map(t => `
+            <button type="button" class="t-btn" id="tbtn-${idx}-${t}" onclick="selectType(${idx}, '${t}')">${t}</button>
+          `).join("")}
+        </div>
+      </div>
+      <div class="exp-box" id="exp-${idx}">
+        <b>정답: ${numCircles[item.ans]}</b><br>${item.exp}
+      </div>
+    </div>
+  `).join("");
+}
+
+function selectOpt(qIdx, oIdx) {
+  if (submitted) return;
+  userAns[qIdx] = oIdx;
+  for (let i = 0; i < 4; i++) {
+    document.getElementById(`lbl-${qIdx}-${i}`).classList.toggle("selected", i === oIdx);
+  }
+  const done = userAns.filter(v => v !== null).length;
+  document.getElementById("answered-count").textContent = `진행: ${done} / 35 문항`;
+  document.getElementById("progress-fill").style.width = `${(done / 35) * 100}%`;
+}
+
+function selectType(qIdx, t) {
+  userType[qIdx] = (userType[qIdx] === t) ? null : t;
+  ["A", "B", "C", "D"].forEach(code => {
+    document.getElementById(`tbtn-${qIdx}-${code}`).classList.toggle("active", userType[qIdx] === code);
+  });
+}
+
+function gradeQuiz() {
+  const unanswered = userAns.filter(v => v === null).length;
+  if (unanswered > 0 && !confirm(`아직 풀지 않은 문제가 ${unanswered}개 있습니다. 그래도 제출하고 진단할까요?`)) {
+    return;
+  }
+  submitted = true;
+  clearInterval(timerInterval);
+
+  let correctCnt = 0;
+  const unitStats = {};
+  const typeStats = { A: [], B: [], C: [], D: [] };
+  const wrongList = [];
+
+  QUESTIONS.forEach((item, idx) => {
+    if (!unitStats[item.unit]) unitStats[item.unit] = { total: 0, ok: 0 };
+    unitStats[item.unit].total++;
+
+    const card = document.getElementById(`card-${idx}`);
+    const exp = document.getElementById(`exp-${idx}`);
+    exp.classList.add("show");
+
+    const chosen = userAns[idx];
+    const isOk = chosen === item.ans;
+    if (isOk) {
+      correctCnt++;
+      unitStats[item.unit].ok++;
+      card.classList.add("correct");
+    } else {
+      card.classList.add("wrong");
+      wrongList.push(item.num);
+      if (chosen !== null) {
+        document.getElementById(`lbl-${idx}-${chosen}`).classList.add("ans-bad");
+      }
+    }
+    document.getElementById(`lbl-${idx}-${item.ans}`).classList.add("ans-ok");
+
+    const finalType = userType[idx] || (isOk ? "A" : "B");
+    typeStats[finalType].push(item.num);
+  });
+
+  const score = Math.round((correctCnt / 35) * 100);
+  const avgSec = Math.round(seconds / 35);
+
+  document.getElementById("stat-grid").innerHTML = `
+    <div class="stat-box"><div class="stat-num">${correctCnt} / 35 (${score}점)</div><div class="stat-lbl">정답 수 및 환산 점수</div></div>
+    <div class="stat-box"><div class="stat-num">${formatTime(seconds)}</div><div class="stat-lbl">총 소요 시간 (문항당 ${avgSec}초)</div></div>
+    <div class="stat-box"><div class="stat-num">A:${typeStats.A.length} / B:${typeStats.B.length}</div><div class="stat-lbl">유형 A(완벽) / B(원리부족)</div></div>
+    <div class="stat-box"><div class="stat-num">C:${typeStats.C.length} / D:${typeStats.D.length}</div><div class="stat-lbl">유형 C(생소) / D(계산·적용)</div></div>
+  `;
+
+  let unitHtml = "<h3 style='font-size:15px; margin:12px 0 6px;'>📚 단원별 성취도</h3><table class='mini-tbl' style='width:100%;'><tr><th>단원</th><th>정답/문항</th><th>정답률</th></tr>";
+  const unitLines = [];
+  for (const [u, st] of Object.entries(unitStats)) {
+    const pct = Math.round((st.ok / st.total) * 100);
+    unitHtml += `<tr><td style='text-align:left;'>${u}</td><td>${st.ok} / ${st.total}</td><td><b>${pct}%</b></td></tr>`;
+    unitLines.push(`- ${u}: ${st.ok}/${st.total} (${pct}%)`);
+  }
+  unitHtml += "</table>";
+  document.getElementById("unit-breakdown").innerHTML = unitHtml;
+
+  const speedEval = avgSec <= 60 ? "빠름 (실전 시간 충분)" : avgSec <= 90 ? "적정 (계산 문항 시간 배분 유의)" : "다소 느림 (개념 정립 후 반복 숙달 필요)";
+
+  const reportText = `[2016학년도 2학기 기말시험 문제은행 학습 진단 보고서]
+1. 학습 범위 및 문항 수: 전 범위 35문항
+2. 실제 풀이 시간: 총 ${formatTime(seconds)} (문항당 평균 ${avgSec}초)
+3. 득점 결과: ${correctCnt} / 35문항 정답 (${score}점)
+4. A~D 유형 분포:
+   - A (개념 알고 품): ${typeStats.A.length}문항 ${typeStats.A.length ? '(' + typeStats.A.join(', ') + '번)' : ''}
+   - B (원리 부족): ${typeStats.B.length}문항 ${typeStats.B.length ? '(' + typeStats.B.join(', ') + '번)' : ''}
+   - C (개념 생소): ${typeStats.C.length}문항 ${typeStats.C.length ? '(' + typeStats.C.join(', ') + '번)' : ''}
+   - D (계산·적용 막힘): ${typeStats.D.length}문항 ${typeStats.D.length ? '(' + typeStats.D.join(', ') + '번)' : ''}
+5. 단원별 정답률:
+${unitLines.join("\n")}
+6. 오답 문항(재풀이 대상): ${wrongList.length ? wrongList.join(", ") + "번" : "없음 (만점)"}
+7. 학습 속도 평가: ${speedEval}`;
+
+  document.getElementById("report-textarea").value = reportText;
+  const repSec = document.getElementById("report-section");
+  repSec.style.display = "block";
+  repSec.scrollIntoView({ behavior: "smooth" });
+}
+
+function copyReport() {
+  const ta = document.getElementById("report-textarea");
+  ta.select();
+  document.execCommand("copy");
+  alert("진단 보고서가 클립보드에 복사되었습니다!");
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
