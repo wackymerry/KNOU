@@ -4,7 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>시뮬레이션 2017 기출 (35문항)</title>
-<link rel="stylesheet" href="../quiz.css">
+<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795332017346&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_00000000ca34821196b8dd5ff6e0506e%26fn%3D2017-simulation.html%26cd%3Dattachment%26ts%3D498704%26p%3Dfs%26cid%3D1%26sig%3Da0d4a53ccab5f2cdbb8df5cbe58c3adb9994711fc81f4ba9876757a8568f7b5a%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795332017346&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link rel="stylesheet" href="../quiz.css">
+<style>
+.sim-passage {margin:12px 0 16px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;font-size:13px;line-height:1.65;overflow-x:auto}
+.sim-passage pre {font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;white-space:pre;overflow-x:auto;margin:8px 0;color:#172033}
+.sim-passage .sim-note {margin:0 0 8px;font-weight:600}
+.sim-passage table {border-collapse:collapse;min-width:480px;width:100%;font-size:12px}
+.sim-passage th,.sim-passage td {border:1px solid #94a3b8;padding:5px 7px;text-align:center}
+.sim-passage th {background:#e2e8f0}
+.sim-math {font-family:Georgia,"Times New Roman",serif;font-size:16px;text-align:center;padding:9px 6px}
+</style>
 </head>
 <body>
 
@@ -24,7 +33,7 @@
 
 <div class="container">
   <div class="intro-card">
-    <p style="font-size:13px;color:#a34b16">※ 공통 지문·표·수식은 원본 시험지 이미지로 표시됩니다.</p>
+    <p style="font-size:13px;color:#a34b16">※ 공통 지문·표·수식은 HTML 텍스트로 표시됩니다.</p>
     <h2>2017학년도 2학기 기말시험 문제은행 (36~70번)</h2>
     <p>라디오버튼으로 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
     (A: 개념 알고 품 / B: 원리 모름 / C: 개념 생소 / D: 계산·적용 막힘)</p>
@@ -49,19 +58,101 @@
 </div>
 
 <template id="tpl-42-48">
-<div class='original-passage'><img src='assets/2017/passage-42-48.png' alt='42번부터 48번까지 공통 지문과 시뮬레이션 코드' loading='lazy'></div>
+<div class="sim-passage"><p class="sim-note">※ (42~48) 다음은 평균대기행렬과 평균대기시간을 구하는 단일 창구 대기행렬 시뮬레이션이다.</p><p>조건: 고객의 도착 상황은 시간당 15명, 고객의 서비스 상황은 평균 4분의 포아송분포</p><pre>
+{
+    tstep=1, prarr=0.25, seed=35213, mean=4
+    queue = 0
+    totque = 0
+    totarr=0
+    tpump = 0
+    time = 0
+    tlimit = 100
+    while time &lt; tlimit do
+    {
+        time = time+tstep
+        arrive = 0
+        call random(seed, U)
+        if U &lt; prarr*tstep then
+        {   arrive = 1
+            queue = queue+arrive
+            totarr=totarr+1   }
+        if tpump&gt;0 then
+        {   tpump = tpump-tstep
+            if tpump&lt;0 then
+                tpump = 0   }
+        if tpump=0 and queue&gt;0 then
+        {   queue = queue-1
+            call poissn(seed, mean, p)
+            tpump = p   }
+        totque = totque+queue
+    }  (* end of while *)
+    aveque = ( '가' )
+    avgwt = ( '나' )
+    print aveque, avgwt, totarr
+}</pre></div>
 </template>
 
 <template id="tpl-49-50">
-<div class='original-passage'><img src='assets/2017/passage-49-50.png' alt='49번부터 50번까지 공통 조건과 알고리즘' loading='lazy'></div>
+<div class="sim-passage"><p class="sim-note">※ (49~50) 단일 창구 대기행렬 시뮬레이션의 알고리즘과 입력 조건</p><p><b>주유시간:</b> 150<br><b>고객의 도착상황:</b> 시간당 평균 20대의 일양분포<br><b>연료탱크:</b> 평균 18ℓ, 표준편차 2ℓ 정규분포<br><b>급유시간계산:</b> 1ℓ당 1/8분</p><pre>nseed=seed
+while (time &lt; tlimit) do
+{
+    time = time + tstep
+    arrive = 0
+    call random(seed, U)
+    if (U &lt; (prarr*tstep)) then
+    {   arrive = 1;
+        queue = queue + arrive;
+        totarr = totarr + 1;
+    }
+    if (tpump &gt; 0.0) then
+    {   tpump = tpump - tstep
+        if (tpump &lt; 0.0) then
+            tpump = 0.0
+    }
+    if ((tpump = 0) &amp; (queue &gt; 0)) then
+    {   queue = queue - 1
+        ( '가' );
+        tpump = 1.0 + 1.0 / 8.0 * liters;
+    }
+    totque = totque + queue;
+    print, time,arrive,queue,tpump
+}
+aveque = totque / (tlimit/tstep)</pre></div>
 </template>
 
 <template id="tpl-51-54">
-<div class='table-scroll'><table class='mini-tbl'><thead><tr><th>고객</th><th>도착시간</th><th>도착간격</th><th>봉사시간</th><th>출발시간</th><th>대기시간</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>5</td><td>6</td><td>0</td></tr><tr><td>2</td><td>3</td><td></td><td>3</td><td></td><td></td></tr><tr><td>3</td><td>6</td><td></td><td>2</td><td></td><td></td></tr><tr><td>4</td><td>8</td><td></td><td>4</td><td></td><td></td></tr></tbody></table></div>
+<div class="sim-passage"><p class="sim-note">※ (51~54) 단일 창구 대기행렬문제에서 고객의 도착시간과 간격, 봉사시간, 출발시간과 대기시간을 나타낸 표이다.</p><table><thead><tr><th>고객</th><th>도착시간</th><th>도착간격</th><th>봉사시간</th><th>출발시간</th><th>대기시간</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>5</td><td>6</td><td>0</td></tr><tr><td>2</td><td>3</td><td></td><td>3</td><td></td><td></td></tr><tr><td>3</td><td>6</td><td></td><td>2</td><td></td><td></td></tr><tr><td>4</td><td>8</td><td></td><td>4</td><td></td><td></td></tr></tbody></table></div>
 </template>
 
 <template id="tpl-58-60">
-<div class='original-passage'><img src='assets/2017/passage-58-60.png' alt='58번부터 60번까지 이산사건 시뮬레이션 코드' loading='lazy'></div>
+<div class="sim-passage"><p class="sim-note">※ (58~60) 다음은 대기행렬 문제를 이산사건 진행 방식으로 시뮬레이션한 슈퍼프로그램과 arrive 부프로그램 알고리즘이다.</p><pre>main
+{   marrvt = 1.0
+    mservt = 0.5
+    totarr = 1000
+    call init
+    while (numcus &lt; totarr)
+    {   call timing
+        if(next = 1) then
+            call arrive
+        else
+            call depart
+    }
+    call report
+}
+
+subprogram arrive
+{
+    ( '가' )
+    tne[1]=time+e_arr
+    if(status = 0)
+    {   numcus = numcus + 1
+        status = 1
+        ( '나' )
+        tne[2] = time + e_dep
+    }
+    else
+        -- 이하 생략 --
+}</pre></div>
 </template>
 
 <script>
@@ -78,33 +169,33 @@ const QUESTIONS = [
   {"num": 40, "unit": "2장. 시스템과 모델링", "q": "다음은 시뮬레이션의 특징들이다. 잘못 설명된 것은?", "options": ["시뮬레이션 모델은 개발 상 많은 비용과 시간을 요한다.", "시뮬레이션에 의해 산출되는 많은 양의 수치들은 연구 결과에 대하여 과잉의 신뢰를 주는 경향이 있다.", "확률적 시뮬레이션 모델은 정확한 값을 요구하는 시스템 최적화 등에 적합하다.", "실시스템의 실질적인 구축 없이도 평가할 수 있다."], "ans": 2, "exp": "확률적 시뮬레이션은 정확한 해석적 해가 아니라 통계적 추정량을 산출하므로 정확한 최적해를 구하는 데는 한계가 있습니다."},
   {"num": 41, "unit": "2장. 시스템과 모델링", "q": "일반적인 시뮬레이션 과정 순서가 올바른 것은?", "options": ["문제의 정의 → 모델설계 → 자료수집 → 모델변환 → 검증 → 실험", "모델설계 → 모델변환 → 문제의 정의 → 자료수집 → 검증 → 실험", "자료수집 → 문제의 정의 → 모델설계 → 모델변환 → 검증 → 실험", "문제의 정의 → 모델설계 → 모델변환 → 자료수집 → 검증 → 실험"], "ans": 0, "exp": "시뮬레이션은 문제의 정의 → 모델설계 → 자료수집 → 모델변환 → 검증 및 타당성 검토 → 실험 및 분석 순으로 진행됩니다."},
   {"num": 42, "unit": "4장. 대기행렬 시뮬레이션", "q": P_42_48 + "42. 난수의 초기값을 나타내는 변수는?", "options": ["tstep", "prarr", "seed", "mean"], "ans": 2, "exp": "seed(35213)는 난수 발생기(random, poissn)에 전달되는 난수 초기값(시드)입니다."},
-  {"num": 43, "unit": "4장. 대기행렬 시뮬레이션", "q": P_42_48 + "43. 고객의 도착 비율을 나타내는 변수는?", "options": ["tstep", "prarr", "seed", "mean"], "ans": 1, "exp": "시간당 15명 도착이므로 분당 도착 확률인 prarr = 15/60 = 0.25가 고객의 도착 비율을 나타냅니다."},
-  {"num": 44, "unit": "4장. 대기행렬 시뮬레이션", "q": P_42_48 + "44. 지금까지 도착한 총 고객의 수를 표현하는 것은?", "options": ["queue", "totque", "totarr", "tpump"], "ans": 2, "exp": "고객이 도착할 때마다 1씩 누적되는 totarr(total arrivals)이 총 도착 고객 수입니다."},
-  {"num": 45, "unit": "4장. 대기행렬 시뮬레이션", "q": P_42_48 + "45. 고객의 봉사시간을 표현하는 것은?", "options": ["queue", "totque", "totarr", "tpump"], "ans": 3, "exp": "tpump는 현재 창구에서 서비스 중인 고객의 남은 봉사시간을 저장하는 변수입니다."},
-  {"num": 46, "unit": "4장. 대기행렬 시뮬레이션", "q": P_42_48 + "46. 평균대기행렬의 길이를 구하는 공식으로 빈칸 ‘가’에 적당한 것은?", "options": ["totque / totarr", "totque / arrive", "totque / queue", "totque / (tlimit / tstep)"], "ans": 3, "exp": "평균 대기행렬 길이(aveque)는 전체 단위시간 동안 누적된 대기행렬 길이 합(totque)을 총 시간 스텝 수(tlimit/tstep)로 나눈 값입니다."},
-  {"num": 47, "unit": "4장. 대기행렬 시뮬레이션", "q": P_42_48 + "47. 평균 대기시간을 구하는 공식으로 빈칸 ‘나’에 적당한 것은?", "options": ["totque / totarr", "totque / arrive", "totque / queue", "totque / (tlimit / tstep)"], "ans": 0, "exp": "평균 대기시간(avgwt)은 총 대기시간 합(totque)을 총 도착 고객 수(totarr)로 나눈 값입니다."},
-  {"num": 48, "unit": "4장. 대기행렬 시뮬레이션", "q": P_42_48 + "48. 봉사창구를 2개로 늘리려고 한다. 다음 중 직접 관련되어 알고리즘에서 수정되는 변수는?", "options": ["queue", "totque", "tpump", "totarr"], "ans": 2, "exp": "창구가 2개가 되면 각 창구의 남은 봉사시간을 따로 관리해야 하므로 tpump를 2개 원소 배열(tpump(1), tpump(2))로 수정합니다."},
+  {"num": 43, "unit": "4장. 대기행렬 시뮬레이션", "q": "43. 고객의 도착 비율을 나타내는 변수는?", "options": ["tstep", "prarr", "seed", "mean"], "ans": 1, "exp": "시간당 15명 도착이므로 분당 도착 확률인 prarr = 15/60 = 0.25가 고객의 도착 비율을 나타냅니다."},
+  {"num": 44, "unit": "4장. 대기행렬 시뮬레이션", "q": "44. 지금까지 도착한 총 고객의 수를 표현하는 것은?", "options": ["queue", "totque", "totarr", "tpump"], "ans": 2, "exp": "고객이 도착할 때마다 1씩 누적되는 totarr(total arrivals)이 총 도착 고객 수입니다."},
+  {"num": 45, "unit": "4장. 대기행렬 시뮬레이션", "q": "45. 고객의 봉사시간을 표현하는 것은?", "options": ["queue", "totque", "totarr", "tpump"], "ans": 3, "exp": "tpump는 현재 창구에서 서비스 중인 고객의 남은 봉사시간을 저장하는 변수입니다."},
+  {"num": 46, "unit": "4장. 대기행렬 시뮬레이션", "q": "46. 평균대기행렬의 길이를 구하는 공식으로 빈칸 ‘가’에 적당한 것은?", "options": ["totque / totarr", "totque / arrive", "totque / queue", "totque / (tlimit / tstep)"], "ans": 3, "exp": "평균 대기행렬 길이(aveque)는 전체 단위시간 동안 누적된 대기행렬 길이 합(totque)을 총 시간 스텝 수(tlimit/tstep)로 나눈 값입니다."},
+  {"num": 47, "unit": "4장. 대기행렬 시뮬레이션", "q": "47. 평균 대기시간을 구하는 공식으로 빈칸 ‘나’에 적당한 것은?", "options": ["totque / totarr", "totque / arrive", "totque / queue", "totque / (tlimit / tstep)"], "ans": 0, "exp": "평균 대기시간(avgwt)은 총 대기시간 합(totque)을 총 도착 고객 수(totarr)로 나눈 값입니다."},
+  {"num": 48, "unit": "4장. 대기행렬 시뮬레이션", "q": "48. 봉사창구를 2개로 늘리려고 한다. 다음 중 직접 관련되어 알고리즘에서 수정되는 변수는?", "options": ["queue", "totque", "tpump", "totarr"], "ans": 2, "exp": "창구가 2개가 되면 각 창구의 남은 봉사시간을 따로 관리해야 하므로 tpump를 2개 원소 배열(tpump(1), tpump(2))로 수정합니다."},
   {"num": 49, "unit": "4장. 대기행렬 시뮬레이션", "q": P_49_50 + "49. 빈칸 ‘가’에 알맞은 것은?", "options": ["call random(nseed,nmean,U)", "call random(nseed,nmean,stdev,liters)", "call normal(nseed,nmean,stdev,liters)", "call normal(nseed,prarr,stdev,liters)"], "ans": 2, "exp": "연료탱크 용량이 평균 nmean(18ℓ), 표준편차 stdev(2)인 정규분포를 따르므로 call normal(nseed,nmean,stdev,liters)를 호출합니다."},
-  {"num": 50, "unit": "4장. 대기행렬 시뮬레이션", "q": P_49_50 + "50. 봉사시간을 나타내는 것은?", "options": ["liters", "queue", "tpump", "aveque"], "ans": 2, "exp": "주유 준비시간(1.0)과 주유시간(1.0/8.0 * liters)을 합산해 저장한 tpump가 고객의 봉사시간입니다."},
+  {"num": 50, "unit": "4장. 대기행렬 시뮬레이션", "q": "50. 봉사시간을 나타내는 것은?", "options": ["liters", "queue", "tpump", "aveque"], "ans": 2, "exp": "주유 준비시간(1.0)과 주유시간(1.0/8.0 * liters)을 합산해 저장한 tpump가 고객의 봉사시간입니다."},
   {"num": 51, "unit": "4장. 대기행렬 시뮬레이션", "q": P_51_54 + "51. 빈칸의 도착간격을 구하면?", "options": ["1, 2, 2", "2, 3, 2", "3, 3, 3", "9, 11, 15"], "ans": 1, "exp": "도착시각이 1, 3, 6, 8이므로 연속된 도착간격은 2, 3, 2입니다."},
-  {"num": 52, "unit": "4장. 대기행렬 시뮬레이션", "q": P_51_54 + "52. 빈칸의 출발시간을 구하면?", "options": ["1, 2, 2", "2, 3, 2", "3, 3, 3", "9, 11, 15"], "ans": 3, "exp": "첫 고객은 1+5=6에 출발하고, 이후 출발시각은 9, 11, 15입니다."},
-  {"num": 53, "unit": "4장. 대기행렬 시뮬레이션", "q": P_51_54 + "53. 빈칸의 대기시간을 구하면?", "options": ["1, 2, 2", "2, 3, 2", "3, 3, 3", "8, 10, 14"], "ans": 2, "exp": "고객 2, 3, 4는 각각 도착 후 3분씩 기다리므로 대기시간은 3, 3, 3입니다."},
-  {"num": 54, "unit": "4장. 대기행렬 시뮬레이션", "q": P_51_54 + "54. 도착사건과 출발사건이 동시에 일어나는 시간은?", "options": ["1", "3", "6", "8"], "ans": 2, "exp": "시각 6에 3번 고객이 도착하고 1번 고객이 출발합니다."},
+  {"num": 52, "unit": "4장. 대기행렬 시뮬레이션", "q": "52. 빈칸의 출발시간을 구하면?", "options": ["1, 2, 2", "2, 3, 2", "3, 3, 3", "9, 11, 15"], "ans": 3, "exp": "첫 고객은 1+5=6에 출발하고, 이후 출발시각은 9, 11, 15입니다."},
+  {"num": 53, "unit": "4장. 대기행렬 시뮬레이션", "q": "53. 빈칸의 대기시간을 구하면?", "options": ["1, 2, 2", "2, 3, 2", "3, 3, 3", "8, 10, 14"], "ans": 2, "exp": "고객 2, 3, 4는 각각 도착 후 3분씩 기다리므로 대기시간은 3, 3, 3입니다."},
+  {"num": 54, "unit": "4장. 대기행렬 시뮬레이션", "q": "54. 도착사건과 출발사건이 동시에 일어나는 시간은?", "options": ["1", "3", "6", "8"], "ans": 2, "exp": "시각 6에 3번 고객이 도착하고 1번 고객이 출발합니다."},
   {"num": 55, "unit": "5장. 이산사건 시뮬레이션", "q": "다음 이산형 시뮬레이션에 대한 설명 중 틀린 것은?", "options": ["종속변수에서의 이산적 변화가 어떤 시간에도 일어날 수 있으면 이산형 모델이 되고, 명시된 순간에만 일어날 수 있으면 연속형 모델이 된다.", "시뮬레이션 시간에서 종속변수가 사건발생 시간이라고 불리는 특정한 시간에 이산적으로 변화할 경우에 해당한다. 이 경우 모델에서 시간변수는 연속적일 수도 있고 이산적일 수도 있다.", "대기행렬 시스템은 이산형 시뮬레이션에 해당된다. 이 예에서 종속변수는 대기행렬 내의 고객수가 된다. 사건 발생시간은 시스템에 고객이 도착하는 시간과 떠나는 시간이 된다.", "일반적으로 이산형 모델의 종속변수의 값은 사건발생시간 사이에는 변하지 않는다."], "ans": 0, "exp": "연속형 모델은 상태변수가 시간에 따라 연속적으로 변하는 모델이며, 명시된 순간에만 변하는 모델이 연속형이라는 ①번 설명은 틀렸습니다."},
   {"num": 56, "unit": "3장. 연속형 시뮬레이션", "q": "다음 중 연속형 시뮬레이션 모델링인 경우는?", "options": ["대기행렬 시스템", "미분방정식처럼 모델이 상태함수들의 도함수로 표시된다.", "호수에 화학약품을 살포하는 경우 호수에 서식하는 특수한 종류의 수가 순간적으로 감소할 수 있다.", "우주선이 결합을 완료하면 우주선의 비행을 시뮬레이션하는 방정식은 결합 전의 방정식과는 다르게 바뀌어야 한다."], "ans": 1, "exp": "연속형 모델은 시간에 따른 연속적 변화율을 미분방정식(상태함수들의 도함수)으로 표현합니다. (③, ④는 혼합형)"},
   {"num": 57, "unit": "5장. 이산사건 시뮬레이션", "q": "다음 중 가변시간 진행법과 관계없는 것은?", "options": ["사건이 발생하면 시간을 진행시킨다.", "시뮬레이션 증가시간이 일정하지 않다.", "고정시간 진행법과 반대되는 개념이다.", "최종 시뮬레이션 시간은 고정된다."], "ans": 3, "exp": "가변시간 진행법은 다음 사건 발생 시각으로 시계를 건너뛰며, 보통 처리 고객 수 등을 종료조건으로 쓰므로 최종 시뮬레이션 시간이 고정되지 않습니다."},
   {"num": 58, "unit": "5장. 이산사건 시뮬레이션", "q": P_58_60 + "58. 종료조건으로 처리를 해야 할 총 고객수는?", "options": ["totarr", "timing", "next", "nseed"], "ans": 0, "exp": "while(numcus < totarr) 조건에서 종료 기준이 되는 총 고객 수는 totarr(1000)입니다."},
-  {"num": 59, "unit": "5장. 이산사건 시뮬레이션", "q": P_58_60 + "59. 빈칸 ‘가’에 알맞은 것은?", "options": ["call expon(seed, marrvt, e_arr)", "call expon(seed, mservt, e_arr)", "call expon(seed, marrvt, tne[1])", "call expon(seed, mservt, tne[1])"], "ans": 0, "exp": "다음 도착시간(tne[1] = time + e_arr)을 계산하기 위해 평균 도착간격(marrvt)을 이용해 도착간격 난수 e_arr를 생성합니다."},
-  {"num": 60, "unit": "5장. 이산사건 시뮬레이션", "q": P_58_60 + "60. 빈칸 ‘나’에 알맞은 것은?", "options": ["call expon(nseed, marrvt, tne[2])", "call expon(nseed, mservt, tne[2])", "call expon(nseed, marrvt, e_dep)", "call expon(nseed, mservt, e_dep)"], "ans": 3, "exp": "서버가 비어(status=0) 즉시 서비스를 시작하므로 평균 봉사시간(mservt)을 이용해 봉사시간 난수 e_dep를 생성합니다."},
+  {"num": 59, "unit": "5장. 이산사건 시뮬레이션", "q": "59. 빈칸 ‘가’에 알맞은 것은?", "options": ["call expon(seed, marrvt, e_arr)", "call expon(seed, mservt, e_arr)", "call expon(seed, marrvt, tne[1])", "call expon(seed, mservt, tne[1])"], "ans": 0, "exp": "다음 도착시간(tne[1] = time + e_arr)을 계산하기 위해 평균 도착간격(marrvt)을 이용해 도착간격 난수 e_arr를 생성합니다."},
+  {"num": 60, "unit": "5장. 이산사건 시뮬레이션", "q": "60. 빈칸 ‘나’에 알맞은 것은?", "options": ["call expon(nseed, marrvt, tne[2])", "call expon(nseed, mservt, tne[2])", "call expon(nseed, marrvt, e_dep)", "call expon(nseed, mservt, e_dep)"], "ans": 3, "exp": "서버가 비어(status=0) 즉시 서비스를 시작하므로 평균 봉사시간(mservt)을 이용해 봉사시간 난수 e_dep를 생성합니다."},
   {"num": 61, "unit": "6장. 시뮬레이션 언어", "q": "다음 중 시뮬레이션 전용언어가 아닌 것은?", "options": ["AweSim", "ProModel", "AutoMod", "Visual C++"], "ans": 3, "exp": "Visual C++은 범용 프로그래밍 언어이며, AweSim, ProModel, AutoMod는 시뮬레이션 전용언어입니다."},
   {"num": 62, "unit": "6장. 시뮬레이션 언어", "q": "다음은 시뮬레이션 언어에 대한 설명이다. 틀린 것은?", "options": ["시뮬레이션 모델을 설계하기 위한 일반화된 구조를 제시한다.", "시뮬레이션 모델을 다시 컴퓨터 프로그램으로 바꾸는 신속한 기능을 제시한다.", "시뮬레이션 모델의 변경이 용이하고 이와 같은 변경이 프로그램으로 즉시 적용될 수 있게 한다.", "산출되는 출력 보고서의 형태를 자유롭게 작성할 수 있다."], "ans": 3, "exp": "출력 보고서 형태를 자유롭게 작성할 수 있는 것은 범용언어의 장점이며, 시뮬레이션 전용언어는 정형화된 표준 통계 보고서를 자동 출력합니다."},
   {"num": 63, "unit": "7장. 난수 발생", "q": "컴퓨터를 이용하여 난수를 발생하는 경우 갖추어야 할 점이 아닌 것은?", "options": ["반복발생이 불가능해야 한다.", "상관관계가 없어야 한다.", "난수의 발생속도가 빨라야 한다.", "[0,1) 범위에서 일양분포를 만족해야 한다."], "ans": 0, "exp": "모델 검증과 대안 비교 실험 재현을 위해 동일한 초기값(seed)을 주면 동일한 난수열이 반복 발생(재현성) 가능해야 합니다."},
-  {"num": 64, "unit": "7장. 난수 발생", "q": "※ (64~66) 다음은 난수의 발생식이다. 물음에 답하라. <div class='original-passage'><img src='assets/2017/formula-64-66.png' alt='원본 수식' loading='lazy'></div>64. X₀ = 5 일 때 X₁을 구하면?", "options": ["3", "5", "6", "9"], "ans": 0, "exp": "X₁ = (2 × 5 + 3) mod 10 = 13 mod 10 = 3입니다."},
-  {"num": 65, "unit": "7장. 난수 발생", "q": "<div class='original-passage'><img src='assets/2017/formula-64-66.png' alt='원본 수식' loading='lazy'></div>65. 계속해서 X₂를 구하면?", "options": ["3", "5", "6", "9"], "ans": 3, "exp": "X₂ = (2 × 3 + 3) mod 10 = 9 mod 10 = 9입니다."},
-  {"num": 66, "unit": "7장. 난수 발생", "q": "<div class='original-passage'><img src='assets/2017/formula-64-66.png' alt='원본 수식' loading='lazy'></div>66. 주기는?", "options": ["3", "5", "4", "6"], "ans": 1, "exp": "[공식 정답표 확인: 2번] 해설은 별도 검토가 필요합니다."},
-  {"num": 67, "unit": "7장. 난수의 검정", "q": "※ (67~68) 카이제곱 검정에 관한 사항이다. 6000개의 난수를 발생시켜 100개의 구간으로 나누었다. <div class='original-passage'><img src='assets/2017/formula-67-68.png' alt='원본 수식' loading='lazy'></div>6000개의 난수를 발생시켜서 100개의 구간으로 나누었다.</div>67. 자유도는?", "options": ["99", "100", "101", "102"], "ans": 0, "exp": "구간 수 k = 100일 때 카이제곱 검정의 자유도는 k - 1 = 100 - 1 = 99입니다."},
-  {"num": 68, "unit": "7장. 난수의 검정", "q": "<div class='original-passage'><img src='assets/2017/formula-67-68.png' alt='원본 수식' loading='lazy'></div>6000개의 난수를 발생시켜서 100개의 구간으로 나누었다.</div>68. 구간별 기대값인 n/k의 값은?", "options": ["30", "40", "50", "60"], "ans": 3, "exp": "전체 난수 수 n = 6000, 구간 수 k = 100이므로 구간별 기대빈도 n/k = 6000 / 100 = 60입니다."},
-  {"num": 69, "unit": "8장. 확률변수의 발생", "q": "<div class='original-passage'><img src='assets/2017/formula-69.png' alt='원본 수식' loading='lazy'></div>다음은 지수 확률변수를 발생시키는 과정이다. 역함수를 이용하는 이 방법의 이름은?", "options": ["역변환법", "합성법", "결합법", "채택기각법"], "ans": 0, "exp": "누적분포함수 F(x) = U를 x에 대해 풀어 역함수 x = F⁻¹(U)로 확률변수를 생성하는 기법은 역변환법(Inverse Transform Method)입니다."},
+  {"num": 64, "unit": "7장. 난수 발생", "q": "※ (64~66) 다음은 난수의 발생식이다. 물음에 답하라. <div class='sim-passage'><div class='sim-math'>X<sub>i</sub> = 2X<sub>i−1</sub> + 3 (mod 10)</div></div>64. X₀ = 5 일 때 X₁을 구하면?", "options": ["3", "5", "6", "9"], "ans": 0, "exp": "X₁ = (2 × 5 + 3) mod 10 = 13 mod 10 = 3입니다."},
+  {"num": 65, "unit": "7장. 난수 발생", "q": "<div class='sim-passage'><div class='sim-math'>X<sub>i</sub> = 2X<sub>i−1</sub> + 3 (mod 10)</div></div>65. 계속해서 X₂를 구하면?", "options": ["3", "5", "6", "9"], "ans": 3, "exp": "X₂ = (2 × 3 + 3) mod 10 = 9 mod 10 = 9입니다."},
+  {"num": 66, "unit": "7장. 난수 발생", "q": "<div class='sim-passage'><div class='sim-math'>X<sub>i</sub> = 2X<sub>i−1</sub> + 3 (mod 10)</div></div>66. 주기는?", "options": ["3", "5", "4", "6"], "ans": 1, "exp": "[공식 정답표 확인: 2번] 해설은 별도 검토가 필요합니다."},
+  {"num": 67, "unit": "7장. 난수의 검정", "q": "※ (67~68) 카이제곱 검정에 관한 사항이다. 6000개의 난수를 발생시켜 100개의 구간으로 나누었다. <div class='sim-passage'><div class='sim-math'>χ² = k/n ∑<sub>i=1</sub><sup>k</sup> (O<sub>i</sub> − n/k)²</div></div>6000개의 난수를 발생시켜서 100개의 구간으로 나누었다.67. 자유도는?", "options": ["99", "100", "101", "102"], "ans": 0, "exp": "구간 수 k = 100일 때 카이제곱 검정의 자유도는 k - 1 = 100 - 1 = 99입니다."},
+  {"num": 68, "unit": "7장. 난수의 검정", "q": "<div class='sim-passage'><div class='sim-math'>χ² = k/n ∑<sub>i=1</sub><sup>k</sup> (O<sub>i</sub> − n/k)²</div></div>6000개의 난수를 발생시켜서 100개의 구간으로 나누었다.68. 구간별 기대값인 n/k의 값은?", "options": ["30", "40", "50", "60"], "ans": 3, "exp": "전체 난수 수 n = 6000, 구간 수 k = 100이므로 구간별 기대빈도 n/k = 6000 / 100 = 60입니다."},
+  {"num": 69, "unit": "8장. 확률변수의 발생", "q": "<div class='sim-passage'><div class='sim-math'>F(x) = 1 − e<sup>−x/m</sup> = U<br>log<sub>e</sub>(1 − U) = −x/m<br>x = −m · log<sub>e</sub>(U)</div></div>다음은 지수 확률변수를 발생시키는 과정이다. 역함수를 이용하는 이 방법의 이름은?", "options": ["역변환법", "합성법", "결합법", "채택기각법"], "ans": 0, "exp": "누적분포함수 F(x) = U를 x에 대해 풀어 역함수 x = F⁻¹(U)로 확률변수를 생성하는 기법은 역변환법(Inverse Transform Method)입니다."},
   {"num": 70, "unit": "2장. 시스템과 모델링", "q": "다음은 시뮬레이션의 응용사례들이다. 시뮬레이션 목적이 나머지 셋과 가장 다른 것은?", "options": ["원자력 발전소 시뮬레이터", "운전연습 시뮬레이터", "일기예보", "파일러트(조종사) 시뮬레이션"], "ans": 0, "exp": "[공식 정답표 확인: 1번] 해설은 별도 검토가 필요합니다."}
 ];
 
