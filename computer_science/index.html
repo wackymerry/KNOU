@@ -274,3 +274,34 @@
       <div class="subj-header">
         <h2 class="subj-title">7. 오픈소스기반데이터분석</h2>
         <span class="status-pill status-wait">기출 문제은행 대기</span>
+      </div>
+      <div class="placeholder-box">
+        폴더 경로: <code>./opensource-data/</code> (기출 HTML 제작 후 파일 추가 시 연결 가능)
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-card">
+    <h3>🗂️ GitHub Pages 확장 구조 안내</h3>
+    <ul>
+      <li><b>과목별 폴더 분리:</b> 저장소 루트에 <code>index.html</code>을 두고, 각 과목 폴더(예: <code>computer-arch/2017.html</code>) 안에 연도별 퀴즈 파일을 넣으면 과목이 늘어나도 깔끔하게 관리됩니다.</li>
+      <li><b>A~D 유형 자가 진단:</b> 각 퀴즈 페이지에서 유형 체크 후 제출하면 단원별 정답률과 복습 우선순위 보고서가 자동 생성됩니다.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function filterSubject(subjKey, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.subj-card').forEach(card => {
+    if (subjKey === 'all' || card.dataset.subj === subjKey) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
