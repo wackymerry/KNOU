@@ -58,7 +58,7 @@
 </div>
 
 <template id="tpl-42-48">
-<div class="sim-passage"><p class="sim-note">※ (42~48) 다음은 평균대기행렬과 평균대기시간을 구하는 단일 창구 대기행렬 시뮬레이션이다.</p><p>조건: 고객의 도착 상황은 시간당 15명, 고객의 서비스 상황은 평균 4분의 포아송분포</p><pre>
+<div class="sim-passage"><p class="sim-note">※ (42~48) 다음은 평균대기행렬과 평균대기시간을 구하는 단일 창구 대기행렬 시뮬레이션이다. 조건은 다음과 같다.</p><p>&lt;조건&gt;</p><p><li>고객의 도착 상황 : 시간당 15명</li></p><p><li>고객의 서비스 상황 : 평균 4분의 포아송분포</li></p><pre>
 {
     tstep=1, prarr=0.25, seed=35213, mean=4
     queue = 0
@@ -93,7 +93,7 @@
 </template>
 
 <template id="tpl-49-50">
-<div class="sim-passage"><p class="sim-note">※ (49~50) 단일 창구 대기행렬 시뮬레이션의 알고리즘과 입력 조건</p><p><b>주유시간:</b> 150<br><b>고객의 도착상황:</b> 시간당 평균 20대의 일양분포<br><b>연료탱크:</b> 평균 18ℓ, 표준편차 2ℓ 정규분포<br><b>급유시간계산:</b> 1ℓ당 1/8분</p><pre>nseed=seed
+<div class="sim-passage"><p class="sim-note">※ (49~50) 단일 창구 대기행렬 시뮬레이션의 알고리즘과 입력 조건</p><p><b>&lt;조건&gt;</p><p>종료시간:</b> 150<br><b>고객의 도착상황:</b> 시간당 평균 20대의 일양분포<br><b>연료탱크:</b> 평균 18ℓ, 표준편차 2ℓ 정규분포<br><b>급유시간계산:</b> 1ℓ당 1/8분</p><pre>nseed=seed
 while (time &lt; tlimit) do
 {
     time = time + tstep
