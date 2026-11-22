@@ -216,3 +216,9 @@ body {
 /* 원본 시험지에서 잘라낸 공통 지문과 표 */
 .original-passage { max-width:100%; margin:10px 0 14px; overflow-x:auto; }
 .original-passage img { display:block; width:100%; max-width:740px; height:auto; border:1px solid #ddd; background:white; }
+
+/* Tables in exam passages: responsive and readable */
+.table-scroll {max-width:100%;overflow-x:auto;margin:12px 0 16px;}
+.table-scroll .mini-tbl {width:100%;border-collapse:collapse;font-size:14px;line-height:1.55;}
+.table-scroll .mini-tbl th,.table-scroll .mini-tbl td {padding:8px 10px;border:1px solid #cbd5e1;vertical-align:top;}
+.table-scroll .mini-tbl th {background:#f1f5f9;}

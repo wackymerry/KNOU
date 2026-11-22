@@ -57,7 +57,7 @@
 </template>
 
 <template id="tpl-51-54">
-<div class='original-passage'><img src='assets/2017/passage-51-54.png' alt='51번부터 54번까지 고객 도착시간 봉사시간 표' loading='lazy'></div>
+<div class='table-scroll'><table class='mini-tbl'><thead><tr><th>고객</th><th>도착시간</th><th>도착간격</th><th>봉사시간</th><th>출발시간</th><th>대기시간</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>5</td><td>6</td><td>0</td></tr><tr><td>2</td><td>3</td><td></td><td>3</td><td></td><td></td></tr><tr><td>3</td><td>6</td><td></td><td>2</td><td></td><td></td></tr><tr><td>4</td><td>8</td><td></td><td>4</td><td></td><td></td></tr></tbody></table></div>
 </template>
 
 <template id="tpl-58-60">
@@ -71,7 +71,7 @@ const P_51_54 = document.getElementById("tpl-51-54").innerHTML;
 const P_58_60 = document.getElementById("tpl-58-60").innerHTML;
 
 const QUESTIONS = [
-  {"num": 36, "unit": "2장. 시스템과 모델링", "q": "다음은 시뮬레이션 모델에 대한 설명이다. 보기에서 설명과 이름을 바르게 연결한 것은?<div class='original-passage'><img src='assets/2017/table-36.png' alt='36번 보기 표' loading='lazy'></div>", "options": ["가-A &nbsp;&nbsp; 나-B &nbsp;&nbsp; 다-C &nbsp;&nbsp; 라-D", "가-A &nbsp;&nbsp; 나-C &nbsp;&nbsp; 다-B &nbsp;&nbsp; 라-D", "가-D &nbsp;&nbsp; 나-A &nbsp;&nbsp; 다-C &nbsp;&nbsp; 라-B", "가-D &nbsp;&nbsp; 나-B &nbsp;&nbsp; 다-C &nbsp;&nbsp; 라-A"], "ans": 3, "exp": "가(정의·이해)=설명적 장치(D), 나(한계적 구성요소 결정)=분석 도구(B), 다(해결방안 종합·평가)=설계평가 도구(C), 라(미래 예측)=예측 도구(A)입니다."},
+  {"num": 36, "unit": "2장. 시스템과 모델링", "q": "다음은 시뮬레이션 모델에 대한 설명이다. 보기에서 설명과 이름을 바르게 연결한 것은?<div class='table-scroll'><table class='mini-tbl'><thead><tr><th>설명</th><th>도구</th></tr></thead><tbody><tr><td>가. 시스템이나 문제를 정의하고 이해를 주는</td><td>A. 예측 도구</td></tr><tr><td>나. 한계적 구성요소를 결정하는</td><td>B. 분석 도구</td></tr><tr><td>다. 제안된 해결방안을 종합하고 평가하는</td><td>C. 설계평가 도구</td></tr><tr><td>라. 미래의 개발계획을 예측하고 도와주는</td><td>D. 설명적 장치</td></tr></tbody></table></div>", "options": ["가-A &nbsp;&nbsp; 나-B &nbsp;&nbsp; 다-C &nbsp;&nbsp; 라-D", "가-A &nbsp;&nbsp; 나-C &nbsp;&nbsp; 다-B &nbsp;&nbsp; 라-D", "가-D &nbsp;&nbsp; 나-A &nbsp;&nbsp; 다-C &nbsp;&nbsp; 라-B", "가-D &nbsp;&nbsp; 나-B &nbsp;&nbsp; 다-C &nbsp;&nbsp; 라-A"], "ans": 3, "exp": "가(정의·이해)=설명적 장치(D), 나(한계적 구성요소 결정)=분석 도구(B), 다(해결방안 종합·평가)=설계평가 도구(C), 라(미래 예측)=예측 도구(A)입니다."},
   {"num": 37, "unit": "2장. 시스템과 모델링", "q": "다음 시뮬레이션 모델에서 확률변수를 사용하지 않는 것은?", "options": ["이산형 모델", "확률적 모델", "결정적 모델", "동적 모델"], "ans": 2, "exp": "결정적(Deterministic) 모델은 확률변수를 포함하지 않으며 입력이 정해지면 출력이 유일하게 결정됩니다."},
   {"num": 38, "unit": "3장. 연속형 시뮬레이션", "q": "토끼와 여우의 관계처럼 천적과 먹이관계인 두 종족간의 상호작용으로 인한 종족수를 예측해 보는 모델은?", "options": ["prey-predator 모델", "V_y(t + δt) = V_y(t) + a_y * δt", "저축문제2", "몬테칼로 시뮬레이션"], "ans": 0, "exp": "피식자(prey, 토끼)와 포식자(predator, 여우) 간의 개체 수 변화를 미분방정식으로 모형화한 것이 prey-predator 모델입니다."},
   {"num": 39, "unit": "2장. 시스템과 모델링", "q": "다음 중 확률적 시뮬레이션에 해당하는 것은?", "options": ["저축문제", "대기행렬문제", "공의탄성문제", "population모델"], "ans": 1, "exp": "대기행렬(Queueing) 문제는 고객 도착 간격과 봉사 시간이 확률분포를 따르는 대표적인 확률적 시뮬레이션입니다."},
@@ -101,11 +101,11 @@ const QUESTIONS = [
   {"num": 63, "unit": "7장. 난수 발생", "q": "컴퓨터를 이용하여 난수를 발생하는 경우 갖추어야 할 점이 아닌 것은?", "options": ["반복발생이 불가능해야 한다.", "상관관계가 없어야 한다.", "난수의 발생속도가 빨라야 한다.", "[0,1) 범위에서 일양분포를 만족해야 한다."], "ans": 0, "exp": "모델 검증과 대안 비교 실험 재현을 위해 동일한 초기값(seed)을 주면 동일한 난수열이 반복 발생(재현성) 가능해야 합니다."},
   {"num": 64, "unit": "7장. 난수 발생", "q": "※ (64~66) 다음은 난수의 발생식이다. 물음에 답하라. <div class='original-passage'><img src='assets/2017/formula-64-66.png' alt='원본 수식' loading='lazy'></div>64. X₀ = 5 일 때 X₁을 구하면?", "options": ["3", "5", "6", "9"], "ans": 0, "exp": "X₁ = (2 × 5 + 3) mod 10 = 13 mod 10 = 3입니다."},
   {"num": 65, "unit": "7장. 난수 발생", "q": "<div class='original-passage'><img src='assets/2017/formula-64-66.png' alt='원본 수식' loading='lazy'></div>65. 계속해서 X₂를 구하면?", "options": ["3", "5", "6", "9"], "ans": 3, "exp": "X₂ = (2 × 3 + 3) mod 10 = 9 mod 10 = 9입니다."},
-  {"num": 66, "unit": "7장. 난수 발생", "q": "<div class='original-passage'><img src='assets/2017/formula-64-66.png' alt='원본 수식' loading='lazy'></div>66. 주기는?", "options": ["3", "5", "4", "6"], "ans": 2, "exp": "X₀=5 → X₁=3 → X₂=9 → X₃=(18+3) mod 10=1 → X₄=(2+3) mod 10=5로 4단계 만에 초기값 5로 되돌아오므로 주기는 4입니다."},
+  {"num": 66, "unit": "7장. 난수 발생", "q": "<div class='original-passage'><img src='assets/2017/formula-64-66.png' alt='원본 수식' loading='lazy'></div>66. 주기는?", "options": ["3", "5", "4", "6"], "ans": 1, "exp": "[공식 정답표 확인: 2번] 해설은 별도 검토가 필요합니다."},
   {"num": 67, "unit": "7장. 난수의 검정", "q": "※ (67~68) 카이제곱 검정에 관한 사항이다. 6000개의 난수를 발생시켜 100개의 구간으로 나누었다. <div class='original-passage'><img src='assets/2017/formula-67-68.png' alt='원본 수식' loading='lazy'></div>6000개의 난수를 발생시켜서 100개의 구간으로 나누었다.</div>67. 자유도는?", "options": ["99", "100", "101", "102"], "ans": 0, "exp": "구간 수 k = 100일 때 카이제곱 검정의 자유도는 k - 1 = 100 - 1 = 99입니다."},
   {"num": 68, "unit": "7장. 난수의 검정", "q": "<div class='original-passage'><img src='assets/2017/formula-67-68.png' alt='원본 수식' loading='lazy'></div>6000개의 난수를 발생시켜서 100개의 구간으로 나누었다.</div>68. 구간별 기대값인 n/k의 값은?", "options": ["30", "40", "50", "60"], "ans": 3, "exp": "전체 난수 수 n = 6000, 구간 수 k = 100이므로 구간별 기대빈도 n/k = 6000 / 100 = 60입니다."},
   {"num": 69, "unit": "8장. 확률변수의 발생", "q": "<div class='original-passage'><img src='assets/2017/formula-69.png' alt='원본 수식' loading='lazy'></div>다음은 지수 확률변수를 발생시키는 과정이다. 역함수를 이용하는 이 방법의 이름은?", "options": ["역변환법", "합성법", "결합법", "채택기각법"], "ans": 0, "exp": "누적분포함수 F(x) = U를 x에 대해 풀어 역함수 x = F⁻¹(U)로 확률변수를 생성하는 기법은 역변환법(Inverse Transform Method)입니다."},
-  {"num": 70, "unit": "2장. 시스템과 모델링", "q": "다음은 시뮬레이션의 응용사례들이다. 시뮬레이션 목적이 나머지 셋과 가장 다른 것은?", "options": ["원자력 발전소 시뮬레이터", "운전연습 시뮬레이터", "일기예보", "파일러트(조종사) 시뮬레이션"], "ans": 2, "exp": "일기예보는 미래 상태를 예측하기 위한 예측용 시뮬레이션이며, 나머지 셋은 운전·조종·비상대응 훈련(교육) 목적의 시뮬레이터입니다."}
+  {"num": 70, "unit": "2장. 시스템과 모델링", "q": "다음은 시뮬레이션의 응용사례들이다. 시뮬레이션 목적이 나머지 셋과 가장 다른 것은?", "options": ["원자력 발전소 시뮬레이터", "운전연습 시뮬레이터", "일기예보", "파일러트(조종사) 시뮬레이션"], "ans": 0, "exp": "[공식 정답표 확인: 1번] 해설은 별도 검토가 필요합니다."}
 ];
 
 const userAns = new Array(QUESTIONS.length).fill(null);
