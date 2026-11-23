@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>컴파일러구성 2017 기출 (35문항)</title>
+<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795400413719&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_00000000c5e88211ac33e8ab9463086c%26fn%3D2017-compiler-exam-layout-v4.html%26cd%3Dattachment%26ts%3D498722%26p%3Dfs%26cid%3D1%26sig%3D5f1ff32e4904f28e46af562b4cd3f8a8613c7e0b2c0354add346409cbc693dac%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795400413719&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link rel="stylesheet" href="../quiz.css">
+<style>
+.sim-passage {margin:12px 0 16px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;font-size:13px;line-height:1.65;overflow-x:auto}
+.sim-passage pre {font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;white-space:pre;overflow-x:auto;margin:8px 0;color:#172033}
+.sim-passage .sim-note {margin:0 0 8px;font-weight:600}
+.sim-passage ul {margin:4px 0 10px;padding-left:22px}
+.sim-passage table {border-collapse:collapse;min-width:480px;width:100%;font-size:12px}
+.sim-passage th,.sim-passage td {border:1px solid #94a3b8;padding:5px 7px;text-align:center}
+.sim-passage th {background:#e2e8f0}
+.sim-math {font-family:Georgia,"Times New Roman",serif;font-size:16px;text-align:center;padding:9px 6px}
+.sim-conditions {margin:4px 0 12px 12px;line-height:1.7}
+.sim-conditions > div {margin:0;padding:0}
+.sim-code-pair {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.65fr);gap:14px;margin:12px 0 16px;align-items:start}
+.sim-code-pair pre {box-sizing:border-box;margin:0;padding:14px 16px;min-width:0;overflow-x:auto;white-space:pre;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;color:#172033;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
+@media(max-width:540px){.sim-code-pair{grid-template-columns:1fr}}
+
+.compiler-figure { margin:12px 0 16px; padding:8px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:9px; overflow-x:auto; }
+.compiler-figure img { display:block; max-width:100%; height:auto; margin:auto; }
+.compiler-pre { padding:12px 14px; border:1px solid #cbd5e1; border-radius:8px; background:#f8fafc; font:14px/1.6 Consolas,monospace; overflow-x:auto; white-space:pre; }
+
+.compiler-table-wrap{max-width:100%;overflow-x:auto;margin:12px 0 16px}
+.compiler-table{border-collapse:collapse;width:100%;font-size:clamp(12px,1.5vw,15px);background:white}
+.compiler-table th,.compiler-table td{border:1px solid #9ca3af;padding:7px 9px;text-align:center;white-space:nowrap}
+.compiler-table th{background:#e9eef5}
+.compiler-svg{max-width:100%;margin:14px 0;padding:10px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;overflow-x:auto}
+.compiler-svg svg{display:block;width:100%;height:auto;min-width:480px}
+.compiler-pre{max-width:100%;box-sizing:border-box;white-space:pre-wrap;overflow-wrap:anywhere}
+
+.compiler-group-intro{padding:12px 14px;margin:0 0 16px;background:#eef4fc;border-left:4px solid #2563eb;border-radius:5px;line-height:1.7}.compiler-group-ref{font-size:13px;color:#64748b;margin:0 0 12px}.compiler-source-title{font-weight:700;margin:12px 0 4px}.shared-source-note{margin:12px 0 16px;padding:10px 14px;background:#eff6ff;border-left:3px solid #60a5fa;border-radius:5px;font-size:14px}
+.shared-source-note a{color:#1d4ed8;text-decoration:underline}
+.compiler-table-title{font-size:14px;font-weight:700;margin:12px 0 5px}
+.compiler-svg{overflow-x:auto;max-width:100%;box-sizing:border-box}
+.compiler-svg svg{min-width:640px;width:100%;max-width:none}
+.compiler-pre b{font-weight:700}.compiler-question-prompt{font-size:1em;font-weight:700;margin:16px 0 12px}.compiler-svg svg{min-width:590px}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-left">
+    <a class="btn-home" href="../index.html">← 메인</a>
+    <div>
+      <div class="top-title">컴파일러구성 2017 기출 (35문항)</div>
+    <div class="top-sub" id="answered-count">진행: 0 / 35 문항</div>
+    </div>
+  </div>
+  <div class="timer-box">
+    <span class="timer-val" id="timer">00:00</span>
+    <button class="btn-pause" id="pauseBtn" onclick="togglePause()">일시정지</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="intro-card">
+    <p style="font-size:13px;color:#a34b16">※ 원본 시험지의 공통 문법, 표, 상태 전이도를 HTML 및 인라인 SVG로 재구성했습니다.</p>
+    <h2>2017학년도 2학기 기말시험 문제은행 (1~35번)</h2>
+    <p>라디오버튼으로 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
+    (A: 개념 알고 품 / B: 원리 모름 / C: 개념 생소 / D: 계산·적용 막힘)</p>
+    <div class="progress-wrap"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div id="quiz-list"></div>
+
+  <div class="submit-wrap">
+    <button class="btn-submit" onclick="gradeQuiz()">35문항 제출 및 종합 진단 받기</button>
+  </div>
+
+  <div id="report-section">
+    <h2 style="margin-top:0;">📊 2017학년도 2학기 기말시험 문제은행 진단 결과</h2>
+    <div class="stat-grid" id="stat-grid"></div>
+    <div id="unit-breakdown"></div>
+    <h3 style="margin:16px 0 6px; font-size:15px;">📋 일정 관리 대화 전달용 요약 보고서</h3>
+    <textarea class="report-text" id="report-textarea" readonly></textarea>
+    <button class="btn-copy" onclick="copyReport()">보고서 텍스트 복사하기</button>
+    <a class="btn-home-bottom" href="../index.html">🏠 과목 메인 포털로 돌아가기</a>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    "num": 1,
+    "unit": "컴파일러구성",
+    "q": "다음의 설명에서 빈칸 ‘가’와 ‘나’에 적당한 것은?<pre class=\"compiler-pre\">IF A=B THEN C:=D ELSE E:=D\n\n‘가’는 IF, A, =, B, … 등의 단어를 표현하는 것이고,\n‘나’는 전체문장이 IF–THEN–ELSE 문장이라는 것을\n표현하는 것이다. 따라서 ‘나’는 ‘가’보다 표현 범위가 넓어서\n이것을 인식하는 오토마타를 구현하는 일도 훨씬 어렵다.</pre>",
+    "options": [
+      "Context-Free 언어, 정규언어",
+      "Context-sensitive 언어, Context-Free 언어",
+      "정규언어, Context-Free 언어",
+      "정규언어, Context-sensitive 언어"
+    ],
+    "ans": 2,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 2,
+    "unit": "컴파일러구성",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (2~5)</b> 다음 문법을 보고 물음에 답하시오. 단 S는 시작기호이다.</div><div class=\"compiler-source-title\">〈문법〉</div><pre class=\"compiler-pre\">1) S → bAS\n2) S → c\n3) A → SS\n4) A → a</pre><div class=\"compiler-question-prompt\">다음은 bccc를 좌단유도하는 과정이다. 관계없는 것은?</div>",
+    "options": [
+      "bAS",
+      "bSSc",
+      "bcSS",
+      "bccS"
+    ],
+    "ans": 1,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 3,
+    "unit": "컴파일러구성",
+    "q": "다음은 bccc를 우단유도하는 과정이다. 관계없는 것은?",
+    "options": [
+      "bAS",
+      "bAc",
+      "bSSS",
+      "bSSc"
+    ],
+    "ans": 2,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 4,
+    "unit": "컴파일러구성",
+    "q": "First(A)는?",
+    "options": [
+      "a",
+      "a, c",
+      "b, c",
+      "a, b, c"
+    ],
+    "ans": 3,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 5,
+    "unit": "컴파일러구성",
+    "q": "Follow(A)는?",
+    "options": [
+      "a",
+      "a, b",
+      "b, c",
+      "a, b, c"
+    ],
+    "ans": 2,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 6,
+    "unit": "컴파일러구성",
+    "q": "다음은 모호한 문법이다. 다음 중 이 문법의 특징에 대한 설명 중에서 틀린 것은?<pre class=\"compiler-pre\">E → E + E | E * E | id</pre>",
+    "options": [
+      "id + id * id를 유도하면 두 개 이상의 유도트리가 생성된다.",
+      "구문분석기가 단순하며 구문분석 시간이 빠르다.",
+      "연산자 우선순위를 적용하면 모호성이 해결될 수도 있다.",
+      "결합법칙을 적용하면 모호성이 해결될 수도 있다."
+    ],
+    "ans": 1,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 7,
+    "unit": "컴파일러구성",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (7~8)</b> 다음 문법을 보고 물음에 답하시오.</div><div class=\"compiler-source-title\">〈문법〉</div><pre class=\"compiler-pre\">P : S → aS | A\n    A → bB\n    B → c\n    C → f</pre><div class=\"compiler-question-prompt\">다음 중 생성할 수 없는 터미널 문자열은?</div>",
+    "options": [
+      "f",
+      "bc",
+      "abc",
+      "aabc"
+    ],
+    "ans": 0,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 8,
+    "unit": "컴파일러구성",
+    "q": "터미널 문자열을 생성할 수 없는 불필요한 생성규칙은?",
+    "options": [
+      "S → aS",
+      "A → bB",
+      "B → c",
+      "C → f"
+    ],
+    "ans": 3,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 9,
+    "unit": "컴파일러구성",
+    "q": "다음 문법을 ε-free 문법으로 바꾸려 한다. 빈칸에 알맞지 않은 것은?<pre class=\"compiler-pre\">P : S → aSb | bSa | ε\n⇒ P′는\nS′ → S | ε\nS → (     ) | (     ) | (     ) | (     )</pre>",
+    "options": [
+      "aS",
+      "ab",
+      "bSa",
+      "ba"
+    ],
+    "ans": 0,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 10,
+    "unit": "컴파일러구성",
+    "q": "생성규칙의 오른쪽이 더 한 개의 논 터미널로 구성되어 Top-down 구문분석에서 효율을 떨어뜨리는 것은?",
+    "options": [
+      "right recursion",
+      "단일 생성규칙",
+      "모호성",
+      "left factoring"
+    ],
+    "ans": 1,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 11,
+    "unit": "컴파일러구성",
+    "q": "다음 문법은 TOP-DOWN 방식으로 구문 분석하게 되면 문제가 발생한다. 가장 관련 있는 것은?<pre class=\"compiler-pre\">E → E + T | T\nT → T * F | F\nF → id</pre>",
+    "options": [
+      "불필요한 생성규칙",
+      "left-recursion",
+      "left-factoring",
+      "모호성"
+    ],
+    "ans": 1,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 12,
+    "unit": "컴파일러구성",
+    "q": "다음은 문제점을 해결하기 위해서 생성규칙을 변환하는 과정이다. T → T * F | F 를 변환했을 때 나올 수 없는 규칙은?<pre class=\"compiler-pre\">⟹\nE → TE′\nE′ → +TE′ | ε\n(        )</pre>",
+    "options": [
+      "T → FT′",
+      "T′ → *FT′",
+      "T′ → ε",
+      "T → id"
+    ],
+    "ans": 3,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 13,
+    "unit": "컴파일러구성",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (13~16)</b> 다음은 주어진 문법을 보고 id+id*id를 shift-reduce 구문분석 하는 과정이다. 물음에 답하시오.</div><div class=\"compiler-source-title\">〈문법〉</div><pre class=\"compiler-pre\">1) E → E + E\n2) E → E * E\n3) E → id</pre><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>단계</th><th>스택</th><th>입력</th><th>구문분석 행동</th></tr></thead><tbody><tr><td>0</td><td>$</td><td>id+id*id $</td><td>shift id</td></tr><tr><td>1</td><td>$id</td><td>+id*id $</td><td>reduce E → id</td></tr><tr><td>2</td><td>$E</td><td>+id*id $</td><td>shift +</td></tr><tr><td>3</td><td>$E+</td><td>id*id $</td><td>shift id</td></tr><tr><td>4</td><td>$E+id</td><td>*id $</td><td>reduce E → id</td></tr><tr><td>5</td><td>$E+E</td><td>*id $</td><td>shift *</td></tr><tr><td>6</td><td>$E+E*</td><td>id $</td><td>shift <b>‘가’</b></td></tr><tr><td>7</td><td>$E+E*id</td><td>$</td><td>reduce <b>‘나’</b></td></tr><tr><td>8</td><td>$E+E*E</td><td>$</td><td>reduce <b>‘다’</b></td></tr><tr><td>9</td><td>$E+E</td><td>$</td><td>reduce <b>‘라’</b></td></tr><tr><td>10</td><td>$E</td><td>$</td><td>accept</td></tr></tbody></table></div><div class=\"compiler-question-prompt\">빈칸 ‘가’에 알맞은 것은?</div>",
+    "options": [
+      "id",
+      "E → id",
+      "E → E * E",
+      "E → E + E"
+    ],
+    "ans": 0,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 14,
+    "unit": "컴파일러구성",
+    "q": "<b>빈칸 ‘나’</b>에 알맞은 것은?",
+    "options": [
+      "id",
+      "E → id",
+      "E → E * E",
+      "E → E + E"
+    ],
+    "ans": 1,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 15,
+    "unit": "컴파일러구성",
+    "q": "<b>빈칸 ‘다’</b>에 알맞은 것은?",
+    "options": [
+      "id",
+      "E → id",
+      "E → E * E",
+      "E → E + E"
+    ],
+    "ans": 2,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 16,
+    "unit": "컴파일러구성",
+    "q": "<b>빈칸 ‘라’</b>에 알맞은 것은?",
+    "options": [
+      "id",
+      "E → id",
+      "E → E * E",
+      "E → E + E"
+    ],
+    "ans": 3,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 17,
+    "unit": "컴파일러구성",
+    "q": "다음은 단순순위문법을 이용해서 기호들 사이의 순위관계를 정하는 과정이다. 빈칸 ‘가’에 알맞은 것을 고르시오.<pre class=\"compiler-pre\">E → E₁ → T₁ → T\n            → T * F   (  ‘가’  )\n            → T * id  ( * ⋖ id )\n            → F * id  ( F ⋗ * )</pre>",
+    "options": [
+      "T ⋖ *",
+      "* ⋖ F",
+      "T ⋗ *",
+      "T ≐ *"
+    ],
+    "ans": 3,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 18,
+    "unit": "컴파일러구성",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (18~21)</b> 다음은 LR(0) 항목 집합의 Canonical Collection을 구하는 과정이다. 물음에 답하시오.</div><pre class=\"compiler-pre\"><b>(1) 증가문법은 다음과 같다.</b>\n0) S′ → E\n1) E → E + T\n2) E → T\n3) T → T * F\n4) T → F\n5) F → (E)\n6) F → id\n\n<b>(2) Canonical Collection</b>\nI₀ = closure({S′ → • E})\nI₁ = GOTO(I₀, E)\nI₂ = GOTO(I₀, T)\nI₃ = GOTO(I₀, F)</pre><div class=\"compiler-source-title\">〈보기〉</div><pre class=\"compiler-pre\">(가) {[T → F •]}\n(나) {[S′ → E •], [E → E • + T]}\n(다) {[E → T •], [T → T • * F]}\n(라) {[S′ → • E], [E → • E + T], [E → • T], [T → • T * F], [T → • F], [F → • (E)], [F → • id]}</pre><div class=\"compiler-question-prompt\">I<sub>0</sub>를 보기에서 고르면?</div>",
+    "options": [
+      "(가)",
+      "(나)",
+      "(다)",
+      "(라)"
+    ],
+    "ans": 3,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 19,
+    "unit": "컴파일러구성",
+    "q": "I<sub>1</sub>를 보기에 고르면?",
+    "options": [
+      "(가)",
+      "(나)",
+      "(다)",
+      "(라)"
+    ],
+    "ans": 1,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 20,
+    "unit": "컴파일러구성",
+    "q": "I<sub>2</sub>를 보기에 고르면?",
+    "options": [
+      "(가)",
+      "(나)",
+      "(다)",
+      "(라)"
+    ],
+    "ans": 2,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 21,
+    "unit": "컴파일러구성",
+    "q": "I<sub>3</sub>를 보기에 고르면?",
+    "options": [
+      "(가)",
+      "(나)",
+      "(다)",
+      "(라)"
+    ],
+    "ans": 0,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 22,
+    "unit": "컴파일러구성",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (22~24)</b> 계속해서 GOTO 그래프를 이용하여 SLR 파싱표를 구하는 과정이다. 물음에 답하시오.</div><div class=\"compiler-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 595 525\" role=\"img\" aria-label=\"SLR 상태 전이도\"><defs><marker id=\"slrArrow\" markerWidth=\"7\" markerHeight=\"7\" refX=\"6\" refY=\"3.5\" orient=\"auto\"><path d=\"M0 0 L7 3.5 L0 7 Z\" fill=\"#334155\"/></marker></defs><path d=\"M117 112 H140 V56 H160\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"142\" y=\"50\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">E</text><path d=\"M117 128 H148 V121 H160\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"147\" y=\"113\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">T</text><path d=\"M117 144 H160\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"134\" y=\"139\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">F</text><path d=\"M117 176 H140 V322 H160\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"142\" y=\"292\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">(</text><path d=\"M117 203 H130 V481 H160\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"132\" y=\"449\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">id</text><path d=\"M240 56 H276 L315 62\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"277\" y=\"49\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">+</text><path d=\"M240 121 L315 203\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"278\" y=\"151\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">*</text><path d=\"M255 317 L315 218\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"279\" y=\"267\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">F</text><path d=\"M160 324 H145 V121 H160\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"130\" y=\"313\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">T</text><path d=\"M400 62 H440 V56 H475\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"443\" y=\"48\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">T</text><path d=\"M400 86 L255 295\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"323\" y=\"141\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">F</text><path d=\"M400 100 L255 332\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"351\" y=\"159\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">(</text><path d=\"M400 215 H475\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"438\" y=\"206\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">id</text><path d=\"M315 231 L255 335\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"291\" y=\"286\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">(</text><path d=\"M315 247 L240 481\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"278\" y=\"371\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">id</text><path d=\"M400 250 H450 V481 H240\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"444\" y=\"397\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">id</text><path d=\"M255 355 H315\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"277\" y=\"348\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">E</text><path d=\"M400 378 L475 306\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"431\" y=\"336\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">)</text><path d=\"M400 397 H455 V188 H475\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"451\" y=\"272\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">+</text><path d=\"M160 355 C120 355 120 293 160 293\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"119\" y=\"303\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">(</text><path d=\"M553 191 H565 V481 H240\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"554\" y=\"373\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">id</text><path d=\"M553 306 H576 V481 H240\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#slrArrow)\"/><text x=\"572\" y=\"390\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#172033\">id</text><rect x=\"22\" y=\"95\" width=\"95\" height=\"130\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"69.5\" y=\"166.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">0</tspan></text><rect x=\"160\" y=\"35\" width=\"80\" height=\"42\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"200.0\" y=\"62.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">1</tspan></text><rect x=\"160\" y=\"100\" width=\"80\" height=\"42\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"200.0\" y=\"127.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">2</tspan></text><rect x=\"160\" y=\"165\" width=\"80\" height=\"42\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"200.0\" y=\"192.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">3</tspan></text><rect x=\"160\" y=\"282\" width=\"95\" height=\"130\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"207.5\" y=\"353.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">4</tspan></text><rect x=\"160\" y=\"462\" width=\"80\" height=\"38\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"200.0\" y=\"487.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">5</tspan></text><rect x=\"315\" y=\"35\" width=\"85\" height=\"88\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"357.5\" y=\"85.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">6</tspan></text><rect x=\"315\" y=\"170\" width=\"85\" height=\"88\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"357.5\" y=\"220.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">7</tspan></text><rect x=\"315\" y=\"350\" width=\"85\" height=\"55\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"357.5\" y=\"383.5\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">8</tspan></text><rect x=\"475\" y=\"35\" width=\"78\" height=\"42\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"514.0\" y=\"62.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">9</tspan></text><rect x=\"475\" y=\"170\" width=\"78\" height=\"42\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"514.0\" y=\"197.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">10</tspan></text><rect x=\"475\" y=\"285\" width=\"78\" height=\"42\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"514.0\" y=\"312.0\" font-family=\"Georgia,Times New Roman,serif\" font-size=\"20\" text-anchor=\"middle\" fill=\"#172033\">I<tspan baseline-shift=\"sub\" font-size=\"13\">11</tspan></text></svg></div><div class=\"compiler-table-title\">〈SLR 파싱표〉</div><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>상태</th><th>id</th><th>+</th><th>*</th><th>(</th><th>)</th><th>$</th><th>E</th><th>T</th><th>F</th></tr></thead><tbody><tr><td>0</td><td>S5</td><td></td><td></td><td><b>‘가’</b></td><td></td><td></td><td><b>‘다’</b></td><td></td><td></td></tr><tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td><b>‘나’</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div><div class=\"compiler-question-prompt\">빈칸 ‘가’에 알맞은 내용은?</div>",
+    "options": [
+      "S4",
+      "S5",
+      "S6",
+      "S7"
+    ],
+    "ans": 1,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 23,
+    "unit": "컴파일러구성",
+    "q": "빈칸 ‘나’에 알맞은 내용은?",
+    "options": [
+      "r2",
+      "r3",
+      "r4",
+      "r5"
+    ],
+    "ans": 0,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 24,
+    "unit": "컴파일러구성",
+    "q": "빈칸 ‘다’에 알맞은 내용은?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "ans": 0,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 25,
+    "unit": "컴파일러구성",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (25~27)</b> 다음은 CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. 물음에 답하시오.</div><div class=\"compiler-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 790 650\" role=\"img\" aria-label=\"원본 상태 전이도 재현\"><defs><marker id=\"arr\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#334155\"/></marker></defs><rect x=\"15\" y=\"18\" width=\"205\" height=\"86\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"38\" font-size=\"12\" font-family=\"monospace\">S′ → • S, $</text><text x=\"22\" y=\"55\" font-size=\"12\" font-family=\"monospace\">S → • C C, $</text><text x=\"22\" y=\"72\" font-size=\"12\" font-family=\"monospace\">C → • c C, c/d</text><text x=\"22\" y=\"89\" font-size=\"12\" font-family=\"monospace\">C → • d, c/d</text><rect x=\"310\" y=\"18\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"317\" y=\"38\" font-size=\"12\" font-family=\"monospace\">S′ → S •, $</text><rect x=\"310\" y=\"112\" width=\"205\" height=\"69\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"317\" y=\"132\" font-size=\"12\" font-family=\"monospace\">S → C • C, $</text><text x=\"317\" y=\"149\" font-size=\"12\" font-family=\"monospace\">C → • c C, $</text><text x=\"317\" y=\"166\" font-size=\"12\" font-family=\"monospace\">C → • d, $</text><rect x=\"15\" y=\"200\" width=\"205\" height=\"69\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"220\" font-size=\"12\" font-family=\"monospace\">C → c • C, c/d</text><text x=\"22\" y=\"237\" font-size=\"12\" font-family=\"monospace\">C → • c C, c/d</text><text x=\"22\" y=\"254\" font-size=\"12\" font-family=\"monospace\">C → • d, c/d</text><rect x=\"15\" y=\"380\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"400\" font-size=\"12\" font-family=\"monospace\">C → d •, c/d</text><rect x=\"550\" y=\"112\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"557\" y=\"132\" font-size=\"12\" font-family=\"monospace\">S → C C •, $</text><rect x=\"550\" y=\"230\" width=\"205\" height=\"69\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"557\" y=\"250\" font-size=\"12\" font-family=\"monospace\">C → c • C, $</text><text x=\"557\" y=\"267\" font-size=\"12\" font-family=\"monospace\">C → • c C, $</text><text x=\"557\" y=\"284\" font-size=\"12\" font-family=\"monospace\">C → • d, $</text><rect x=\"310\" y=\"380\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"317\" y=\"400\" font-size=\"12\" font-family=\"monospace\">C → d •, $</text><rect x=\"15\" y=\"500\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"520\" font-size=\"12\" font-family=\"monospace\">C → c C •, c/d</text><rect x=\"550\" y=\"380\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"557\" y=\"400\" font-size=\"12\" font-family=\"monospace\">C → c C •, $</text><path d=\"M220 48 L310 48\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"265.0\" y=\"43.0\" font-size=\"12\" fill=\"#172033\">S</text><path d=\"M220 48 L310 142\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"265.0\" y=\"90.0\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M75 104 L75 200\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"147.0\" font-size=\"12\" fill=\"#172033\">c</text><path d=\"M75 104 L75 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"237.0\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M515 142 L550 142\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"532.5\" y=\"137.0\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M515 142 L550 260\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"532.5\" y=\"196.0\" font-size=\"12\" fill=\"#172033\">c</text><path d=\"M370 181 L370 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"370.0\" y=\"275.5\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M75 269 L75 500\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"379.5\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M35 200 C-10 160 -15 265 30 255\" stroke=\"#334155\" fill=\"none\" marker-end=\"url(#arr)\"/><text x=\"-5\" y=\"215\" font-size=\"12\">c</text><path d=\"M75 269 L75 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"319.5\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M610 299 L610 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"610.0\" y=\"334.5\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M570 230 C525 190 520 295 565 285\" stroke=\"#334155\" fill=\"none\" marker-end=\"url(#arr)\"/><text x=\"530\" y=\"245\" font-size=\"12\">c</text><path d=\"M610 299 L370 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"490.0\" y=\"334.5\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M15 70 H4 V415 H15\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#arr)\"/><text x=\"7\" y=\"64\" font-size=\"13\">d</text></svg></div><div class=\"compiler-table-title\">CLR 파싱표 — 구문분석기의 행동(c, d, $) / GOTO 함수(S, C)</div><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>상태</th><th>c</th><th>d</th><th>$</th><th>S</th><th>C</th></tr></thead><tbody><tr><td>0</td><td>S3</td><td><b>‘가’</b></td><td></td><td>1</td><td>2</td></tr><tr><td>1</td><td></td><td></td><td>acc</td><td></td><td></td></tr><tr><td>2</td><td>S6</td><td>S7</td><td></td><td></td><td>5</td></tr><tr><td>3</td><td>S3</td><td>S4</td><td></td><td></td><td><b>‘나’</b></td></tr><tr><td>4</td><td>r3</td><td>r3</td><td></td><td></td><td></td></tr><tr><td>5</td><td></td><td></td><td>r1</td><td></td><td></td></tr><tr><td>6</td><td>S6</td><td>S7</td><td></td><td></td><td>9</td></tr><tr><td>7</td><td></td><td></td><td>r3</td><td></td><td></td></tr><tr><td>8</td><td><b>‘다’</b></td><td>r2</td><td></td><td></td><td></td></tr><tr><td>9</td><td></td><td></td><td>r2</td><td></td><td></td></tr></tbody></table></div><div class=\"compiler-question-prompt\">빈칸 ‘가’에 알맞은 것은?</div>",
+    "options": [
+      "S3",
+      "S4",
+      "r2",
+      "r3"
+    ],
+    "ans": 1,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 26,
+    "unit": "컴파일러구성",
+    "q": "빈칸 ‘나’에 알맞은 것은?",
+    "options": [
+      "3",
+      "5",
+      "6",
+      "8"
+    ],
+    "ans": 3,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 27,
+    "unit": "컴파일러구성",
+    "q": "빈칸 ‘다’에 알맞은 것은?",
+    "options": [
+      "S3",
+      "S4",
+      "r2",
+      "r3"
+    ],
+    "ans": 2,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 28,
+    "unit": "컴파일러구성",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (28~31)</b> 계속해서 다음은 앞에서 구해진 CLR 파싱표를 이용하여 구문분석하는 과정이다. 물음에 답하시오.</div><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>단계</th><th>스택</th><th>입력기호</th><th>구문분석 내용</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>cdcd$</td><td>shift 3</td></tr><tr><td>1</td><td>0c3</td><td>dcd$</td><td>shift 4</td></tr><tr><td>2</td><td>0c3d4</td><td>cd$</td><td>reduce 3</td></tr><tr><td>3</td><td>0c3C</td><td>cd$</td><td>goto 8</td></tr><tr><td>4</td><td>0c3C8</td><td>cd$</td><td>reduce 2</td></tr><tr><td>5</td><td>0C</td><td>cd$</td><td><b>‘가’</b></td></tr><tr><td>6</td><td>0C2</td><td>cd$</td><td><b>‘나’</b></td></tr><tr><td>7</td><td>0C2c6</td><td>d$</td><td><b>‘다’</b></td></tr><tr><td>8</td><td>0C2c6d7</td><td>$</td><td><b>‘라’</b></td></tr></tbody></table></div><div class=\"compiler-question-prompt\">빈칸 ‘가’에 알맞은 것은?</div>",
+    "options": [
+      "shift 6",
+      "shift 7",
+      "reduce 3",
+      "goto 2"
+    ],
+    "ans": 3,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 29,
+    "unit": "컴파일러구성",
+    "q": "다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘나’에 알맞은 것은?",
+    "options": [
+      "shift 6",
+      "shift 7",
+      "reduce 3",
+      "goto 2"
+    ],
+    "ans": 0,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 30,
+    "unit": "컴파일러구성",
+    "q": "다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘다’에 알맞은 것은?",
+    "options": [
+      "shift 6",
+      "shift 7",
+      "reduce 3",
+      "goto 2"
+    ],
+    "ans": 1,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 31,
+    "unit": "컴파일러구성",
+    "q": "다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘라’에 알맞은 것은?",
+    "options": [
+      "shift 6",
+      "shift 7",
+      "reduce 3",
+      "goto 2"
+    ],
+    "ans": 2,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 32,
+    "unit": "컴파일러구성",
+    "q": "다음은 Top-Down 구문분석에서 predictive 파싱표를 구성하는 과정이다. FIRST(T′) = {*, ε}이다. 따라서 빈칸 ‘가’에 알맞은 것은?<pre class=\"compiler-pre\">1) E → TE′\n2) E′ → +TE′\n3) E′ → ε\n4) T → FT′\n5) T′ → *FT′\n6) T′ → ε\n7) F → (E)\n8) F → id\n\nFIRST(E) = FIRST(T) = FIRST(F) = { (, id }\nFOLLOW(E) = FOLLOW(E′) = { ), $ }\nFOLLOW(T) = FOLLOW(T′) = { +, ), $ }\nFOLLOW(F) = { +, *, ), $ }</pre><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th></th><th>id</th><th>+</th><th>*</th><th>(</th><th>)</th><th>$</th></tr></thead><tbody><tr><td>E</td><td>E → TE′</td><td></td><td></td><td>E → TE′</td><td></td><td></td></tr><tr><td>E′</td><td></td><td>E′ → +TE′</td><td></td><td></td><td>E′ → ε</td><td>E′ → ε</td></tr><tr><td>T</td><td>T → FT′</td><td></td><td></td><td>T → FT′</td><td></td><td></td></tr><tr><td>T′</td><td></td><td>T′ → ε</td><td><b>‘가’</b></td><td></td><td>T′ → ε</td><td>T′ → ε</td></tr><tr><td>F</td><td>F → id</td><td></td><td></td><td>F → (E)</td><td></td><td></td></tr></tbody></table></div>",
+    "options": [
+      "E′ → ε",
+      "E′ → +TE′",
+      "T′ → ε",
+      "T′ → *FT′"
+    ],
+    "ans": 3,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 33,
+    "unit": "컴파일러구성",
+    "q": "다음 그림에서 빈칸의 A, B에 들어갈 내용으로 알맞은 것은?<div class=\"compiler-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 860 190\" role=\"img\" aria-label=\"어휘분석기 생성 과정\"><defs><marker id=\"arrow33\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#334155\"/></marker></defs><g fill=\"white\" stroke=\"#475569\" stroke-width=\"1.6\"><rect x=\"270\" y=\"48\" width=\"110\" height=\"40\"/><rect x=\"115\" y=\"125\" width=\"115\" height=\"40\"/><rect x=\"385\" y=\"125\" width=\"135\" height=\"40\"/></g><g font-size=\"17\" fill=\"#172033\" text-anchor=\"middle\"><text x=\"325\" y=\"74\">A</text><text x=\"172\" y=\"151\">B</text><text x=\"452\" y=\"151\">구문분석기</text></g><g stroke=\"#334155\" stroke-width=\"1.6\" fill=\"none\" marker-end=\"url(#arrow33)\"><path d=\"M325 20 V47\"/><path d=\"M325 88 V125 H385\"/><path d=\"M25 145 H115\"/><path d=\"M230 145 H385\"/><path d=\"M520 145 H630\"/></g><g fill=\"#172033\" font-size=\"13\"><text x=\"325\" y=\"15\" text-anchor=\"middle\">문법규칙과 수행코드</text><text x=\"5\" y=\"122\">원시 프로그램</text><text x=\"305\" y=\"137\">토큰</text><text x=\"643\" y=\"135\">수행코드에 의해 생성된</text><text x=\"643\" y=\"154\">구문분석기의 출력</text></g></svg></div>",
+    "options": [
+      "A: 어휘분석기, B: YACC",
+      "A: YACC, B: 어휘분석기",
+      "A: 원시코드, B: YACC",
+      "A: 어휘분석기, B: LALRGen"
+    ],
+    "ans": 1,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 34,
+    "unit": "컴파일러구성",
+    "q": "기호표의 구성 방법 중 가장 효율적인 방법은?",
+    "options": [
+      "해시(hash)표",
+      "선형리스트",
+      "배열",
+      "Tree"
+    ],
+    "ans": 0,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 35,
+    "unit": "컴파일러구성",
+    "q": "산술식 S := E * 3.14 + C / E 에 대한 중간코드를 다음과 같이 표현한다면 어떤 방법인가?<pre class=\"compiler-pre\">(*, E, 3.14, T₀)\n(/, C, E, T₁)\n(+, T₀, T₁, T₂)\n(:=, T₂, Φ, S)</pre>",
+    "options": [
+      "후위표현",
+      "triple 표현",
+      "간접 triple 표현",
+      "quadruple 표현"
+    ],
+    "ans": 3,
+    "exp": "2017학년도 2학기 공식 정답표 기준입니다."
+  }
+];
+
+const userAns = new Array(QUESTIONS.length).fill(null);
+const userType = new Array(QUESTIONS.length).fill(null);
+let seconds = 0;
+let paused = false;
+let submitted = false;
+
+const timerInterval = setInterval(() => {
+  if (!paused && !submitted) {
+    seconds++;
+    document.getElementById("timer").textContent = formatTime(seconds);
+  }
+}, 1000);
+
+function formatTime(sec) {
+  const m = String(Math.floor(sec / 60)).padStart(2, "0");
+  const s = String(sec % 60).padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById("pauseBtn").textContent = paused ? "재개" : "일시정지";
+}
+
+function renderQuiz() {
+  const list = document.getElementById("quiz-list");
+  const numCircles = ["①", "②", "③", "④"];
+  list.innerHTML = QUESTIONS.map((item, idx) => `
+    <div class="q-card" id="card-${idx}">
+      <div class="q-meta">
+        <span class="q-num">문제 ${item.num}</span>
+        <span class="q-unit">${item.unit}</span>
+      </div>
+      <div class="q-text">${item.q}</div>
+      <div class="opt-list">
+        ${item.options.map((opt, oIdx) => `
+          <label class="opt-label" id="lbl-${idx}-${oIdx}">
+            <input type="radio" name="q${idx}" value="${oIdx}" onchange="selectOpt(${idx}, ${oIdx})">
+            <span>${numCircles[oIdx]} ${opt}</span>
+          </label>
+        `).join("")}
+      </div>
+      <div class="type-row">
+        <span class="type-title">자가 유형 분류:</span>
+        <div class="type-btns">
+          ${["A", "B", "C", "D"].map(t => `
+            <button type="button" class="t-btn" id="tbtn-${idx}-${t}" onclick="selectType(${idx}, '${t}')">${t}</button>
+          `).join("")}
+        </div>
+      </div>
+      <div class="exp-box" id="exp-${idx}">
+        <b>${item.disputed ? "원본 선택지 오류 의심 · 채점 제외" : "정답: " + (Array.isArray(item.ans) ? item.ans.map(a => numCircles[a]).join(", ") : numCircles[item.ans])}</b><br>${item.exp}
+      </div>
+    </div>
+  `).join("");
+}
+
+function selectOpt(qIdx, oIdx) {
+  if (submitted) return;
+  userAns[qIdx] = oIdx;
+  for (let i = 0; i < 4; i++) {
+    document.getElementById(`lbl-${qIdx}-${i}`).classList.toggle("selected", i === oIdx);
+  }
+  const done = userAns.filter(v => v !== null).length;
+  document.getElementById("answered-count").textContent = `진행: ${done} / 35 문항`;
+  document.getElementById("progress-fill").style.width = `${(done / 35) * 100}%`;
+}
+
+function selectType(qIdx, t) {
+  userType[qIdx] = (userType[qIdx] === t) ? null : t;
+  ["A", "B", "C", "D"].forEach(code => {
+    document.getElementById(`tbtn-${qIdx}-${code}`).classList.toggle("active", userType[qIdx] === code);
+  });
+}
+
+function gradeQuiz() {
+  const unanswered = userAns.filter(v => v === null).length;
+  if (unanswered > 0 && !confirm(`아직 풀지 않은 문제가 ${unanswered}개 있습니다. 그래도 제출하고 진단할까요?`)) {
+    return;
+  }
+  submitted = true;
+  clearInterval(timerInterval);
+
+  let correctCnt = 0;
+  const unitStats = {};
+  const typeStats = { A: [], B: [], C: [], D: [] };
+  const wrongList = [];
+
+  QUESTIONS.forEach((item, idx) => {
+    if (!unitStats[item.unit]) unitStats[item.unit] = { total: 0, ok: 0 };
+    unitStats[item.unit].total++;
+
+    const card = document.getElementById(`card-${idx}`);
+    const exp = document.getElementById(`exp-${idx}`);
+    exp.classList.add("show");
+
+    const chosen = userAns[idx];
+    const isOk = Array.isArray(item.ans) ? item.ans.includes(chosen) : chosen === item.ans;
+    if (isOk) {
+      correctCnt++;
+      unitStats[item.unit].ok++;
+      card.classList.add("correct");
+    } else {
+      card.classList.add("wrong");
+      wrongList.push(item.num);
+      if (chosen !== null) {
+        document.getElementById(`lbl-${idx}-${chosen}`).classList.add("ans-bad");
+      }
+    }
+    (Array.isArray(item.ans) ? item.ans : [item.ans]).forEach(a => document.getElementById(`lbl-${idx}-${a}`).classList.add("ans-ok"));
+
+    const finalType = userType[idx] || (isOk ? "A" : "B");
+    typeStats[finalType].push(item.num);
+  });
+
+  const score = Math.round((correctCnt / 35) * 100);
+  const avgSec = Math.round(seconds / 35);
+
+  document.getElementById("stat-grid").innerHTML = `
+    <div class="stat-box"><div class="stat-num">${correctCnt} / 35 (${score}점)</div><div class="stat-lbl">정답 수 및 환산 점수</div></div>
+    <div class="stat-box"><div class="stat-num">${formatTime(seconds)}</div><div class="stat-lbl">총 소요 시간 (문항당 ${avgSec}초)</div></div>
+    <div class="stat-box"><div class="stat-num">A:${typeStats.A.length} / B:${typeStats.B.length}</div><div class="stat-lbl">유형 A(완벽) / B(원리부족)</div></div>
+    <div class="stat-box"><div class="stat-num">C:${typeStats.C.length} / D:${typeStats.D.length}</div><div class="stat-lbl">유형 C(생소) / D(계산·적용)</div></div>
+  `;
+
+  let unitHtml = "<h3 style='font-size:15px; margin:12px 0 6px;'>📚 단원별 성취도</h3><table class='mini-tbl' style='width:100%;'><tr><th>단원</th><th>정답/문항</th><th>정답률</th></tr>";
+  const unitLines = [];
+  for (const [u, st] of Object.entries(unitStats)) {
+    const pct = Math.round((st.ok / st.total) * 100);
+    unitHtml += `<tr><td style='text-align:left;'>${u}</td><td>${st.ok} / ${st.total}</td><td><b>${pct}%</b></td></tr>`;
+    unitLines.push(`- ${u}: ${st.ok}/${st.total} (${pct}%)`);
+  }
+  unitHtml += "</table>";
+  document.getElementById("unit-breakdown").innerHTML = unitHtml;
+
+  const speedEval = avgSec <= 60 ? "빠름 (실전 시간 충분)" : avgSec <= 90 ? "적정 (계산 문항 시간 배분 유의)" : "다소 느림 (개념 정립 후 반복 숙달 필요)";
+
+  const reportText = `[컴파일러구성 2017학년도 2학기 기말시험 문제은행 학습 진단 보고서]
+1. 학습 범위 및 문항 수: 컴파일러구성 전 범위 35문항 (36~70번)
+2. 실제 풀이 시간: 총 ${formatTime(seconds)} (문항당 평균 ${avgSec}초)
+3. 득점 결과: ${correctCnt} / 35문항 정답 (${score}점)
+4. A~D 유형 분포:
+   - A (개념 알고 품): ${typeStats.A.length}문항 ${typeStats.A.length ? '(' + typeStats.A.join(', ') + '번)' : ''}
+   - B (원리 부족): ${typeStats.B.length}문항 ${typeStats.B.length ? '(' + typeStats.B.join(', ') + '번)' : ''}
+   - C (개념 생소): ${typeStats.C.length}문항 ${typeStats.C.length ? '(' + typeStats.C.join(', ') + '번)' : ''}
+   - D (계산·적용 막힘): ${typeStats.D.length}문항 ${typeStats.D.length ? '(' + typeStats.D.join(', ') + '번)' : ''}
+5. 단원별 정답률:
+${unitLines.join("\n")}
+6. 오답 문항(재풀이 대상): ${wrongList.length ? wrongList.join(", ") + "번" : "없음 (만점)"}
+7. 학습 속도 평가: ${speedEval}`;
+
+  document.getElementById("report-textarea").value = reportText;
+  const repSec = document.getElementById("report-section");
+  repSec.style.display = "block";
+  repSec.scrollIntoView({ behavior: "smooth" });
+}
+
+function copyReport() {
+  const ta = document.getElementById("report-textarea");
+  ta.select();
+  document.execCommand("copy");
+  alert("진단 보고서가 클립보드에 복사되었습니다!");
+}
+
+renderQuiz();
+document.querySelectorAll('.mini-tbl').forEach(tbl => {
+  if (!tbl.closest('.mem-wrap') && !tbl.parentElement.classList.contains('tbl-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'tbl-wrap';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  }
+});
+</script>
+</body>
+</html>
