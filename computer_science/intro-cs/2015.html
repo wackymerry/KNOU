@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>컴퓨터과학개론 2015 기출 (35문항)</title>
+<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795350017425&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_0000000035788211afa6d6c1857a2c3d%26fn%3D2015-computer-science-q10-s-label-fixed.html%26cd%3Dattachment%26ts%3D498708%26p%3Dfs%26cid%3D1%26sig%3Dbc179a1d1859edddcd9465329ac413bfaa757416df26892152571016cae59bd5%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795350017425&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link rel="stylesheet" href="../quiz.css">
+<style>
+.sim-passage {margin:12px 0 16px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;font-size:13px;line-height:1.65;overflow-x:auto}
+.sim-passage pre {font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;white-space:pre;overflow-x:auto;margin:8px 0;color:#172033}
+.sim-passage .sim-note {margin:0 0 8px;font-weight:600}
+.sim-passage ul {margin:4px 0 10px;padding-left:22px}
+.sim-passage table {border-collapse:collapse;min-width:480px;width:100%;font-size:12px}
+.sim-passage th,.sim-passage td {border:1px solid #94a3b8;padding:5px 7px;text-align:center}
+.sim-passage th {background:#e2e8f0}
+.sim-math {font-family:Georgia,"Times New Roman",serif;font-size:16px;text-align:center;padding:9px 6px}
+.sim-conditions {margin:4px 0 12px 12px;line-height:1.7}
+.sim-conditions > div {margin:0;padding:0}
+.sim-code-pair {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.65fr);gap:14px;margin:12px 0 16px;align-items:start}
+.sim-code-pair pre {box-sizing:border-box;margin:0;padding:14px 16px;min-width:0;overflow-x:auto;white-space:pre;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;color:#172033;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
+@media(max-width:540px){.sim-code-pair{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-left">
+    <a class="btn-home" href="../index.html">← 메인</a>
+    <div>
+      <div class="top-title">컴퓨터과학개론 2015 기출 (35문항)</div>
+    <div class="top-sub" id="answered-count">진행: 0 / 35 문항</div>
+    </div>
+  </div>
+  <div class="timer-box">
+    <span class="timer-val" id="timer">00:00</span>
+    <button class="btn-pause" id="pauseBtn" onclick="togglePause()">일시정지</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="intro-card">
+    <p style="font-size:13px;color:#a34b16">※ 원본 도식은 인라인 SVG, 표는 HTML로 표시됩니다. 9번 논리 게이트와 10번 회로도는 인라인 SVG로 표시됩니다.</p>
+    <h2>2015학년도 2학기 기말시험 문제은행 (1~35번)</h2>
+    <p>라디오버튼으로 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
+    (A: 개념 알고 품 / B: 원리 모름 / C: 개념 생소 / D: 계산·적용 막힘)</p>
+    <div class="progress-wrap"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div id="quiz-list"></div>
+
+  <div class="submit-wrap">
+    <button class="btn-submit" onclick="gradeQuiz()">35문항 제출 및 종합 진단 받기</button>
+  </div>
+
+  <div id="report-section">
+    <h2 style="margin-top:0;">📊 2015학년도 2학기 기말시험 문제은행 진단 결과</h2>
+    <div class="stat-grid" id="stat-grid"></div>
+    <div id="unit-breakdown"></div>
+    <h3 style="margin:16px 0 6px; font-size:15px;">📋 일정 관리 대화 전달용 요약 보고서</h3>
+    <textarea class="report-text" id="report-textarea" readonly></textarea>
+    <button class="btn-copy" onclick="copyReport()">보고서 텍스트 복사하기</button>
+    <a class="btn-home-bottom" href="../index.html">🏠 과목 메인 포털로 돌아가기</a>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    "num": 1,
+    "unit": "컴퓨터과학개론",
+    "q": "1950년대 초반에 개발된 EDVAC에서 구현된 데이터와 함께 실행될 프로그램도 메모리에 저장되어야 한다는 개념을 제안한 사람은?",
+    "options": [
+      "폰 노이만",
+      "앨런 튜링",
+      "아타나소프 & 베리",
+      "존 모클리"
+    ],
+    "ans": 0,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 2,
+    "unit": "컴퓨터과학개론",
+    "q": "자료처리기로 정의되는 컴퓨터에서 처리 가능한 작업의 유형과 연산의 집합을 결정하는 요소는?",
+    "options": [
+      "자료의 유형",
+      "자료의 값",
+      "문제의 제약조건",
+      "프로그램"
+    ],
+    "ans": 3,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 3,
+    "unit": "컴퓨터과학개론",
+    "q": "자료를 표현하는 단위 중에서 가장 큰 용량을 표시하는 것은?",
+    "options": [
+      "TB",
+      "MB",
+      "PB",
+      "GB"
+    ],
+    "ans": 2,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 4,
+    "unit": "컴퓨터과학개론",
+    "q": "8비트로 표현된 정수 11111111이 가장 작은 값을 나타내는 정수 표현 방법은?",
+    "options": [
+      "2의 보수",
+      "1의 보수",
+      "부호화-크기",
+      "부호없는 정수"
+    ],
+    "ans": 2,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 5,
+    "unit": "컴퓨터과학개론",
+    "q": "다음과 같은 조건의 배낭 문제를 욕심쟁이 방법으로 해결하려고 한다. 이때 배낭에 가장 먼저 집어넣은 물체는 무엇인가?<div class=\"sim-passage\"><div>– 배낭의 용량 8</div><div>– 물체1 → (이익 14, 무게 3)</div><div>– 물체2 → (이익 9, 무게 4)</div><div>– 물체3 → (이익 20, 무게 5)</div><div>– 물체4 → (이익 15, 무게 3)</div></div>",
+    "options": [
+      "물체1",
+      "물체2",
+      "물체3",
+      "물체4"
+    ],
+    "ans": 3,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 6,
+    "unit": "컴퓨터과학개론",
+    "q": "빅오 표기 O(nlogn)보다 성능이 더 효율적임을 나타내는 것은?",
+    "options": [
+      "O(n²)",
+      "O(n)",
+      "O(2ⁿ)",
+      "O(n³)"
+    ],
+    "ans": 1,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 7,
+    "unit": "컴퓨터과학개론",
+    "q": "왼쪽에서부터 오른쪽으로 모든 인접한 두 원소를 차례대로 비교한 후 왼쪽 값이 오른쪽 값보다 더 큰 경우에는 자리바꿈을 통해서 정렬하는 방식은?",
+    "options": [
+      "버블 정렬",
+      "합병 정렬",
+      "선택 정렬",
+      "삽입 정렬"
+    ],
+    "ans": 0,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 8,
+    "unit": "컴퓨터과학개론",
+    "q": "피벗이 제자리를 잡도록 정렬하는 방법은?",
+    "options": [
+      "쉘 정렬",
+      "버블 정렬",
+      "퀵 정렬",
+      "합병 정렬"
+    ],
+    "ans": 2,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 9,
+    "unit": "컴퓨터과학개론",
+    "q": "다음 중 XOR 게이트는 어느 것인가?",
+    "options": [
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 180 70\" width=\"180\" height=\"70\" role=\"img\" aria-label=\"논리 게이트 회로도\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M42 16 Q65 35 42 54 Q75 57 97 35 Q75 13 42 16Z\"/><path d=\"M18 26 H52 M18 44 H52\"/><path d=\"M97 35 H130\"/></g><g fill=\"currentColor\" font-size=\"12\"><text x=\"4\" y=\"29\">A</text><text x=\"4\" y=\"47\">B</text><text x=\"135\" y=\"39\">X</text></g></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 180 70\" width=\"180\" height=\"70\" role=\"img\" aria-label=\"논리 게이트 회로도\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M42 16 Q65 35 42 54 Q75 57 97 35 Q75 13 42 16Z\"/><path d=\"M18 26 H52 M18 44 H52\"/><path d=\"M35 16 Q58 35 35 54\"/><path d=\"M97 35 H130\"/></g><g fill=\"currentColor\" font-size=\"12\"><text x=\"4\" y=\"29\">A</text><text x=\"4\" y=\"47\">B</text><text x=\"135\" y=\"39\">X</text></g></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 180 70\" width=\"180\" height=\"70\" role=\"img\" aria-label=\"논리 게이트 회로도\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M42 16 Q65 35 42 54 Q75 57 97 35 Q75 13 42 16Z\"/><path d=\"M18 26 H52 M18 44 H52\"/><circle cx=\"103\" cy=\"35\" r=\"5\"/><path d=\"M108 35 H130\"/></g><g fill=\"currentColor\" font-size=\"12\"><text x=\"4\" y=\"29\">A</text><text x=\"4\" y=\"47\">B</text><text x=\"135\" y=\"39\">X</text></g></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 180 70\" width=\"180\" height=\"70\" role=\"img\" aria-label=\"논리 게이트 회로도\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M43 16 H65 Q94 16 94 35 Q94 54 65 54 H43 Z\"/><path d=\"M18 26 H52 M18 44 H52\"/><circle cx=\"103\" cy=\"35\" r=\"5\"/><path d=\"M108 35 H130\"/></g><g fill=\"currentColor\" font-size=\"12\"><text x=\"4\" y=\"29\">A</text><text x=\"4\" y=\"47\">B</text><text x=\"135\" y=\"39\">X</text></g></svg>"
+    ],
+    "ans": 1,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 10,
+    "unit": "컴퓨터과학개론",
+    "q": "다음과 같은 RS 플립플롭에서 저장된 상태의 값을 계속적으로 유지하기 위한 입력 R과 S의 값은?<div class=\"sim-passage\" style=\"max-width:440px\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 160\" width=\"100%\" role=\"img\" aria-label=\"대각선 교차 피드백으로 연결된 두 NOR 게이트의 RS 플립플롭\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path d=\"M82 24 Q103 47 82 70 Q135 74 155 47 Q135 20 82 24Z\"/><path d=\"M82 94 Q103 117 82 140 Q135 144 155 117 Q135 90 82 94Z\"/><circle cx=\"161\" cy=\"47\" r=\"5\"/><circle cx=\"161\" cy=\"117\" r=\"5\"/><path d=\"M38 35 H91 M38 129 H91 M166 47 H260 M166 117 H260\"/><path d=\"M194 47 V60 L70 98 V105 H91 M194 117 V104 L70 66 V59 H91\"/></g><g fill=\"currentColor\"><circle cx=\"194\" cy=\"47\" r=\"3.2\"/><circle cx=\"194\" cy=\"117\" r=\"3.2\"/></g><g font-size=\"16\" fill=\"currentColor\"><text x=\"19\" y=\"40\">R</text><text x=\"19\" y=\"134\">S</text><text x=\"266\" y=\"52\">Q</text><text x=\"266\" y=\"122\">Q′</text></g></svg></div>",
+    "options": [
+      "R=0, S=0",
+      "R=0, S=1",
+      "R=1, S=0",
+      "R=1, S=1"
+    ],
+    "ans": 0,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 11,
+    "unit": "컴퓨터과학개론",
+    "q": "연산의 각 단계마다의 회로의 특정 상태가 저장되고 참조되는 회로에 속하는 것은?",
+    "options": [
+      "카운터",
+      "전가산기",
+      "디코더",
+      "멀티플렉서"
+    ],
+    "ans": 0,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 12,
+    "unit": "컴퓨터과학개론",
+    "q": "주소지정방식 중에서 데이터에 대한 접근 속도가 가장 빠른 것은?",
+    "options": [
+      "간접 주소지정방식",
+      "직접 주소지정방식",
+      "상대 주소지정방식",
+      "레지스터 주소지정방식"
+    ],
+    "ans": 3,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 13,
+    "unit": "컴퓨터과학개론",
+    "q": "현재 프로그램 카운터의 내용이 주소 버스로 출력하기 전에 일시적으로 저장되는 레지스터는?",
+    "options": [
+      "IR",
+      "MAR",
+      "AC",
+      "MBR"
+    ],
+    "ans": 1,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 14,
+    "unit": "컴퓨터과학개론",
+    "q": "다음 설명에서 적절한 위치의 빈 칸에 사용되어 데이터베이스를 특징짓는 단어로서 적합하지 않은 것은?<div class=\"sim-passage\">“데이터베이스란 한 조직의 여러 응용 시스템이 (__)하기 위해 (__), 저장된 (__) 데이터의 집합이다.”</div>",
+    "options": [
+      "통합",
+      "중복",
+      "운영",
+      "공용"
+    ],
+    "ans": 1,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 15,
+    "unit": "컴퓨터과학개론",
+    "q": "데이터베이스 관리 시스템의 필수 기능과 거리가 먼 것은?",
+    "options": [
+      "제어",
+      "조작",
+      "평가",
+      "정의"
+    ],
+    "ans": 2,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 16,
+    "unit": "컴퓨터과학개론",
+    "q": "관계형 데이터 모델에서 레코드의 개수를 의미하는 용어는?",
+    "options": [
+      "릴레이션",
+      "차수",
+      "튜플",
+      "카디널리티"
+    ],
+    "ans": 3,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 17,
+    "unit": "컴퓨터과학개론",
+    "q": "실세계를 사람이 이해할 수 있도록 특정 DBMS와는 무관한 DB의 구조를 개념적으로 표현하기 위해 사용되는 방법은?",
+    "options": [
+      "E-R 모델",
+      "네트워크 모델",
+      "계층형 모델",
+      "관계형 모델"
+    ],
+    "ans": 0,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 18,
+    "unit": "컴퓨터과학개론",
+    "q": "SQL에서 원하는 데이터를 찾기 위해서 사용되는 데이터 조작어의 명령문은?",
+    "options": [
+      "SEARCH문",
+      "SELECT문",
+      "ALTER문",
+      "DROP문"
+    ],
+    "ans": 1,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 19,
+    "unit": "컴퓨터과학개론",
+    "q": "추상화를 통해 자료의 논리적 관계를 구조화한 것을 무엇이라고 하는가?",
+    "options": [
+      "알고리즘",
+      "추상자료",
+      "자료구조",
+      "추상화"
+    ],
+    "ans": 2,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 20,
+    "unit": "컴퓨터과학개론",
+    "q": "동일한 자료형을 갖는 여러 개의 데이터를 동일한 변수 이름의 방에 일렬로 저장하는 자료의 집합체는 무엇인가?",
+    "options": [
+      "배열",
+      "리스트",
+      "인덱스",
+      "큐"
+    ],
+    "ans": 0,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 21,
+    "unit": "컴퓨터과학개론",
+    "q": "데이터의 삽입과 삭제가 한쪽 끝에서만 이루어지는 자료구조로서 가장 먼저 입력된 데이터가 가장 나중에 제거되는 선입후출(FILO, First-In-Last-out) 특징을 가지는 것은 무엇인가?",
+    "options": [
+      "리스트",
+      "배열",
+      "큐",
+      "스택"
+    ],
+    "ans": 3,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 22,
+    "unit": "컴퓨터과학개론",
+    "q": "트리에 대한 설명으로 <u>틀린</u> 것은 무엇인가?",
+    "options": [
+      "잎 노드는 비단말 노드(non-terminal node)이며, 루트 노드와 단말 노드를 제외한 나머지 노드를 말한다.",
+      "데이터간의 관계를 나타내는 비선형 자료구조이다.",
+      "노드(node)라고 불리는 부분과 노드를 연결하는 가지(branch, edge)로 구분된다.",
+      "노드 사이에는 계층적인 관계성을 갖는다."
+    ],
+    "ans": 0,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 23,
+    "unit": "컴퓨터과학개론",
+    "q": "각 레벨에서 빈자리가 없이 노드를 모두 가지고 있으며, 모든 내부 노드들은 2개의 자식 노드를 가지는 트리는 무엇인가?",
+    "options": [
+      "불완전 트리",
+      "완전 트리",
+      "포화 이진트리",
+      "불포화 이진트리"
+    ],
+    "ans": 2,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 24,
+    "unit": "컴퓨터과학개론",
+    "q": "운영체제의 역할 중에서 프로세서 관리자로서의 역할이 <u>아닌</u> 것은 무엇인가?",
+    "options": [
+      "프로세스에게 프로세서(중앙처리장치-CPU)를 할당한다.",
+      "각 프로세스의 상태를 모니터링한다.",
+      "중앙처리장치의 효율적인 관리를 위해 프로세스의 실행 상태를 변화시키기도 한다.",
+      "프로세스에게 주기억장치를 할당하고 프로세스로부터 할당된 주기억장치를 회수한다."
+    ],
+    "ans": 3,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 25,
+    "unit": "컴퓨터과학개론",
+    "q": "현재 준비 큐에 있는 프로세스들 중에서 수행시간이 가장 짧을 것으로 예상되는 프로세스를 먼저 처리하는 방식의 주기억장치 스케줄링 기법은 무엇인가?",
+    "options": [
+      "FCFS 스케줄링",
+      "SJF(Shortest Job First) 스케줄링",
+      "RR(Round Robin) 스케줄링",
+      "우선순위 스케줄링"
+    ],
+    "ans": 1,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 26,
+    "unit": "컴퓨터과학개론",
+    "q": "0과 1의 이진수로 구성되는 언어로 컴퓨터 하드웨어를 직접적으로 제어하기 위한 전기 신호의 표현 형태로 전달될 수 있는 수준의 언어는 무엇인가?",
+    "options": [
+      "기계어",
+      "고급 프로그래밍 언어",
+      "함수형 프로그래밍 언어",
+      "명령형 프로그래밍 언어"
+    ],
+    "ans": 0,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 27,
+    "unit": "컴퓨터과학개론",
+    "q": "프로그래밍 언어의 컴파일 과정으로 옳은 것은 무엇인가?",
+    "options": [
+      "프로그램 작성 → 구문 분석 → 코드 생성 → 어휘 분석 → 실행코드",
+      "프로그램 작성 → 구문 분석 → 어휘 분석 → 코드 생성 → 실행코드",
+      "프로그램 작성 → 코드 생성 → 어휘 분석 → 구문 분석 → 실행코드",
+      "프로그램 작성 → 어휘 분석 → 구문 분석 → 코드 생성 → 실행코드"
+    ],
+    "ans": 3,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 28,
+    "unit": "컴퓨터과학개론",
+    "q": "변수의 유효 범위 결정은 컴파일이 이루어지는 시기에 코드에서 가장 가까이 정의된 것으로 유효권이 결정되는 변수 유효 범위 결정 규칙은 무엇인가?",
+    "options": [
+      "전역 유효 범위 규칙",
+      "하이브리드 유효 범위 규칙",
+      "정적 유효 범위 규칙",
+      "동적 유효 범위 규칙"
+    ],
+    "ans": 2,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 29,
+    "unit": "컴퓨터과학개론",
+    "q": "컴퓨터들이 하나의 버스(기본적으로 대역폭이 넓은 채널)를 공유하면서 메시지 송신시 버스에 방송하듯 버스에 연결된 모든 컴퓨터에 메시지를 보내는 형태의 컴퓨터 네트워크 구조는 무엇인가?",
+    "options": [
+      "버스형 컴퓨터 네트워크",
+      "환형 컴퓨터 네트워크",
+      "트리형 컴퓨터 네트워크",
+      "성형 컴퓨터 네트워크"
+    ],
+    "ans": 0,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 30,
+    "unit": "컴퓨터과학개론",
+    "q": "파일을 작은 단위로 나누고, 보조기억장치의 불연속적인 공간을 나누어 할당 받는 기법은 무엇인가?",
+    "options": [
+      "통합 할당 기법",
+      "불연속 할당 기법",
+      "연속 할당 기법",
+      "단일 할당 기법"
+    ],
+    "ans": 1,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 31,
+    "unit": "컴퓨터과학개론",
+    "q": "보조기억장치로부터 프로그램 코드나 데이터를 동일한 크기의 블록으로 쪼개어서 주기억장치에 적재하여 접근하는 기법은?",
+    "options": [
+      "페이징 기법",
+      "세그멘테이션 기법",
+      "단편화 기법",
+      "오버레이 기법"
+    ],
+    "ans": 0,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 32,
+    "unit": "컴퓨터과학개론",
+    "q": "다음의 프로그램에서 a와 b 변수가 각각 2와 3으로 저장되고, swap(x,y) 함수를 swap(2,3)으로 호출할 경우 값호출 방식에서의 a와 b의 값은 무엇인가?<div class=\"sim-code-pair\"><pre>int a = 2;\nint b = 3;\nswap(a,b);</pre><pre>void swap (int x, int y) {\n    int tmp;\n    tmp = x;\n    x = y;\n    y = tmp;\n}</pre></div>",
+    "options": [
+      "a=2, b=2",
+      "a=3, b=2",
+      "a=2, b=3",
+      "a=3, b=3"
+    ],
+    "ans": 2,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 33,
+    "unit": "컴퓨터과학개론",
+    "q": "2개 이상의 프로세스가 대기 중인 프로세스 중 하나에 의해서만 발생할 수 있는 사건을 무작정 기다리는 상태를 무엇이라 하는가?",
+    "options": [
+      "피드백 상태",
+      "교착 상태",
+      "사이클 상태",
+      "회피 상태"
+    ],
+    "ans": 1,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 34,
+    "unit": "컴퓨터과학개론",
+    "q": "다음 중 큐에 대한 설명으로 <u>옳지 않은</u> 것은?",
+    "options": [
+      "선입선출(FIFO) 구조이다.",
+      "삽입과 삭제가 한쪽에서만 이루어진다.",
+      "큐를 위해 할당된 저장 공간을 초과해서 더 이상 데이터를 삽입할 수 없는 현상을 오버플로(overflow)라고 한다.",
+      "큐의 데이터가 존재하지 않으면 삭제가 일어나지 않는 현상을 언더플로(underflow)라고 한다."
+    ],
+    "ans": 1,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 35,
+    "unit": "컴퓨터과학개론",
+    "q": "패킷 단위의 전송이 이루어지며, 주소 지정에 있어서 계층적인 방식을 사용하는 계층은 OSI 참조 모델 중에서 어디인가?",
+    "options": [
+      "물리 계층",
+      "전송 계층",
+      "데이터링크 계층",
+      "네트워크 계층"
+    ],
+    "ans": 3,
+    "exp": "2015학년도 2학기 공식 정답표 기준입니다."
+  }
+];
+
+const userAns = new Array(QUESTIONS.length).fill(null);
+const userType = new Array(QUESTIONS.length).fill(null);
+let seconds = 0;
+let paused = false;
+let submitted = false;
+
+const timerInterval = setInterval(() => {
+  if (!paused && !submitted) {
+    seconds++;
+    document.getElementById("timer").textContent = formatTime(seconds);
+  }
+}, 1000);
+
+function formatTime(sec) {
+  const m = String(Math.floor(sec / 60)).padStart(2, "0");
+  const s = String(sec % 60).padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById("pauseBtn").textContent = paused ? "재개" : "일시정지";
+}
+
+function renderQuiz() {
+  const list = document.getElementById("quiz-list");
+  const numCircles = ["①", "②", "③", "④"];
+  list.innerHTML = QUESTIONS.map((item, idx) => `
+    <div class="q-card" id="card-${idx}">
+      <div class="q-meta">
+        <span class="q-num">문제 ${item.num}</span>
+        <span class="q-unit">${item.unit}</span>
+      </div>
+      <div class="q-text">${item.q}</div>
+      <div class="opt-list">
+        ${item.options.map((opt, oIdx) => `
+          <label class="opt-label" id="lbl-${idx}-${oIdx}">
+            <input type="radio" name="q${idx}" value="${oIdx}" onchange="selectOpt(${idx}, ${oIdx})">
+            <span>${numCircles[oIdx]} ${opt}</span>
+          </label>
+        `).join("")}
+      </div>
+      <div class="type-row">
+        <span class="type-title">자가 유형 분류:</span>
+        <div class="type-btns">
+          ${["A", "B", "C", "D"].map(t => `
+            <button type="button" class="t-btn" id="tbtn-${idx}-${t}" onclick="selectType(${idx}, '${t}')">${t}</button>
+          `).join("")}
+        </div>
+      </div>
+      <div class="exp-box" id="exp-${idx}">
+        <b>${item.disputed ? "원본 선택지 오류 의심 · 채점 제외" : "정답: " + (Array.isArray(item.ans) ? item.ans.map(a => numCircles[a]).join(", ") : numCircles[item.ans])}</b><br>${item.exp}
+      </div>
+    </div>
+  `).join("");
+}
+
+function selectOpt(qIdx, oIdx) {
+  if (submitted) return;
+  userAns[qIdx] = oIdx;
+  for (let i = 0; i < 4; i++) {
+    document.getElementById(`lbl-${qIdx}-${i}`).classList.toggle("selected", i === oIdx);
+  }
+  const done = userAns.filter(v => v !== null).length;
+  document.getElementById("answered-count").textContent = `진행: ${done} / 35 문항`;
+  document.getElementById("progress-fill").style.width = `${(done / 35) * 100}%`;
+}
+
+function selectType(qIdx, t) {
+  userType[qIdx] = (userType[qIdx] === t) ? null : t;
+  ["A", "B", "C", "D"].forEach(code => {
+    document.getElementById(`tbtn-${qIdx}-${code}`).classList.toggle("active", userType[qIdx] === code);
+  });
+}
+
+function gradeQuiz() {
+  const unanswered = userAns.filter(v => v === null).length;
+  if (unanswered > 0 && !confirm(`아직 풀지 않은 문제가 ${unanswered}개 있습니다. 그래도 제출하고 진단할까요?`)) {
+    return;
+  }
+  submitted = true;
+  clearInterval(timerInterval);
+
+  let correctCnt = 0;
+  const unitStats = {};
+  const typeStats = { A: [], B: [], C: [], D: [] };
+  const wrongList = [];
+
+  QUESTIONS.forEach((item, idx) => {
+    if (!unitStats[item.unit]) unitStats[item.unit] = { total: 0, ok: 0 };
+    unitStats[item.unit].total++;
+
+    const card = document.getElementById(`card-${idx}`);
+    const exp = document.getElementById(`exp-${idx}`);
+    exp.classList.add("show");
+
+    const chosen = userAns[idx];
+    const isOk = Array.isArray(item.ans) ? item.ans.includes(chosen) : chosen === item.ans;
+    if (isOk) {
+      correctCnt++;
+      unitStats[item.unit].ok++;
+      card.classList.add("correct");
+    } else {
+      card.classList.add("wrong");
+      wrongList.push(item.num);
+      if (chosen !== null) {
+        document.getElementById(`lbl-${idx}-${chosen}`).classList.add("ans-bad");
+      }
+    }
+    (Array.isArray(item.ans) ? item.ans : [item.ans]).forEach(a => document.getElementById(`lbl-${idx}-${a}`).classList.add("ans-ok"));
+
+    const finalType = userType[idx] || (isOk ? "A" : "B");
+    typeStats[finalType].push(item.num);
+  });
+
+  const score = Math.round((correctCnt / 35) * 100);
+  const avgSec = Math.round(seconds / 35);
+
+  document.getElementById("stat-grid").innerHTML = `
+    <div class="stat-box"><div class="stat-num">${correctCnt} / 35 (${score}점)</div><div class="stat-lbl">정답 수 및 환산 점수</div></div>
+    <div class="stat-box"><div class="stat-num">${formatTime(seconds)}</div><div class="stat-lbl">총 소요 시간 (문항당 ${avgSec}초)</div></div>
+    <div class="stat-box"><div class="stat-num">A:${typeStats.A.length} / B:${typeStats.B.length}</div><div class="stat-lbl">유형 A(완벽) / B(원리부족)</div></div>
+    <div class="stat-box"><div class="stat-num">C:${typeStats.C.length} / D:${typeStats.D.length}</div><div class="stat-lbl">유형 C(생소) / D(계산·적용)</div></div>
+  `;
+
+  let unitHtml = "<h3 style='font-size:15px; margin:12px 0 6px;'>📚 단원별 성취도</h3><table class='mini-tbl' style='width:100%;'><tr><th>단원</th><th>정답/문항</th><th>정답률</th></tr>";
+  const unitLines = [];
+  for (const [u, st] of Object.entries(unitStats)) {
+    const pct = Math.round((st.ok / st.total) * 100);
+    unitHtml += `<tr><td style='text-align:left;'>${u}</td><td>${st.ok} / ${st.total}</td><td><b>${pct}%</b></td></tr>`;
+    unitLines.push(`- ${u}: ${st.ok}/${st.total} (${pct}%)`);
+  }
+  unitHtml += "</table>";
+  document.getElementById("unit-breakdown").innerHTML = unitHtml;
+
+  const speedEval = avgSec <= 60 ? "빠름 (실전 시간 충분)" : avgSec <= 90 ? "적정 (계산 문항 시간 배분 유의)" : "다소 느림 (개념 정립 후 반복 숙달 필요)";
+
+  const reportText = `[컴퓨터과학개론 2015학년도 2학기 기말시험 문제은행 학습 진단 보고서]
+1. 학습 범위 및 문항 수: 컴퓨터과학개론 전 범위 35문항 (1~35번)
+2. 실제 풀이 시간: 총 ${formatTime(seconds)} (문항당 평균 ${avgSec}초)
+3. 득점 결과: ${correctCnt} / 35문항 정답 (${score}점)
+4. A~D 유형 분포:
+   - A (개념 알고 품): ${typeStats.A.length}문항 ${typeStats.A.length ? '(' + typeStats.A.join(', ') + '번)' : ''}
+   - B (원리 부족): ${typeStats.B.length}문항 ${typeStats.B.length ? '(' + typeStats.B.join(', ') + '번)' : ''}
+   - C (개념 생소): ${typeStats.C.length}문항 ${typeStats.C.length ? '(' + typeStats.C.join(', ') + '번)' : ''}
+   - D (계산·적용 막힘): ${typeStats.D.length}문항 ${typeStats.D.length ? '(' + typeStats.D.join(', ') + '번)' : ''}
+5. 단원별 정답률:
+${unitLines.join("\n")}
+6. 오답 문항(재풀이 대상): ${wrongList.length ? wrongList.join(", ") + "번" : "없음 (만점)"}
+7. 학습 속도 평가: ${speedEval}`;
+
+  document.getElementById("report-textarea").value = reportText;
+  const repSec = document.getElementById("report-section");
+  repSec.style.display = "block";
+  repSec.scrollIntoView({ behavior: "smooth" });
+}
+
+function copyReport() {
+  const ta = document.getElementById("report-textarea");
+  ta.select();
+  document.execCommand("copy");
+  alert("진단 보고서가 클립보드에 복사되었습니다!");
+}
+
+renderQuiz();
+document.querySelectorAll('.mini-tbl').forEach(tbl => {
+  if (!tbl.closest('.mem-wrap') && !tbl.parentElement.classList.contains('tbl-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'tbl-wrap';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>컴퓨터과학개론 2019 기출 (35문항)</title>
+<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795354934217&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_000000006d908211af7464c815271d90%26fn%3D2019-computer-science-corrected.html%26cd%3Dattachment%26ts%3D498710%26p%3Dfs%26cid%3D1%26sig%3D2657a77107e6a0e3989027f321960f8ca526403a2ca3af0b1ffa06199ea9ac03%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795354934217&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link rel="stylesheet" href="../quiz.css">
+<style>
+.sim-passage {margin:12px 0 16px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;font-size:13px;line-height:1.65;overflow-x:auto}
+.sim-passage pre {font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;white-space:pre;overflow-x:auto;margin:8px 0;color:#172033}
+.sim-passage .sim-note {margin:0 0 8px;font-weight:600}
+.sim-passage ul {margin:4px 0 10px;padding-left:22px}
+.sim-passage table {border-collapse:collapse;min-width:480px;width:100%;font-size:12px}
+.sim-passage th,.sim-passage td {border:1px solid #94a3b8;padding:5px 7px;text-align:center}
+.sim-passage th {background:#e2e8f0}
+.sim-math {font-family:Georgia,"Times New Roman",serif;font-size:16px;text-align:center;padding:9px 6px}
+.sim-conditions {margin:4px 0 12px 12px;line-height:1.7}
+.sim-conditions > div {margin:0;padding:0}
+.sim-code-pair {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.65fr);gap:14px;margin:12px 0 16px;align-items:start}
+.sim-code-pair pre {box-sizing:border-box;margin:0;padding:14px 16px;min-width:0;overflow-x:auto;white-space:pre;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;color:#172033;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
+@media(max-width:540px){.sim-code-pair{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-left">
+    <a class="btn-home" href="../index.html">← 메인</a>
+    <div>
+      <div class="top-title">컴퓨터과학개론 2019 기출 (35문항)</div>
+    <div class="top-sub" id="answered-count">진행: 0 / 35 문항</div>
+    </div>
+  </div>
+  <div class="timer-box">
+    <span class="timer-val" id="timer">00:00</span>
+    <button class="btn-pause" id="pauseBtn" onclick="togglePause()">일시정지</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="intro-card">
+    <p style="font-size:13px;color:#a34b16">※ 원본 도식은 인라인 SVG, 표는 HTML로 표시됩니다. 45번 이진 탐색 트리, 46번 논리 게이트, 53번 E-R 다이어그램, 56번 트리, 58번 그래프는 인라인 SVG 및 HTML로 표시됩니다.</p>
+    <h2>2019학년도 2학기 기말시험 문제은행 (36~70번)</h2>
+    <p>라디오버튼으로 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
+    (A: 개념 알고 품 / B: 원리 모름 / C: 개념 생소 / D: 계산·적용 막힘)</p>
+    <div class="progress-wrap"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div id="quiz-list"></div>
+
+  <div class="submit-wrap">
+    <button class="btn-submit" onclick="gradeQuiz()">35문항 제출 및 종합 진단 받기</button>
+  </div>
+
+  <div id="report-section">
+    <h2 style="margin-top:0;">📊 2019학년도 2학기 기말시험 문제은행 진단 결과</h2>
+    <div class="stat-grid" id="stat-grid"></div>
+    <div id="unit-breakdown"></div>
+    <h3 style="margin:16px 0 6px; font-size:15px;">📋 일정 관리 대화 전달용 요약 보고서</h3>
+    <textarea class="report-text" id="report-textarea" readonly></textarea>
+    <button class="btn-copy" onclick="copyReport()">보고서 텍스트 복사하기</button>
+    <a class="btn-home-bottom" href="../index.html">🏠 과목 메인 포털로 돌아가기</a>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    "num": 36,
+    "unit": "컴퓨터과학개론",
+    "q": "폰 노이만의 내장 프로그램(stored program) 방식에 기반을 둔 최초의 컴퓨터는?",
+    "options": [
+      "EDVAC",
+      "ENIAC",
+      "Colossus",
+      "Difference Engine"
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 37,
+    "unit": "컴퓨터과학개론",
+    "q": "자료의 양을 나타내는 단위 중에서 MB에 비해 대략 10⁶배의 더 많은 양을 나타내는 단위는?",
+    "options": [
+      "GB",
+      "KB",
+      "PB",
+      "TB"
+    ],
+    "ans": 3,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 38,
+    "unit": "컴퓨터과학개론",
+    "q": "8비트로 표현되는 정수 중에서 가장 큰 양의 정수를 나타낼 수 있는 것은?",
+    "options": [
+      "부호화-크기",
+      "부호 없는 정수",
+      "1의 보수",
+      "2의 보수"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 39,
+    "unit": "컴퓨터과학개론",
+    "q": "2의 보수 방법으로 표현된 8비트 정수 10010011은 10진수로 얼마인가?",
+    "options": [
+      "-108",
+      "-109",
+      "-110",
+      "-111"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 40,
+    "unit": "컴퓨터과학개론",
+    "q": "이진수 110100.1001을 컴퓨터 내에 표현할 때 지수 부분의 표현으로 올바른 것은?(단, 초과-31을 사용한다.)",
+    "options": [
+      "011111",
+      "101101",
+      "100100",
+      "011110"
+    ],
+    "ans": 2,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 41,
+    "unit": "컴퓨터과학개론",
+    "q": "알고리즘이 만족해야 할 조건에 대한 설명으로 적절하지 못한 것은?",
+    "options": [
+      "범용성 - 다양한 문제에 폭 넓게 적용될 수 있어야 한다.",
+      "유한성 - 한정된 수의 단계를 거친 후에는 종료해야 한다.",
+      "유효성 - 모든 명령은 컴퓨터에서 실행 가능해야 한다.",
+      "명확성 - 각 명령은 모호하지 않고 단순 명확해야 한다."
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 42,
+    "unit": "컴퓨터과학개론",
+    "q": "알고리즘의 대표적인 설계 기법에 해당하는 것은?",
+    "options": [
+      "상각분석법",
+      "분할정복 방법",
+      "회귀분석법",
+      "분기한정 방법"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 43,
+    "unit": "컴퓨터과학개론",
+    "q": "알고리즘의 시간 복잡도에 대한 설명으로 틀린 것은?",
+    "options": [
+      "입력 데이터의 크기의 함수로 표현한다.",
+      "일반적으로 최악의 수행 시간을 시간 복잡도의 척도로 사용한다.",
+      "알고리즘이 수행하는 기본 연산의 수행 횟수의 합으로 표현한다.",
+      "입력 데이터의 상태에 무관하다."
+    ],
+    "ans": 3,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 44,
+    "unit": "컴퓨터과학개론",
+    "q": "피벗을 기준으로 주어진 입력 리스트의 원소들을 두 개의 서브리스트로 분할하고, 각 서브리스트에 대해서 독립적으로 해당 정렬 알고리즘을 순환적으로 적용하는 방식의 정렬 알고리즘은?",
+    "options": [
+      "삽입 정렬",
+      "합병 정렬",
+      "퀵 정렬",
+      "버블 정렬"
+    ],
+    "ans": 2,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 45,
+    "unit": "컴퓨터과학개론",
+    "q": "다음과 같은 이진 탐색 트리에서 루트 노드를 삭제하였을 때 삭제된 노드의 위치로 이동하는 노드는?\n<div class=\"sim-passage\" style=\"text-align:center\"><svg viewBox=\"0 0 360 235\" style=\"width:min(100%,420px)\" role=\"img\" aria-label=\"이진 탐색 트리: 루트 35, 왼쪽 30, 오른쪽 55, 30 아래 15, 55 아래 44와 88, 15 아래 7과 22, 44 아래 40\"><g stroke=\"#64748b\" stroke-width=\"2\" fill=\"none\"><path d=\"M180 25L113 68 M180 25L250 68 M113 68L64 111 M250 68L202 111 M250 68L301 111 M64 111L28 162 M64 111L105 162 M202 111L168 162\"/></g><g fill=\"#f0f7e8\" stroke=\"#94a37d\" stroke-width=\"1.5\"><ellipse cx=\"180\" cy=\"25\" rx=\"22\" ry=\"15\"/><ellipse cx=\"113\" cy=\"68\" rx=\"22\" ry=\"15\"/><ellipse cx=\"250\" cy=\"68\" rx=\"22\" ry=\"15\"/><ellipse cx=\"64\" cy=\"111\" rx=\"22\" ry=\"15\"/><ellipse cx=\"202\" cy=\"111\" rx=\"22\" ry=\"15\"/><ellipse cx=\"301\" cy=\"111\" rx=\"22\" ry=\"15\"/><ellipse cx=\"28\" cy=\"162\" rx=\"22\" ry=\"15\"/><ellipse cx=\"105\" cy=\"162\" rx=\"22\" ry=\"15\"/><ellipse cx=\"168\" cy=\"162\" rx=\"22\" ry=\"15\"/></g><g font-family=\"sans-serif\" font-size=\"17\" fill=\"#172033\" text-anchor=\"middle\" dominant-baseline=\"central\"><text x=\"180\" y=\"25\">35</text><text x=\"113\" y=\"68\">30</text><text x=\"250\" y=\"68\">55</text><text x=\"64\" y=\"111\">15</text><text x=\"202\" y=\"111\">44</text><text x=\"301\" y=\"111\">88</text><text x=\"28\" y=\"162\">7</text><text x=\"105\" y=\"162\">22</text><text x=\"168\" y=\"162\">40</text></g></svg></div>",
+    "options": [
+      "7",
+      "40",
+      "22",
+      "88"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 46,
+    "unit": "컴퓨터과학개론",
+    "q": "두 입력 A와 B가 서로 다른 값을 갖는 경우에 한해서 출력값이 1이 되는 논리 게이트는?",
+    "options": [
+      "<svg viewBox=\"0 0 165 90\" width=\"165\" height=\"90\" role=\"img\" aria-label=\"논리 게이트\"><g stroke=\"#172033\" stroke-width=\"2\" fill=\"none\"><path d=\"M18 29H55 M18 60H55\"/><path d=\"M51 17Q78 45 51 74\"/><path d=\"M57 17Q92 16 126 45Q92 74 57 74Q82 45 57 17Z\"/><path d=\"M126 45H151\"/></g><g font-size=\"14\" font-family=\"sans-serif\"><text x=\"2\" y=\"33\">A</text><text x=\"2\" y=\"64\">B</text><text x=\"153\" y=\"49\">X</text></g></svg>",
+      "<svg viewBox=\"0 0 165 90\" width=\"165\" height=\"90\" role=\"img\" aria-label=\"논리 게이트\"><g stroke=\"#172033\" stroke-width=\"2\" fill=\"none\"><path d=\"M18 29H55 M18 60H55\"/><path d=\"M55 17H83Q117 17 117 45Q117 73 83 73H55Z\"/><circle cx=\"124\" cy=\"45\" r=\"5\" fill=\"white\"/><path d=\"M129 45H151\"/></g><g font-size=\"14\" font-family=\"sans-serif\"><text x=\"2\" y=\"33\">A</text><text x=\"2\" y=\"64\">B</text><text x=\"153\" y=\"49\">X</text></g></svg>",
+      "<svg viewBox=\"0 0 165 90\" width=\"165\" height=\"90\" role=\"img\" aria-label=\"논리 게이트\"><g stroke=\"#172033\" stroke-width=\"2\" fill=\"none\"><path d=\"M18 29H55 M18 60H55\"/><path d=\"M57 17Q92 16 126 45Q92 74 57 74Q82 45 57 17Z\"/><path d=\"M126 45H151\"/></g><g font-size=\"14\" font-family=\"sans-serif\"><text x=\"2\" y=\"33\">A</text><text x=\"2\" y=\"64\">B</text><text x=\"153\" y=\"49\">X</text></g></svg>",
+      "<svg viewBox=\"0 0 165 90\" width=\"165\" height=\"90\" role=\"img\" aria-label=\"논리 게이트\"><g stroke=\"#172033\" stroke-width=\"2\" fill=\"none\"><path d=\"M18 29H55 M18 60H55\"/><path d=\"M55 17H83Q117 17 117 45Q117 73 83 73H55Z\"/><path d=\"M126 45H151\"/></g><g font-size=\"14\" font-family=\"sans-serif\"><text x=\"2\" y=\"33\">A</text><text x=\"2\" y=\"64\">B</text><text x=\"153\" y=\"49\">X</text></g></svg>"
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 47,
+    "unit": "컴퓨터과학개론",
+    "q": "주소 방식으로 주어진 입력으로부터 각각의 하드웨어 구성 요소를 개별적으로 구동하기 위해서 주로 사용되는 논리 회로는?",
+    "options": [
+      "레지스터",
+      "디코더",
+      "멀티플렉서",
+      "인코더"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 48,
+    "unit": "컴퓨터과학개론",
+    "q": "연산의 대상이 되는 데이터를 스택에서 추출하고 또한 연산의 결과를 스택에 저장하는 형태의 명령어 형식은?",
+    "options": [
+      "3-주소 명령어",
+      "2-주소 명령어",
+      "1-주소 명령어",
+      "0-주소 명령어"
+    ],
+    "ans": 3,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 49,
+    "unit": "컴퓨터과학개론",
+    "q": "주기억장치에서 가져와서 현재 실행 중인 명령어를 저장하고 있는 레지스터는?",
+    "options": [
+      "MAR",
+      "IR",
+      "PC",
+      "AC"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 50,
+    "unit": "컴퓨터과학개론",
+    "q": "데이터베이스의 개념 또는 정의의 일부를 설명하는 내용 중에서 적절하지 못한 것은?",
+    "options": [
+      "입출력 데이터를 중심으로 하는 운영 데이터 집합",
+      "컴퓨터를 위한 저장 매체에 저장된 데이터 집합",
+      "데이터의 중복성을 제한한 통합 데이터 집합",
+      "여러 응용 프로그램을 위한 공용 데이터 집합"
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 51,
+    "unit": "컴퓨터과학개론",
+    "q": "모든 응용에 대한 전체적이고 통합된 데이터 구조를 정의하는 스키마는?",
+    "options": [
+      "개념 스키마",
+      "저장 스키마",
+      "서브 스키마",
+      "내부 스키마"
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 52,
+    "unit": "컴퓨터과학개론",
+    "q": "관계형 데이터 모델에서 사용되는 용어에 대한 설명으로 올바른 것은?",
+    "options": [
+      "튜플 - 필드의 개수",
+      "도메인 - 필드가 가질 수 있는 값",
+      "카디널리티 - 열의 개수",
+      "차수 - 행의 개수"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 53,
+    "unit": "컴퓨터과학개론",
+    "q": "다음 E-R 다이어그램에서 개체 집합 간의 대응성을 나타내는 관계 타입은?\n<div class=\"sim-passage\" style=\"text-align:center\"><svg viewBox=\"0 0 540 220\" style=\"width:min(100%,650px)\" role=\"img\" aria-label=\"고객과 계좌의 개좌 거래 E-R 다이어그램\"><g stroke=\"#333\" stroke-width=\"1.5\" fill=\"none\"><path d=\"M150 34H220 M320 34H386 M270 56V105 M150 53L90 105 M150 53L160 105 M150 53L205 155 M150 53L50 165 M430 53L375 105 M430 53L485 105\"/></g><rect x=\"112\" y=\"18\" width=\"76\" height=\"33\" fill=\"white\" stroke=\"#333\"/><rect x=\"387\" y=\"18\" width=\"76\" height=\"33\" fill=\"white\" stroke=\"#333\"/><path d=\"M270 7L320 34L270 61L220 34Z\" fill=\"white\" stroke=\"#333\"/><g fill=\"white\" stroke=\"#333\"><ellipse cx=\"90\" cy=\"105\" rx=\"48\" ry=\"17\"/><ellipse cx=\"160\" cy=\"105\" rx=\"48\" ry=\"17\"/><ellipse cx=\"205\" cy=\"155\" rx=\"49\" ry=\"17\"/><ellipse cx=\"50\" cy=\"165\" rx=\"47\" ry=\"17\"/><ellipse cx=\"375\" cy=\"105\" rx=\"48\" ry=\"17\"/><ellipse cx=\"485\" cy=\"105\" rx=\"32\" ry=\"17\"/><ellipse cx=\"270\" cy=\"105\" rx=\"42\" ry=\"17\"/></g><g font-family=\"sans-serif\" font-size=\"15\" text-anchor=\"middle\" fill=\"#222\"><text x=\"150\" y=\"39\">고객</text><text x=\"425\" y=\"39\">계좌</text><text x=\"270\" y=\"39\">계좌 거래</text><text x=\"90\" y=\"110\">고객이름</text><text x=\"160\" y=\"110\">집주소</text><text x=\"205\" y=\"160\">직장 주소</text><text x=\"50\" y=\"170\">주민등록번호</text><text x=\"375\" y=\"110\">계좌번호</text><text x=\"485\" y=\"110\">잔고</text><text x=\"270\" y=\"110\">거래일자</text><text x=\"204\" y=\"26\">1</text><text x=\"350\" y=\"26\">N</text></g></svg></div>",
+    "options": [
+      "고객",
+      "주민등록번호",
+      "거래일자",
+      "계좌 거래"
+    ],
+    "ans": 3,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 54,
+    "unit": "컴퓨터과학개론",
+    "q": "다양한 객체를 컴퓨터에서 표현하고 활용하기 위해 필요한 데이터의 구조에 대해서 공통의 특징만을 뽑아 정의한 것을 무엇이라고 하는가?",
+    "options": [
+      "알고리즘의 추상화",
+      "데이터의 추상화",
+      "자료구조",
+      "정보의 추상화"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 55,
+    "unit": "컴퓨터과학개론",
+    "q": "동일한 열에 있는 각 행의 원소를 먼저 차례대로 컴퓨터 메모리에 저장하고 다음 열로 이동하여 첫 번째 행에 있는 원소부터 차례대로 컴퓨터 메모리에 저장하는 2차원 배열 저장 방법은 무엇인가?",
+    "options": [
+      "열우선 순서 저장 방법",
+      "행우선 순서 저장 방법",
+      "메모리 행 저장 방법",
+      "메모리 열 저장 방법"
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 56,
+    "unit": "컴퓨터과학개론",
+    "q": "다음 트리의 후위순회 결과는 무엇인가?\n<div class=\"sim-passage\" style=\"text-align:center\"><svg viewBox=\"0 0 440 260\" style=\"width:min(100%,480px)\" role=\"img\" aria-label=\"트리 A의 자식 B와 C, B의 자식 D와 E, C의 자식 F와 G, D의 자식 H와 I, E의 자식 J\"><g stroke=\"#2563eb\" stroke-width=\"2\" fill=\"none\"><path d=\"M220 22L125 79 M220 22L317 79 M125 79L75 140 M125 79L176 140 M317 79L264 140 M317 79L370 140 M75 140L42 211 M75 140L106 211 M176 140L160 211\"/></g><g fill=\"#b9d8f8\" stroke=\"#2563eb\" stroke-width=\"2\"><circle cx=\"220\" cy=\"22\" r=\"18\"/><circle cx=\"125\" cy=\"79\" r=\"18\"/><circle cx=\"317\" cy=\"79\" r=\"18\"/><circle cx=\"75\" cy=\"140\" r=\"18\"/><circle cx=\"176\" cy=\"140\" r=\"18\"/><circle cx=\"264\" cy=\"140\" r=\"18\"/><circle cx=\"370\" cy=\"140\" r=\"18\"/><circle cx=\"42\" cy=\"211\" r=\"18\"/><circle cx=\"106\" cy=\"211\" r=\"18\"/><circle cx=\"160\" cy=\"211\" r=\"18\"/></g><g font-size=\"18\" text-anchor=\"middle\" dominant-baseline=\"central\" font-family=\"sans-serif\" fill=\"#172033\"><text x=\"220\" y=\"22\">A</text><text x=\"125\" y=\"79\">B</text><text x=\"317\" y=\"79\">C</text><text x=\"75\" y=\"140\">D</text><text x=\"176\" y=\"140\">E</text><text x=\"264\" y=\"140\">F</text><text x=\"370\" y=\"140\">G</text><text x=\"42\" y=\"211\">H</text><text x=\"106\" y=\"211\">I</text><text x=\"160\" y=\"211\">J</text></g></svg></div>",
+    "options": [
+      "H-I-D-J-E-B-F-G-C-A",
+      "A-B-C-D-E-F-G-H-I-J",
+      "H-I-J-D-E-F-G-B-C-A",
+      "D-H-I-E-J-B-F-G-C-A"
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 57,
+    "unit": "컴퓨터과학개론",
+    "q": "각 레벨에서 빈자리가 없이 노드를 모두 가지고 있고, 모든 내부 노드들은 2개의 자식 노드를 가지고 있는 트리는 무엇인가?",
+    "options": [
+      "경사이진트리",
+      "탐색이진트리",
+      "스레드이진트리",
+      "포화이진트리"
+    ],
+    "ans": 3,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 58,
+    "unit": "컴퓨터과학개론",
+    "q": "다음의 (가) 그래프를 (나)와 같이 표현하는 방법을 무엇이라고 하는가?\n<div class=\"sim-passage\" style=\"text-align:center\"><svg viewBox=\"0 0 530 230\" style=\"width:min(100%,590px)\" role=\"img\" aria-label=\"그래프 1-2-3-4-1과 그 인접행렬\"><g stroke=\"#2563eb\" stroke-width=\"3\" fill=\"none\"><path d=\"M110 35L50 105L110 175L170 105Z\"/></g><g stroke=\"#2563eb\" stroke-width=\"2\" fill=\"#b9d8f8\"><circle cx=\"110\" cy=\"35\" r=\"20\"/><circle cx=\"50\" cy=\"105\" r=\"20\"/><circle cx=\"110\" cy=\"175\" r=\"20\"/><circle cx=\"170\" cy=\"105\" r=\"20\"/></g><g font-size=\"20\" font-family=\"sans-serif\" text-anchor=\"middle\" dominant-baseline=\"central\"><text x=\"110\" y=\"35\">1</text><text x=\"50\" y=\"105\">2</text><text x=\"110\" y=\"175\">3</text><text x=\"170\" y=\"105\">4</text></g><g font-family=\"sans-serif\" font-size=\"15\" fill=\"#1e40af\" text-anchor=\"middle\"><text x=\"280\" y=\"27\">1</text><text x=\"325\" y=\"27\">2</text><text x=\"370\" y=\"27\">3</text><text x=\"415\" y=\"27\">4</text><text x=\"245\" y=\"61\">1</text><text x=\"245\" y=\"98\">2</text><text x=\"245\" y=\"135\">3</text><text x=\"245\" y=\"172\">4</text></g><g stroke=\"#64748b\" fill=\"none\"><rect x=\"257\" y=\"36\" width=\"45\" height=\"37\"/><rect x=\"302\" y=\"36\" width=\"45\" height=\"37\"/><rect x=\"347\" y=\"36\" width=\"45\" height=\"37\"/><rect x=\"392\" y=\"36\" width=\"45\" height=\"37\"/><rect x=\"257\" y=\"73\" width=\"45\" height=\"37\"/><rect x=\"302\" y=\"73\" width=\"45\" height=\"37\"/><rect x=\"347\" y=\"73\" width=\"45\" height=\"37\"/><rect x=\"392\" y=\"73\" width=\"45\" height=\"37\"/><rect x=\"257\" y=\"110\" width=\"45\" height=\"37\"/><rect x=\"302\" y=\"110\" width=\"45\" height=\"37\"/><rect x=\"347\" y=\"110\" width=\"45\" height=\"37\"/><rect x=\"392\" y=\"110\" width=\"45\" height=\"37\"/><rect x=\"257\" y=\"147\" width=\"45\" height=\"37\"/><rect x=\"302\" y=\"147\" width=\"45\" height=\"37\"/><rect x=\"347\" y=\"147\" width=\"45\" height=\"37\"/><rect x=\"392\" y=\"147\" width=\"45\" height=\"37\"/></g><g font-family=\"sans-serif\" font-size=\"17\" fill=\"#1e40af\" text-anchor=\"middle\"><text x=\"280\" y=\"61\">0</text><text x=\"325\" y=\"61\">1</text><text x=\"370\" y=\"61\">0</text><text x=\"415\" y=\"61\">1</text><text x=\"280\" y=\"98\">1</text><text x=\"325\" y=\"98\">0</text><text x=\"370\" y=\"98\">1</text><text x=\"415\" y=\"98\">0</text><text x=\"280\" y=\"135\">0</text><text x=\"325\" y=\"135\">1</text><text x=\"370\" y=\"135\">0</text><text x=\"415\" y=\"135\">1</text><text x=\"280\" y=\"172\">1</text><text x=\"325\" y=\"172\">0</text><text x=\"370\" y=\"172\">1</text><text x=\"415\" y=\"172\">0</text></g><g font-size=\"16\" font-family=\"sans-serif\" text-anchor=\"middle\"><text x=\"110\" y=\"220\">(가)</text><text x=\"345\" y=\"220\">(나)</text></g></svg></div>",
+    "options": [
+      "그래프리스트",
+      "인접리스트",
+      "인접행렬",
+      "그래프행렬"
+    ],
+    "ans": 2,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 59,
+    "unit": "컴퓨터과학개론",
+    "q": "시스템 측면(개발자 측면)에서 제한적인 컴퓨터 자원을 효율적으로 사용하기 위한 컴퓨터 자원 관리의 효율성을 제공하는 것은 무엇인가?",
+    "options": [
+      "운영체제",
+      "사용자프로그램",
+      "응용프로그램",
+      "펌웨어"
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 60,
+    "unit": "컴퓨터과학개론",
+    "q": "고정 분할 다중 프로그래밍 기법의 단편화 문제를 해결하기 위해 개발된 것은 무엇인가?",
+    "options": [
+      "가상기억장치",
+      "동적 분할 프로그래밍 기법",
+      "일괄처리 기법",
+      "시분할처리 기법"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 61,
+    "unit": "컴퓨터과학개론",
+    "q": "프로그램 코드나 데이터의 입출력의 단위이며, 보조기억장치로부터 주기억장치에 적재되는 동일한 크기의 블록을 무엇이라고 하는가?",
+    "options": [
+      "메모리테이블",
+      "프레임",
+      "세그먼트",
+      "페이지"
+    ],
+    "ans": 3,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 62,
+    "unit": "컴퓨터과학개론",
+    "q": "먼저 도착한 디스크 접근 요청이 가장 먼저 서비스를 받는 방식의 디스크 스케줄링 기법은 무엇인가?",
+    "options": [
+      "FCFS 기법",
+      "SSTF 기법",
+      "SLTF 기법",
+      "SCAN 기법"
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 63,
+    "unit": "컴퓨터과학개론",
+    "q": "조건문과 반복문을 사용하여 실행 흐름을 제어하고, 블록(block) 구조, 함수 호출 등 주요 개념을 기반으로 하는 언어는 무엇인가?",
+    "options": [
+      "논리형 프로그래밍 언어",
+      "구조적 프로그래밍 언어",
+      "스크립트 프로그래밍 언어",
+      "객체지향 프로그래밍 언어"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 64,
+    "unit": "컴퓨터과학개론",
+    "q": "다음과 같은 특징을 가지고 있는 LAN의 위상 구조는 무엇인가?<div class=\"sim-passage\"><div>• 중앙에 있는 컴퓨터가 모든 메시지의 중계자 역할을 수행함</div><div>• 모든 메시지는 먼저 중앙의 컴퓨터로 보내지고, 중앙의 컴퓨터가 수신한 메시지를 다양한 목적지 컴퓨터에 전달됨</div></div>",
+    "options": [
+      "버스형",
+      "환형",
+      "성형",
+      "토큰형"
+    ],
+    "ans": 2,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 65,
+    "unit": "컴퓨터과학개론",
+    "q": "함수안에서 선언된 변수에 대한 연산이 형식매개변수에 의해 이루어지고, 프로그램 안에서의 실매개변수의 값에는 아무런 영향을 주지 않는 함수 호출 방식의 매개변수 호출 방법을 무엇이라고 하는가?",
+    "options": [
+      "형식 호출",
+      "값 호출",
+      "이름 호출",
+      "참조 호출"
+    ],
+    "ans": 1,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 66,
+    "unit": "컴퓨터과학개론",
+    "q": "변수가 값을 저장하기 위해 기억장소를 할당받고 있는 시간을 의미하는 것을 무엇이라고 하는가?",
+    "options": [
+      "변수의 수명",
+      "변수의 범위",
+      "변수의 주소",
+      "변수의 참조"
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 67,
+    "unit": "컴퓨터과학개론",
+    "q": "컴파일 과정 중에서 프로그램을 구성하는 문자들의 나열로부터 단어(토큰)를 추출해 내는 과정은 무엇인가?",
+    "options": [
+      "프로그램 작성",
+      "구문 분석",
+      "어휘 분석",
+      "코드 생성"
+    ],
+    "ans": 2,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 68,
+    "unit": "컴퓨터과학개론",
+    "q": "컴퓨터 통신을 위해 통신을 하는 노드 간의 합의된 통신 약속을 무엇이라고 하는가?",
+    "options": [
+      "주파수",
+      "채널",
+      "대역폭",
+      "프로토콜"
+    ],
+    "ans": 3,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  },
+  {
+    "num": 69,
+    "unit": "컴퓨터과학개론",
+    "q": "두 개의 버스에 동시에 연결된 장비이며, 목적지에 해당하는 버스 방향으로만 브로드캐스트 하는 것은 무엇인가?",
+    "options": [
+      "리피터",
+      "브리지",
+      "호스트",
+      "스위치"
+    ],
+    "ans": [
+      1,
+      3
+    ],
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다. 복수정답 ②·④를 모두 인정합니다."
+  },
+  {
+    "num": 70,
+    "unit": "컴퓨터과학개론",
+    "q": "패킷 단위로 전송이 이루어지며, 계층적인 방식으로 주소 지정을 하고, 인터넷의 IP(internet protocol)가 정의되는 계층은 무엇인가?",
+    "options": [
+      "네트워크 계층",
+      "데이터 링크 계층",
+      "세션 계층",
+      "물리 계층"
+    ],
+    "ans": 0,
+    "exp": "2019학년도 2학기 공식 정답표 기준입니다."
+  }
+];
+
+const userAns = new Array(QUESTIONS.length).fill(null);
+const userType = new Array(QUESTIONS.length).fill(null);
+let seconds = 0;
+let paused = false;
+let submitted = false;
+
+const timerInterval = setInterval(() => {
+  if (!paused && !submitted) {
+    seconds++;
+    document.getElementById("timer").textContent = formatTime(seconds);
+  }
+}, 1000);
+
+function formatTime(sec) {
+  const m = String(Math.floor(sec / 60)).padStart(2, "0");
+  const s = String(sec % 60).padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById("pauseBtn").textContent = paused ? "재개" : "일시정지";
+}
+
+function renderQuiz() {
+  const list = document.getElementById("quiz-list");
+  const numCircles = ["①", "②", "③", "④"];
+  list.innerHTML = QUESTIONS.map((item, idx) => `
+    <div class="q-card" id="card-${idx}">
+      <div class="q-meta">
+        <span class="q-num">문제 ${item.num}</span>
+        <span class="q-unit">${item.unit}</span>
+      </div>
+      <div class="q-text">${item.q}</div>
+      <div class="opt-list">
+        ${item.options.map((opt, oIdx) => `
+          <label class="opt-label" id="lbl-${idx}-${oIdx}">
+            <input type="radio" name="q${idx}" value="${oIdx}" onchange="selectOpt(${idx}, ${oIdx})">
+            <span>${numCircles[oIdx]} ${opt}</span>
+          </label>
+        `).join("")}
+      </div>
+      <div class="type-row">
+        <span class="type-title">자가 유형 분류:</span>
+        <div class="type-btns">
+          ${["A", "B", "C", "D"].map(t => `
+            <button type="button" class="t-btn" id="tbtn-${idx}-${t}" onclick="selectType(${idx}, '${t}')">${t}</button>
+          `).join("")}
+        </div>
+      </div>
+      <div class="exp-box" id="exp-${idx}">
+        <b>${item.disputed ? "원본 선택지 오류 의심 · 채점 제외" : "정답: " + (Array.isArray(item.ans) ? item.ans.map(a => numCircles[a]).join(", ") : numCircles[item.ans])}</b><br>${item.exp}
+      </div>
+    </div>
+  `).join("");
+}
+
+function selectOpt(qIdx, oIdx) {
+  if (submitted) return;
+  userAns[qIdx] = oIdx;
+  for (let i = 0; i < 4; i++) {
+    document.getElementById(`lbl-${qIdx}-${i}`).classList.toggle("selected", i === oIdx);
+  }
+  const done = userAns.filter(v => v !== null).length;
+  document.getElementById("answered-count").textContent = `진행: ${done} / 35 문항`;
+  document.getElementById("progress-fill").style.width = `${(done / 35) * 100}%`;
+}
+
+function selectType(qIdx, t) {
+  userType[qIdx] = (userType[qIdx] === t) ? null : t;
+  ["A", "B", "C", "D"].forEach(code => {
+    document.getElementById(`tbtn-${qIdx}-${code}`).classList.toggle("active", userType[qIdx] === code);
+  });
+}
+
+function gradeQuiz() {
+  const unanswered = userAns.filter(v => v === null).length;
+  if (unanswered > 0 && !confirm(`아직 풀지 않은 문제가 ${unanswered}개 있습니다. 그래도 제출하고 진단할까요?`)) {
+    return;
+  }
+  submitted = true;
+  clearInterval(timerInterval);
+
+  let correctCnt = 0;
+  const unitStats = {};
+  const typeStats = { A: [], B: [], C: [], D: [] };
+  const wrongList = [];
+
+  QUESTIONS.forEach((item, idx) => {
+    if (!unitStats[item.unit]) unitStats[item.unit] = { total: 0, ok: 0 };
+    unitStats[item.unit].total++;
+
+    const card = document.getElementById(`card-${idx}`);
+    const exp = document.getElementById(`exp-${idx}`);
+    exp.classList.add("show");
+
+    const chosen = userAns[idx];
+    const isOk = Array.isArray(item.ans) ? item.ans.includes(chosen) : chosen === item.ans;
+    if (isOk) {
+      correctCnt++;
+      unitStats[item.unit].ok++;
+      card.classList.add("correct");
+    } else {
+      card.classList.add("wrong");
+      wrongList.push(item.num);
+      if (chosen !== null) {
+        document.getElementById(`lbl-${idx}-${chosen}`).classList.add("ans-bad");
+      }
+    }
+    (Array.isArray(item.ans) ? item.ans : [item.ans]).forEach(a => document.getElementById(`lbl-${idx}-${a}`).classList.add("ans-ok"));
+
+    const finalType = userType[idx] || (isOk ? "A" : "B");
+    typeStats[finalType].push(item.num);
+  });
+
+  const score = Math.round((correctCnt / 35) * 100);
+  const avgSec = Math.round(seconds / 35);
+
+  document.getElementById("stat-grid").innerHTML = `
+    <div class="stat-box"><div class="stat-num">${correctCnt} / 35 (${score}점)</div><div class="stat-lbl">정답 수 및 환산 점수</div></div>
+    <div class="stat-box"><div class="stat-num">${formatTime(seconds)}</div><div class="stat-lbl">총 소요 시간 (문항당 ${avgSec}초)</div></div>
+    <div class="stat-box"><div class="stat-num">A:${typeStats.A.length} / B:${typeStats.B.length}</div><div class="stat-lbl">유형 A(완벽) / B(원리부족)</div></div>
+    <div class="stat-box"><div class="stat-num">C:${typeStats.C.length} / D:${typeStats.D.length}</div><div class="stat-lbl">유형 C(생소) / D(계산·적용)</div></div>
+  `;
+
+  let unitHtml = "<h3 style='font-size:15px; margin:12px 0 6px;'>📚 단원별 성취도</h3><table class='mini-tbl' style='width:100%;'><tr><th>단원</th><th>정답/문항</th><th>정답률</th></tr>";
+  const unitLines = [];
+  for (const [u, st] of Object.entries(unitStats)) {
+    const pct = Math.round((st.ok / st.total) * 100);
+    unitHtml += `<tr><td style='text-align:left;'>${u}</td><td>${st.ok} / ${st.total}</td><td><b>${pct}%</b></td></tr>`;
+    unitLines.push(`- ${u}: ${st.ok}/${st.total} (${pct}%)`);
+  }
+  unitHtml += "</table>";
+  document.getElementById("unit-breakdown").innerHTML = unitHtml;
+
+  const speedEval = avgSec <= 60 ? "빠름 (실전 시간 충분)" : avgSec <= 90 ? "적정 (계산 문항 시간 배분 유의)" : "다소 느림 (개념 정립 후 반복 숙달 필요)";
+
+  const reportText = `[컴퓨터과학개론 2019학년도 2학기 기말시험 문제은행 학습 진단 보고서]
+1. 학습 범위 및 문항 수: 컴퓨터과학개론 전 범위 35문항 (36~70번)
+2. 실제 풀이 시간: 총 ${formatTime(seconds)} (문항당 평균 ${avgSec}초)
+3. 득점 결과: ${correctCnt} / 35문항 정답 (${score}점)
+4. A~D 유형 분포:
+   - A (개념 알고 품): ${typeStats.A.length}문항 ${typeStats.A.length ? '(' + typeStats.A.join(', ') + '번)' : ''}
+   - B (원리 부족): ${typeStats.B.length}문항 ${typeStats.B.length ? '(' + typeStats.B.join(', ') + '번)' : ''}
+   - C (개념 생소): ${typeStats.C.length}문항 ${typeStats.C.length ? '(' + typeStats.C.join(', ') + '번)' : ''}
+   - D (계산·적용 막힘): ${typeStats.D.length}문항 ${typeStats.D.length ? '(' + typeStats.D.join(', ') + '번)' : ''}
+5. 단원별 정답률:
+${unitLines.join("\n")}
+6. 오답 문항(재풀이 대상): ${wrongList.length ? wrongList.join(", ") + "번" : "없음 (만점)"}
+7. 학습 속도 평가: ${speedEval}`;
+
+  document.getElementById("report-textarea").value = reportText;
+  const repSec = document.getElementById("report-section");
+  repSec.style.display = "block";
+  repSec.scrollIntoView({ behavior: "smooth" });
+}
+
+function copyReport() {
+  const ta = document.getElementById("report-textarea");
+  ta.select();
+  document.execCommand("copy");
+  alert("진단 보고서가 클립보드에 복사되었습니다!");
+}
+
+renderQuiz();
+document.querySelectorAll('.mini-tbl').forEach(tbl => {
+  if (!tbl.closest('.mem-wrap') && !tbl.parentElement.classList.contains('tbl-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'tbl-wrap';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  }
+});
+</script>
+</body>
+</html>
