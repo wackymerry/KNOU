@@ -1,3 +1,0 @@
-.sim-code-pair {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.65fr);gap:14px;margin:12px 0 16px;align-items:start}
-.sim-code-pair pre {box-sizing:border-box;margin:0;padding:14px 16px;min-width:0;overflow-x:auto;white-space:pre;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;color:#172033;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
-@media(max-width:540px){.sim-code-pair{grid-template-columns:1fr}}
