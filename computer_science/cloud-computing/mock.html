@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>클라우드컴퓨팅 모의시험 (35문항)</title>
+<style>.exp-box:not(.show),#report-section{display:none}</style>
+<link rel="stylesheet" href="../quiz.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-left">
+    <a class="btn-home" href="../index.html">← 메인</a>
+    <div>
+      <div class="top-title">클라우드컴퓨팅 모의시험 (35문항)</div>
+    <div class="top-sub" id="answered-count">진행: 0 / 35 문항</div>
+    </div>
+  </div>
+  <div class="timer-box">
+    <span class="timer-val" id="timer">00:00</span>
+    <button class="btn-pause" id="pauseBtn" onclick="togglePause()">일시정지</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="intro-card">
+    <h2>클라우드컴퓨팅 전 범위 모의시험</h2>
+    <p>교재 8장 전 범위에서 추첨한 35문항입니다. 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
+    (A: 개념 알고 품 / B: 원리 모름 / C: 개념 생소 / D: 계산·적용 막힘)</p>
+    <div class="progress-wrap"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div id="quiz-list"></div>
+
+  <div class="submit-wrap">
+    <button class="btn-submit" onclick="gradeQuiz()">35문항 제출 및 종합 진단 받기</button>
+  </div>
+
+  <div id="report-section">
+    <h2 style="margin-top:0;">📊 클라우드컴퓨팅 전 범위 모의시험 진단 결과</h2>
+    <div class="stat-grid" id="stat-grid"></div>
+    <div id="unit-breakdown"></div>
+    <h3 style="margin:16px 0 6px; font-size:15px;">📋 일정 관리 대화 전달용 요약 보고서</h3>
+    <textarea class="report-text" id="report-textarea" readonly></textarea>
+    <a class="btn-home-bottom" href="./mock.html" onclick="history.replaceState(null, &quot;&quot;); location.reload(); return false;">새 모의시험 풀기</a>
+    <button class="btn-copy" onclick="copyReport()">보고서 텍스트 복사하기</button>
+    <a class="btn-home-bottom" href="../index.html">🏠 과목 메인 포털로 돌아가기</a>
+  </div>
+</div>
+
+<script>
+const BANK = [
+  {
+    "unit": "1장 클라우드 컴퓨팅의 이해",
+    "q": "예약 사이트가 명절 한 주 동안만 서버를 늘려 쓴다. 직접 장비를 구매할 때와 비교해 줄어드는 부담은?",
+    "options": [
+      "최대 수요를 기준으로 한 선투자",
+      "사용량 측정",
+      "계정 권한 관리",
+      "애플리케이션 테스트"
+    ],
+    "exp": "최대 수요에 맞춰 서버를 구매하면 한산한 기간에도 자본이 묶인다. 임대하면 필요한 기간의 운영비로 처리할 수 있다."
+  },
+  {
+    "unit": "1장 클라우드 컴퓨팅의 이해",
+    "q": "자체 데이터센터의 서버와 운영 소프트웨어를 회사가 직접 보유하고 관리한다. 이 운영 방식은?",
+    "options": [
+      "온프레미스",
+      "퍼블릭 클라우드",
+      "멀티 클라우드",
+      "FaaS"
+    ],
+    "exp": "온프레미스에서는 조직이 자체 설비를 보유하고 운영 책임을 진다."
+  },
+  {
+    "unit": "1장 클라우드 컴퓨팅의 이해",
+    "q": "초당 주문 120건이 들어오는데 시스템은 90건만 처리한다. 현재의 수요와 공급 관계는?",
+    "options": [
+      "처리 용량 결핍",
+      "유휴 용량 증가",
+      "공급과 수요의 균형",
+      "고정비의 변동비 전환"
+    ],
+    "exp": "초당 30건이 처리 용량을 초과하므로 대기열이 쌓이거나 요청이 거절될 수 있다."
+  },
+  {
+    "unit": "1장 클라우드 컴퓨팅의 이해",
+    "q": "CSP의 가용성 목표와 기준 미달 시 서비스 크레딧을 확인하려면 어떤 문서를 봐야 하는가?",
+    "options": [
+      "서비스 수준 협약(SLA)",
+      "VM 이미지 목록",
+      "리소스 그룹 태그",
+      "라우팅 테이블"
+    ],
+    "exp": "SLA에는 서비스 수준을 측정하는 기준과 목표 미달 시 적용할 조치가 명시된다."
+  },
+  {
+    "unit": "1장 클라우드 컴퓨팅의 이해",
+    "q": "한 기업이 서로 다른 두 CSP의 서비스를 병행한다. 배포 전략에 해당하는 용어는?",
+    "options": [
+      "멀티 클라우드",
+      "커뮤니티 클라우드",
+      "단일 테넌트",
+      "수직 확장"
+    ],
+    "exp": "멀티 클라우드는 여러 제공자의 서비스를 함께 사용하는 전략이다. 자체 전산실의 유무는 판별 기준이 아니다."
+  },
+  {
+    "unit": "1장 클라우드 컴퓨팅의 이해",
+    "q": "5년간 안정적으로 운영할 시스템의 클라우드 이전 비용을 비교하는 방법은?",
+    "options": [
+      "같은 기간의 장비·인력·전력·사용료 등을 합산한다",
+      "첫 달 VM 요금만 비교한다",
+      "장비 구매가만 비교한다",
+      "양쪽의 최대 CPU 수만 비교한다"
+    ],
+    "exp": "총소유비용은 같은 기간과 서비스 수준을 기준으로 초기 투자와 지속적인 운영비를 함께 고려한다."
+  },
+  {
+    "unit": "1장 클라우드 컴퓨팅의 이해",
+    "q": "특정 CSP 전용 API를 깊게 사용한 결과 다른 제공자로 이전하는 데 큰 수정이 필요해졌다. 어떤 현상인가?",
+    "options": [
+      "공급자 종속",
+      "신속한 탄력성",
+      "리소스 풀링",
+      "지리적 이중화"
+    ],
+    "exp": "서비스 인터페이스와 데이터 형식에 대한 의존도는 이전 비용을 높인다."
+  },
+  {
+    "unit": "2장 클라우드 컴퓨팅 서비스",
+    "q": "개발자가 담당자 승인 절차 없이 포털에서 필요한 VM을 즉시 할당받는다. 어떤 특성인가?",
+    "options": [
+      "온디맨드 셀프서비스",
+      "광범위한 네트워크 접근",
+      "측정 가능한 서비스",
+      "위치 고정성"
+    ],
+    "exp": "사용자가 직접 자원을 요청하고 제공자의 수작업 없이 공급받는 것이 판별 근거다."
+  },
+  {
+    "unit": "2장 클라우드 컴퓨팅 서비스",
+    "q": "여러 고객이 같은 물리 서버를 이용하되 각 고객의 데이터는 분리된다. 이 구조는?",
+    "options": [
+      "멀티테넌시",
+      "콜드 스탠바이",
+      "전용 장비 독점",
+      "라이브 마이그레이션"
+    ],
+    "exp": "멀티테넌트 환경은 물리 자원을 공유하면서 고객별 데이터와 실행 환경을 논리적으로 격리한다."
+  },
+  {
+    "unit": "2장 클라우드 컴퓨팅 서비스",
+    "q": "개발팀은 소스와 데이터를 관리하고 제공자는 OS와 런타임까지 관리한다. 이 서비스 모델은?",
+    "options": [
+      "PaaS",
+      "IaaS",
+      "SaaS",
+      "온프레미스"
+    ],
+    "exp": "PaaS는 개발·실행 플랫폼을 제공한다. IaaS를 이용할 때는 일반적으로 고객이 게스트 OS도 관리한다."
+  },
+  {
+    "unit": "2장 클라우드 컴퓨팅 서비스",
+    "q": "회사가 메일 서버를 설치하지 않고 완성된 웹메일에 접속해 계정을 사용한다. 어느 모델인가?",
+    "options": [
+      "SaaS",
+      "CaaS",
+      "IaaS",
+      "FaaS"
+    ],
+    "exp": "웹메일처럼 완성된 애플리케이션의 기능을 네트워크로 이용하면 SaaS에 해당한다."
+  },
+  {
+    "unit": "2장 클라우드 컴퓨팅 서비스",
+    "q": "공통된 규제와 보안 요건을 가진 여러 병원이 공동으로 전용 클라우드를 사용한다. 배포 모델은?",
+    "options": [
+      "커뮤니티 클라우드",
+      "퍼블릭 클라우드",
+      "단일 조직 프라이빗 클라우드",
+      "멀티 클라우드"
+    ],
+    "exp": "여러 조직이 공통 요건을 충족하기 위해 공동 이용한다는 점이 커뮤니티 모델의 특징이다."
+  },
+  {
+    "unit": "2장 클라우드 컴퓨팅 서비스",
+    "q": "이용량이 증가하면 자동으로 확장하고 수요가 줄면 자원을 반납한다. 어떤 특성에 해당하는가?",
+    "options": [
+      "신속한 탄력성",
+      "측정 가능한 서비스",
+      "광범위한 접근성",
+      "고정 용량 할당"
+    ],
+    "exp": "탄력성은 수요 변화에 맞춰 용량을 빠르게 늘리거나 줄이는 성질이다."
+  },
+  {
+    "unit": "2장 클라우드 컴퓨팅 서비스",
+    "q": "서비스가 저장량과 전송량을 집계해 이용 내역을 고객에게 보여 준다. 해당하는 특성은?",
+    "options": [
+      "측정 가능한 서비스",
+      "리소스 격리",
+      "온디맨드 셀프서비스",
+      "장애 조치"
+    ],
+    "exp": "사용량을 계량하고 보고하면 고객과 제공자가 자원 소비를 확인할 수 있다."
+  },
+  {
+    "unit": "3장 클라우드 컴퓨팅 기술",
+    "q": "컨테이너가 VM보다 가볍게 시작할 수 있는 구조적 이유는?",
+    "options": [
+      "호스트 커널을 공유한다",
+      "각 컨테이너가 게스트 OS를 부팅한다",
+      "CPU를 전용으로 할당한다",
+      "실행 파일이 필요 없다"
+    ],
+    "exp": "컨테이너는 프로세스 실행 환경을 분리하고 독립된 게스트 커널을 매번 부팅하는 비용을 줄인다."
+  },
+  {
+    "unit": "3장 클라우드 컴퓨팅 기술",
+    "q": "게스트 OS가 하이퍼콜로 하이퍼바이저에 작업을 요청한다. 어떤 가상화 방식인가?",
+    "options": [
+      "반가상화",
+      "에뮬레이션 전용 방식",
+      "네트워크 터널링",
+      "파일 가상화"
+    ],
+    "exp": "반가상화에서는 게스트가 가상화 환경을 인식하고 하이퍼콜을 통해 협력한다."
+  },
+  {
+    "unit": "3장 클라우드 컴퓨팅 기술",
+    "q": "가상 머신을 이미지와 설정 파일로 묶어 복사할 수 있다. 어떤 특성인가?",
+    "options": [
+      "캡슐화",
+      "격리",
+      "파티셔닝",
+      "부하 분산"
+    ],
+    "exp": "VM의 상태와 구성을 파일 단위로 다룰 수 있어 복제와 이동이 쉬워지는 특성이다."
+  },
+  {
+    "unit": "3장 클라우드 컴퓨팅 기술",
+    "q": "제어기는 경로 정책을 정하고 스위치는 그 규칙에 따라 패킷을 전달한다. 어떤 기술의 예인가?",
+    "options": [
+      "SDN",
+      "VPN",
+      "RAID",
+      "오브젝트 스토리지"
+    ],
+    "exp": "SDN은 경로를 결정하는 제어 기능과 실제 전달 기능을 분리한다."
+  },
+  {
+    "unit": "3장 클라우드 컴퓨팅 기술",
+    "q": "인터넷을 거쳐 지사와 본사 사이에 암호화된 통신 경로를 구성한다. 가장 적절한 기술은?",
+    "options": [
+      "VPN",
+      "VLAN 태그만 부여",
+      "블록 스토리지",
+      "서버 파티셔닝"
+    ],
+    "exp": "VPN은 공용망에서 터널을 구성해 사설망처럼 연결할 수 있다. 암호화를 적용해 전송 내용을 보호한다."
+  },
+  {
+    "unit": "3장 클라우드 컴퓨팅 기술",
+    "q": "대량의 사진을 키로 식별하고 HTTP 요청으로 개별 조회한다. 적합한 저장 방식은?",
+    "options": [
+      "오브젝트 스토리지",
+      "VM 부팅용 블록 디스크",
+      "CPU 캐시",
+      "스왑 공간"
+    ],
+    "exp": "오브젝트 저장소는 각 객체를 식별자와 메타데이터로 관리해 미디어 파일 저장에 적합하다."
+  },
+  {
+    "unit": "3장 클라우드 컴퓨팅 기술",
+    "q": "서버가 두 대인데 유일한 공유 스위치가 고장 나자 서비스 전체가 멈췄다. 이 스위치는?",
+    "options": [
+      "단일 장애점(SPOF)",
+      "분산 캐시",
+      "장애 조치 대상 VM",
+      "오토 스케일링 그룹"
+    ],
+    "exp": "중복 경로가 없는 한 구성 요소의 장애가 전체 중단으로 이어지면 단일 장애점이다."
+  },
+  {
+    "unit": "3장 클라우드 컴퓨팅 기술",
+    "q": "전용 방화벽 장비가 수행하던 기능을 범용 서버의 소프트웨어로 구현한다. 해당 기술은?",
+    "options": [
+      "네트워크 기능 가상화(NFV)",
+      "서버리스 트리거",
+      "디스크 스트라이핑",
+      "호스트 커널 공유"
+    ],
+    "exp": "NFV는 방화벽이나 라우터 같은 네트워크 기능을 범용 하드웨어의 소프트웨어로 구현한다."
+  },
+  {
+    "unit": "4장 클라우드 아키텍처",
+    "q": "DB 서버 한 대의 메모리를 16GB에서 64GB로 늘렸다. 어떤 확장인가?",
+    "options": [
+      "수직 확장",
+      "수평 확장",
+      "클라우드 버스팅",
+      "장애 조치"
+    ],
+    "exp": "수직 확장은 기존 장비나 VM 한 대의 사양을 바꾸는 방식이다."
+  },
+  {
+    "unit": "4장 클라우드 아키텍처",
+    "q": "웹 서버를 세 대 추가해 동시 요청을 나눠 처리한다. 어떤 확장인가?",
+    "options": [
+      "수평 확장",
+      "수직 확장",
+      "스토리지 계층화",
+      "라이브 마이그레이션"
+    ],
+    "exp": "서버 수를 늘려 전체 처리 능력을 확장하는 것을 스케일 아웃이라고 한다."
+  },
+  {
+    "unit": "4장 클라우드 아키텍처",
+    "q": "평상시 자체 클라우드에서 처리하던 작업 일부를 입학 신청 기간에만 퍼블릭 클라우드로 넘긴다. 이 방식은?",
+    "options": [
+      "클라우드 버스팅",
+      "라이브 마이그레이션",
+      "콜드 백업",
+      "수직 축소"
+    ],
+    "exp": "버스팅은 내부 환경의 용량이 부족한 기간에 외부 클라우드의 자원을 이용하는 방식이다."
+  },
+  {
+    "unit": "4장 클라우드 아키텍처",
+    "q": "주 서버가 요청을 처리하고 대기 서버는 주 서버 장애 시 역할을 넘겨받는다. 이 구성은?",
+    "options": [
+      "액티브-스탠바이",
+      "액티브-액티브",
+      "오토 스케일 인",
+      "멀티테넌시"
+    ],
+    "exp": "정상 상태에서 역할을 나누는 방식으로 구별한다. 대기 서버는 장애 조치 시 서비스를 인계한다."
+  },
+  {
+    "unit": "4장 클라우드 아키텍처",
+    "q": "여러 자원의 배치 순서와 연결 절차를 정의해 하나의 워크플로로 실행한다. 이를 무엇이라 하는가?",
+    "options": [
+      "오케스트레이션",
+      "터널링",
+      "해싱",
+      "캡슐화"
+    ],
+    "exp": "오케스트레이션은 여러 자동화 작업의 순서와 의존 관계를 조정한다."
+  },
+  {
+    "unit": "4장 클라우드 아키텍처",
+    "q": "유지보수할 물리 호스트에서 실행 중인 VM을 중단 시간을 최소화하며 다른 호스트로 옮긴다. 이 작업은?",
+    "options": [
+      "라이브 마이그레이션",
+      "콜드 백업",
+      "스케일 인",
+      "스토리지 포맷"
+    ],
+    "exp": "실행 상태를 대상 호스트로 이전해 작업을 이어 가는 것이 라이브 마이그레이션이다."
+  },
+  {
+    "unit": "4장 클라우드 아키텍처",
+    "q": "CPU 사용률이 기준값을 일정 시간 넘으면 인스턴스를 추가하려 한다. 확장 동작을 시작하는 근거는?",
+    "options": [
+      "모니터링 지표에 설정한 임계 조건 충족",
+      "스토리지 계정 이름 변경",
+      "관리자 비밀번호 만료",
+      "로그 보존 기간 연장"
+    ],
+    "exp": "모니터링 지표와 임계 조건으로 수요 변화를 감지하고 확장 정책을 실행한다."
+  },
+  {
+    "unit": "5장 클라우드 컴퓨팅의 미래",
+    "q": "공장 카메라가 불량품을 발견하면 원격 센터의 응답을 기다리지 않고 생산 라인 옆에서 판정한다. 가장 직접적인 이점은?",
+    "options": [
+      "왕복 지연 감소",
+      "센서 수 감소",
+      "모델 학습 불필요",
+      "모든 원본의 영구 보관 보장"
+    ],
+    "exp": "데이터 발생 지점 가까이에서 추론하면 중앙 센터까지 통신하는 지연을 줄일 수 있다."
+  },
+  {
+    "unit": "5장 클라우드 컴퓨팅의 미래",
+    "q": "엣지 컴퓨팅 구조에서 장기간 데이터를 모아 분석하는 중앙 클라우드 계층은?",
+    "options": [
+      "파 엔드",
+      "니어 엔드",
+      "프런트 엔드",
+      "센서 단말"
+    ],
+    "exp": "교재의 계층 구분에서 중앙 클라우드는 데이터 발생 지점에서 가장 먼 파 엔드에 해당한다."
+  },
+  {
+    "unit": "5장 클라우드 컴퓨팅의 미래",
+    "q": "사용자 신원과 기기 상태를 확인한 뒤 지정한 업무 앱 하나에만 접속을 허용한다. 어떤 기술인가?",
+    "options": [
+      "ZTNA",
+      "VPN 터널 전체에 일괄 권한 부여",
+      "RAID",
+      "SDN 제어기 이중화"
+    ],
+    "exp": "ZTNA는 접속 주체와 맥락을 검증하고 필요한 애플리케이션에 최소 권한을 부여한다."
+  },
+  {
+    "unit": "5장 클라우드 컴퓨팅의 미래",
+    "q": "여러 센서와 중앙 클라우드 사이의 게이트웨이에 연산·저장 기능을 분산한다. 이 아키텍처는?",
+    "options": [
+      "포그 컴퓨팅",
+      "메인프레임 일괄 처리",
+      "단일 중앙 집중 처리",
+      "블록 스토리지"
+    ],
+    "exp": "포그 컴퓨팅은 엣지와 중앙 사이의 중간 노드에도 처리·저장·제어 기능을 배치한다."
+  },
+  {
+    "unit": "5장 클라우드 컴퓨팅의 미래",
+    "q": "이동통신 기지국 가까이에서 사용자에게 초저지연 서비스를 제공하려 한다. 가장 관련 깊은 개념은?",
+    "options": [
+      "다중 액세스 엣지 컴퓨팅(MEC)",
+      "오프라인 테이프 백업",
+      "콜드 아카이브",
+      "원격 중앙 일괄 처리"
+    ],
+    "exp": "MEC는 통신망의 엣지 가까이에 컴퓨팅 환경을 배치해 지연에 민감한 서비스를 지원한다."
+  },
+  {
+    "unit": "5장 클라우드 컴퓨팅의 미래",
+    "q": "데이터 저장 위치와 처리 관할권을 특정 국가의 통제 요건에 맞추려 한다. 어떤 개념이 가장 가까운가?",
+    "options": [
+      "소버린 클라우드",
+      "클라우드 버스팅",
+      "리소스 풀링",
+      "포그 컴퓨팅"
+    ],
+    "exp": "소버린 클라우드는 데이터 주권과 해당 관할권의 규제 요건을 고려해 설계한다."
+  },
+  {
+    "unit": "5장 클라우드 컴퓨팅의 미래",
+    "q": "학습용 GPU 클러스터 등 AI 인프라를 전문으로 제공하는 신흥 사업자를 가리키는 말은?",
+    "options": [
+      "네오클라우드",
+      "커뮤니티 클라우드",
+      "니어 엔드",
+      "가상 사설망"
+    ],
+    "exp": "네오클라우드는 GPU 중심의 AI 컴퓨팅 인프라에 특화된 사업자를 가리킨다."
+  },
+  {
+    "unit": "6장 클라우드 기반 웹사이트 구현",
+    "q": "Azure에서 한 웹사이트의 VM·디스크·네트워크를 수명 주기에 맞게 함께 관리하려 한다. 묶음 단위는?",
+    "options": [
+      "리소스 그룹",
+      "Blob 컨테이너",
+      "백 엔드 풀",
+      "서브넷"
+    ],
+    "exp": "리소스 그룹은 관련 Azure 리소스를 논리적으로 묶는 관리 단위다."
+  },
+  {
+    "unit": "6장 클라우드 기반 웹사이트 구현",
+    "q": "VM을 처음 시작할 때 패키지 설치와 초기 설정을 자동 실행하려 한다. 적절한 도구는?",
+    "options": [
+      "cloud-init",
+      "Key Vault",
+      "Evaluate Model",
+      "HTTP 상태 프로브"
+    ],
+    "exp": "cloud-init은 인스턴스 초기화 시 제공된 설정과 스크립트를 실행한다."
+  },
+  {
+    "unit": "6장 클라우드 기반 웹사이트 구현",
+    "q": "웹 앱이 사용하는 DB 암호와 암호화 키를 별도로 보관하려 한다. 적합한 서비스는?",
+    "options": [
+      "Azure Key Vault",
+      "Azure Load Balancer",
+      "Azure ML 디자이너",
+      "VM 확장 집합"
+    ],
+    "exp": "Key Vault는 비밀, 키, 인증서 같은 민감한 정보를 관리하는 서비스다."
+  },
+  {
+    "unit": "6장 클라우드 기반 웹사이트 구현",
+    "q": "Blob Storage에서 상품 사진 Blob을 담는 논리적 단위는?",
+    "options": [
+      "컨테이너",
+      "리소스 잠금",
+      "백 엔드 풀",
+      "가용성 영역"
+    ],
+    "exp": "저장소 계정 안의 컨테이너가 개별 Blob을 담는다. 여기서 컨테이너는 앱 실행 환경을 뜻하지 않는다."
+  },
+  {
+    "unit": "6장 클라우드 기반 웹사이트 구현",
+    "q": "로드 밸런서가 요청을 전달할 웹 서버 인스턴스 집합을 어디에 등록하는가?",
+    "options": [
+      "백 엔드 풀",
+      "키 자격 증명 모음",
+      "Blob 컨테이너",
+      "라우팅 접두사"
+    ],
+    "exp": "백 엔드 풀은 실제 트래픽을 처리할 대상들의 집합이다. 상태 프로브는 대상의 가용성을 확인한다."
+  },
+  {
+    "unit": "6장 클라우드 기반 웹사이트 구현",
+    "q": "동일한 구성의 Azure VM을 묶고 수요에 따라 인스턴스 수를 조정하려 한다. 적합한 서비스는?",
+    "options": [
+      "Virtual Machine Scale Sets",
+      "Key Vault",
+      "Blob Storage",
+      "Azure ML 디자이너"
+    ],
+    "exp": "VM 확장 집합(VMSS)은 일관된 구성의 VM 집합을 관리하고 자동 확장을 적용할 수 있다."
+  },
+  {
+    "unit": "6장 클라우드 기반 웹사이트 구현",
+    "q": "Linux VM에 SSH 키로 접속할 때 올바른 키 배치는?",
+    "options": [
+      "공개 키를 VM에 등록하고 개인 키는 접속자가 보관한다",
+      "개인 키를 웹페이지에 공개한다",
+      "개인 키를 모든 VM 이용자에게 배포한다",
+      "공개 키만 있으면 누구든 로그인할 수 있게 한다"
+    ],
+    "exp": "SSH 공개 키 인증에서는 클라이언트가 개인 키를 소유하고 있음을 증명한다."
+  },
+  {
+    "unit": "7장 클라우드 기반 데이터 분석",
+    "q": "모델이 처음 보는 사례에서도 잘 예측하는지 알아보려 한다. 데이터 사용 방법은?",
+    "options": [
+      "평가용 데이터를 학습에서 제외한다",
+      "학습에 쓴 데이터만 평가한다",
+      "모든 평가 행의 정답을 입력 특성으로 넣는다",
+      "평가 전에 항상 오답 행을 삭제한다"
+    ],
+    "exp": "학습에 사용하지 않은 데이터로 평가해야 새 사례에 대한 일반화 성능을 살펴볼 수 있다."
+  },
+  {
+    "unit": "7장 클라우드 기반 데이터 분석",
+    "q": "Azure ML 디자이너에서 데이터를 학습용과 평가용으로 나누는 구성 요소는?",
+    "options": [
+      "Split Data",
+      "Evaluate Model",
+      "Train Model",
+      "Score Model"
+    ],
+    "exp": "Split Data는 지정한 기준으로 데이터를 두 부분으로 나눈다. 분할 결과는 학습과 평가 단계에 각각 연결할 수 있다."
+  },
+  {
+    "unit": "7장 클라우드 기반 데이터 분석",
+    "q": "캔버스에서 전처리와 학습 구성 요소를 연결해 분석 절차를 만들었다. 이 작업 흐름은?",
+    "options": [
+      "머신러닝 파이프라인",
+      "리소스 그룹",
+      "로드 밸런싱 규칙",
+      "네트워크 터널"
+    ],
+    "exp": "파이프라인은 여러 분석 단계를 연결해 실행 순서와 데이터 흐름을 정의한다."
+  },
+  {
+    "unit": "7장 클라우드 기반 데이터 분석",
+    "q": "결측값 때문에 입력 데이터를 그대로 학습에 쓰기 어렵다. 우선 검토할 작업은?",
+    "options": [
+      "결측 원인을 살피고 삭제·대체 등 처리 방법을 정한다",
+      "평가 데이터를 학습 데이터에 복사한다",
+      "모든 행의 정답을 같은 값으로 정한다",
+      "모델 점수를 먼저 보고한다"
+    ],
+    "exp": "전처리 단계에서는 결측치의 원인과 속성의 성격에 맞게 처리 방식을 정한다."
+  },
+  {
+    "unit": "7장 클라우드 기반 데이터 분석",
+    "q": "학습을 마친 모델이 평가 데이터의 각 행에 대해 예측값을 출력하도록 한다. 이 단계에 알맞은 구성 요소는?",
+    "options": [
+      "Score Model",
+      "Split Data",
+      "Train Model",
+      "Clean Missing Data"
+    ],
+    "exp": "Score Model은 학습된 모델을 데이터에 적용한다. 예측 결과의 성능 비교는 별도의 평가 단계다."
+  },
+  {
+    "unit": "7장 클라우드 기반 데이터 분석",
+    "q": "같은 평가 데이터에 대한 두 모델의 예측 결과가 있다. 성능 지표를 비교할 구성 요소는?",
+    "options": [
+      "Evaluate Model",
+      "Select Columns in Dataset",
+      "Split Data",
+      "Edit Metadata"
+    ],
+    "exp": "Evaluate Model은 예측 결과로 성능 지표를 구해 모델 간 비교를 지원한다."
+  },
+  {
+    "unit": "7장 클라우드 기반 데이터 분석",
+    "q": "수집한 데이터를 사용하는 분석 절차로 가장 적절한 순서는?",
+    "options": [
+      "전처리 → 학습 → 평가",
+      "평가 → 학습 → 전처리",
+      "학습 → 수집 → 정답 삭제",
+      "평가 → 수집 → 전처리"
+    ],
+    "exp": "데이터를 준비한 뒤 모델을 학습하고 별도로 확보한 데이터로 결과를 평가한다."
+  },
+  {
+    "unit": "8장 일기 예보 전송 서비스 구현",
+    "q": "요청이 올 때만 날씨 조회 코드를 실행하고 서버 운영을 제공자에게 맡기려 한다. 알맞은 Azure 서비스는?",
+    "options": [
+      "Azure Functions",
+      "Azure Load Balancer",
+      "Azure Virtual Network",
+      "Azure Managed Disks"
+    ],
+    "exp": "Azure Functions는 이벤트에 반응하는 함수를 실행하는 FaaS 서비스다."
+  },
+  {
+    "unit": "8장 일기 예보 전송 서비스 구현",
+    "q": "브라우저에서 날씨 조회 URL을 요청하면 함수가 실행되어야 한다. 어떤 트리거가 맞는가?",
+    "options": [
+      "HTTP 트리거",
+      "Timer 트리거",
+      "Queue 트리거",
+      "Blob 트리거"
+    ],
+    "exp": "HTTP 트리거는 HTTP 요청을 함수 실행의 계기로 사용한다."
+  },
+  {
+    "unit": "8장 일기 예보 전송 서비스 구현",
+    "q": "매일 오전 7시에 먼저 일기 예보를 조회해 발송한다. 적절한 실행 계기는?",
+    "options": [
+      "Timer 트리거의 예약 시간 도달",
+      "사용자의 HTTP 요청만 대기",
+      "Blob 삭제만 감시",
+      "VM 로그인 성공"
+    ],
+    "exp": "Timer 트리거는 정해진 일정에 따라 함수를 호출하므로 사용자의 요청이 필요 없다."
+  },
+  {
+    "unit": "8장 일기 예보 전송 서비스 구현",
+    "q": "OpenWeatherMap에 요청을 보내는 코드에 API 키를 설정하는 주된 목적은?",
+    "options": [
+      "API 이용 주체를 식별하고 인증하기 위해",
+      "기온의 단위를 결정하기 위해",
+      "HTTP 메서드를 변환하기 위해",
+      "함수의 실행 언어를 정하기 위해"
+    ],
+    "exp": "API 키는 제공자가 발급하는 자격 정보다. 온도 단위나 요청 메서드는 별도 설정이다."
+  },
+  {
+    "unit": "8장 일기 예보 전송 서비스 구현",
+    "q": "Azure 함수 앱을 만들 때 Python으로 작성한 함수를 실행하려 한다. 어떤 항목을 확인해야 하는가?",
+    "options": [
+      "런타임 스택",
+      "백 엔드 풀",
+      "VM 디스크 크기",
+      "데이터 분할 비율"
+    ],
+    "exp": "런타임 스택은 함수 코드를 실행할 언어 환경을 결정한다."
+  },
+  {
+    "unit": "8장 일기 예보 전송 서비스 구현",
+    "q": "함수 앱의 실행에 필요한 파일과 상태 정보를 저장하는 데 쓰는 Azure 리소스는?",
+    "options": [
+      "스토리지 계정",
+      "가상 네트워크 게이트웨이",
+      "GPU 컴퓨팅 클러스터",
+      "로드 밸런서"
+    ],
+    "exp": "함수 호스트는 실행 관리에 필요한 데이터와 상태 정보를 Azure Storage에 저장한다."
+  },
+  {
+    "unit": "8장 일기 예보 전송 서비스 구현",
+    "q": "VS Code의 Azure Functions 확장에서 프로젝트에 새 함수를 추가하는 명령은?",
+    "options": [
+      "Azure Functions: Create Function",
+      "Azure ML: Train Model",
+      "Azure Blob: Delete Container",
+      "Azure VM: Reset Password"
+    ],
+    "exp": "Create Function으로 함수 템플릿과 트리거를 선택해 코드를 생성한다."
+  }
+];
+
+function shuffled(values) {
+  const result = [...values];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function drawExam() {
+  let previous = [];
+  try { previous = JSON.parse(localStorage.getItem("knou.cloud.previous")) || []; } catch {}
+  if (!Array.isArray(previous)) previous = [];
+  const units = shuffled(new Set(BANK.map(item => item.unit)));
+  const picks = units.flatMap((unit, i) => {
+    const pool = shuffled(BANK.filter(item => item.unit === unit));
+    pool.sort((a, b) => Number(previous.includes(a.q)) - Number(previous.includes(b.q)));
+    return pool.slice(0, i < 3 ? 5 : 4);
+  });
+  try { localStorage.setItem("knou.cloud.previous", JSON.stringify(picks.map(item => item.q))); } catch {}
+  return shuffled(picks).map((item, i) => {
+    const options = shuffled(item.options);
+    return {...item, num: i + 1, options, ans: options.indexOf(item.options[0])};
+  });
+}
+
+const QUESTIONS = history.state?.cloudExam || drawExam();
+history.replaceState({cloudExam: QUESTIONS}, "");
+
+const userAns = new Array(QUESTIONS.length).fill(null);
+const userType = new Array(QUESTIONS.length).fill(null);
+let seconds = 0;
+let paused = false;
+let submitted = false;
+
+const timerInterval = setInterval(() => {
+  if (!paused && !submitted) {
+    seconds++;
+    document.getElementById("timer").textContent = formatTime(seconds);
+  }
+}, 1000);
+
+function formatTime(sec) {
+  const m = String(Math.floor(sec / 60)).padStart(2, "0");
+  const s = String(sec % 60).padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById("pauseBtn").textContent = paused ? "재개" : "일시정지";
+}
+
+function renderQuiz() {
+  const list = document.getElementById("quiz-list");
+  const numCircles = ["①", "②", "③", "④"];
+  list.innerHTML = QUESTIONS.map((item, idx) => `
+    <div class="q-card" id="card-${idx}">
+      <div class="q-meta">
+        <span class="q-num">문제 ${item.num}</span>
+        <span class="q-unit">${item.unit}</span>
+      </div>
+      <div class="q-text">${item.q}</div>
+      <div class="opt-list">
+        ${item.options.map((opt, oIdx) => `
+          <label class="opt-label" id="lbl-${idx}-${oIdx}">
+            <input type="radio" name="q${idx}" value="${oIdx}" onchange="selectOpt(${idx}, ${oIdx})">
+            <span>${numCircles[oIdx]} ${opt}</span>
+          </label>
+        `).join("")}
+      </div>
+      <div class="type-row">
+        <span class="type-title">자가 유형 분류:</span>
+        <div class="type-btns">
+          ${["A", "B", "C", "D"].map(t => `
+            <button type="button" class="t-btn" id="tbtn-${idx}-${t}" onclick="selectType(${idx}, '${t}')">${t}</button>
+          `).join("")}
+        </div>
+      </div>
+      <div class="exp-box" id="exp-${idx}">
+        <b>정답: ${numCircles[item.ans]}</b><br>${item.exp}
+      </div>
+    </div>
+  `).join("");
+}
+
+function selectOpt(qIdx, oIdx) {
+  if (submitted) return;
+  userAns[qIdx] = oIdx;
+  for (let i = 0; i < 4; i++) {
+    document.getElementById(`lbl-${qIdx}-${i}`).classList.toggle("selected", i === oIdx);
+  }
+  const done = userAns.filter(v => v !== null).length;
+  document.getElementById("answered-count").textContent = `진행: ${done} / 35 문항`;
+  document.getElementById("progress-fill").style.width = `${(done / 35) * 100}%`;
+}
+
+function selectType(qIdx, t) {
+  userType[qIdx] = (userType[qIdx] === t) ? null : t;
+  ["A", "B", "C", "D"].forEach(code => {
+    document.getElementById(`tbtn-${qIdx}-${code}`).classList.toggle("active", userType[qIdx] === code);
+  });
+}
+
+function gradeQuiz() {
+  if (submitted) return;
+  const unanswered = userAns.filter(v => v === null).length;
+  if (unanswered > 0 && !confirm(`아직 풀지 않은 문제가 ${unanswered}개 있습니다. 그래도 제출하고 진단할까요?`)) {
+    return;
+  }
+  submitted = true;
+  document.querySelectorAll("input, .t-btn, .btn-pause, .btn-submit").forEach(control => control.disabled = true);
+  clearInterval(timerInterval);
+
+  let correctCnt = 0;
+  const unitStats = {};
+  const typeStats = { A: [], B: [], C: [], D: [] };
+  const wrongList = [];
+
+  QUESTIONS.forEach((item, idx) => {
+    if (!unitStats[item.unit]) unitStats[item.unit] = { total: 0, ok: 0 };
+    unitStats[item.unit].total++;
+
+    const card = document.getElementById(`card-${idx}`);
+    const exp = document.getElementById(`exp-${idx}`);
+    exp.classList.add("show");
+
+    const chosen = userAns[idx];
+    const isOk = chosen === item.ans;
+    if (isOk) {
+      correctCnt++;
+      unitStats[item.unit].ok++;
+      card.classList.add("correct");
+    } else {
+      card.classList.add("wrong");
+      wrongList.push(item.num + "번 · " + item.q);
+      if (chosen !== null) {
+        document.getElementById(`lbl-${idx}-${chosen}`).classList.add("ans-bad");
+      }
+    }
+    document.getElementById(`lbl-${idx}-${item.ans}`).classList.add("ans-ok");
+
+    const finalType = userType[idx] || (isOk ? "A" : "B");
+    typeStats[finalType].push(item.num);
+  });
+
+  const score = Math.round((correctCnt / 35) * 100);
+  const avgSec = Math.round(seconds / 35);
+
+  document.getElementById("stat-grid").innerHTML = `
+    <div class="stat-box"><div class="stat-num">${correctCnt} / 35 (${score}점)</div><div class="stat-lbl">정답 수 및 환산 점수</div></div>
+    <div class="stat-box"><div class="stat-num">${formatTime(seconds)}</div><div class="stat-lbl">총 소요 시간 (문항당 ${avgSec}초)</div></div>
+    <div class="stat-box"><div class="stat-num">A:${typeStats.A.length} / B:${typeStats.B.length}</div><div class="stat-lbl">유형 A(완벽) / B(원리부족)</div></div>
+    <div class="stat-box"><div class="stat-num">C:${typeStats.C.length} / D:${typeStats.D.length}</div><div class="stat-lbl">유형 C(생소) / D(계산·적용)</div></div>
+  `;
+
+  let unitHtml = "<h3 style='font-size:15px; margin:12px 0 6px;'>📚 단원별 성취도</h3><table class='mini-tbl' style='width:100%;'><tr><th>단원</th><th>정답/문항</th><th>정답률</th></tr>";
+  const unitLines = [];
+  for (const [u, st] of Object.entries(unitStats).sort(([a], [b]) => a.localeCompare(b, "ko", { numeric: true }))) {
+    const pct = Math.round((st.ok / st.total) * 100);
+    unitHtml += `<tr><td style='text-align:left;'>${u}</td><td>${st.ok} / ${st.total}</td><td><b>${pct}%</b></td></tr>`;
+    unitLines.push(`- ${u}: ${st.ok}/${st.total} (${pct}%)`);
+  }
+  unitHtml += "</table>";
+  document.getElementById("unit-breakdown").innerHTML = unitHtml;
+
+  const speedEval = avgSec <= 60 ? "빠름 (실전 시간 충분)" : avgSec <= 90 ? "적정 (계산 문항 시간 배분 유의)" : "다소 느림 (개념 정립 후 반복 숙달 필요)";
+
+  const reportText = `[클라우드컴퓨팅 전 범위 모의시험 학습 진단 보고서]
+1. 학습 범위 및 문항 수: 전 범위 35문항
+2. 실제 풀이 시간: 총 ${formatTime(seconds)} (문항당 평균 ${avgSec}초)
+3. 득점 결과: ${correctCnt} / 35문항 정답 (${score}점)
+4. A~D 유형 분포:
+   - A (개념 알고 품): ${typeStats.A.length}문항 ${typeStats.A.length ? '(' + typeStats.A.join(', ') + '번)' : ''}
+   - B (원리 부족): ${typeStats.B.length}문항 ${typeStats.B.length ? '(' + typeStats.B.join(', ') + '번)' : ''}
+   - C (개념 생소): ${typeStats.C.length}문항 ${typeStats.C.length ? '(' + typeStats.C.join(', ') + '번)' : ''}
+   - D (계산·적용 막힘): ${typeStats.D.length}문항 ${typeStats.D.length ? '(' + typeStats.D.join(', ') + '번)' : ''}
+5. 단원별 정답률:
+${unitLines.join("\n")}
+6. 오답 문항(재풀이 대상): ${wrongList.length ? "\n" + wrongList.join("\n") : "없음 (만점)"}
+7. 학습 속도 평가: ${speedEval}`;
+
+  document.getElementById("report-textarea").value = reportText;
+  const repSec = document.getElementById("report-section");
+  repSec.style.display = "block";
+  repSec.scrollIntoView({ behavior: "smooth" });
+}
+
+function copyReport() {
+  const ta = document.getElementById("report-textarea");
+  ta.select();
+  document.execCommand("copy");
+  alert("진단 보고서가 클립보드에 복사되었습니다!");
+}
+
+renderQuiz();
+document.querySelectorAll('.mini-tbl').forEach(tbl => {
+  if (!tbl.closest('.mem-wrap') && !tbl.parentElement.classList.contains('tbl-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'tbl-wrap';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  }
+});
+</script>
+</body>
+</html>
