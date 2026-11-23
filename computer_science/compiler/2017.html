@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>컴파일러구성 2017 기출 (35문항)</title>
-<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795400413719&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_000000003d38821181576cf8540f899b%26fn%3D2017-compiler-layout-revised.html%26cd%3Dattachment%26ts%3D498722%26p%3Dfs%26cid%3D1%26sig%3Dd7b8ec9cffbaf9577db984143f4edf4d429b3a87a58d310111353ad06f9ac749%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795400413719&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link rel="stylesheet" href="../quiz.css">
+<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795400413719&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_000000008514821194273a8db6fdff16%26ts%3D498722%26p%3Dfs%26cid%3D1%26sig%3Dceab1a490bc8d19f2101daf93ea3ced102d7e63277365a12bce8c7cc65588e0c%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795400413719&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link rel="stylesheet" href="../quiz.css">
 <style>
 .sim-passage {margin:12px 0 16px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;font-size:13px;line-height:1.65;overflow-x:auto}
 .sim-passage pre {font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;white-space:pre;overflow-x:auto;margin:8px 0;color:#172033}
@@ -32,7 +32,7 @@
 .compiler-svg svg{display:block;width:100%;height:auto;min-width:480px}
 .compiler-pre{max-width:100%;box-sizing:border-box;white-space:pre-wrap;overflow-wrap:anywhere}
 
-.shared-source-note{margin:12px 0 16px;padding:10px 14px;background:#eff6ff;border-left:3px solid #60a5fa;border-radius:5px;font-size:14px}
+.compiler-group-intro{padding:12px 14px;margin:0 0 16px;background:#eef4fc;border-left:4px solid #2563eb;border-radius:5px;line-height:1.7}.compiler-group-ref{font-size:13px;color:#64748b;margin:0 0 12px}.compiler-source-title{font-weight:700;margin:12px 0 4px}.shared-source-note{margin:12px 0 16px;padding:10px 14px;background:#eff6ff;border-left:3px solid #60a5fa;border-radius:5px;font-size:14px}
 .shared-source-note a{color:#1d4ed8;text-decoration:underline}
 .compiler-table-title{font-size:14px;font-weight:700;margin:12px 0 5px}
 .compiler-svg{overflow-x:auto;max-width:100%;box-sizing:border-box}
@@ -100,7 +100,7 @@ const QUESTIONS = [
   {
     "num": 2,
     "unit": "컴파일러구성",
-    "q": "다음은 bccc를 좌단유도하는 과정이다. 관계없는 것은?<pre class=\"compiler-pre\">1) S → bAS\n2) S → c\n3) A → SS\n4) A → a</pre>",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (2~5)</b> 다음 문법을 보고 물음에 답하시오. 단 S는 시작기호이다.</div>다음은 bccc를 좌단유도하는 과정이다. 관계없는 것은?<div class=\"compiler-source-title\">〈문법〉</div><pre class=\"compiler-pre\">1) S → bAS\n2) S → c\n3) A → SS\n4) A → a</pre>",
     "options": [
       "bAS",
       "bSSc",
@@ -113,7 +113,7 @@ const QUESTIONS = [
   {
     "num": 3,
     "unit": "컴파일러구성",
-    "q": "다음은 bccc를 우단유도하는 과정이다. 관계없는 것은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-1\">2번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (2~5) 공통 지문 참조</div>다음은 bccc를 우단유도하는 과정이다. 관계없는 것은?",
     "options": [
       "bAS",
       "bAc",
@@ -126,7 +126,7 @@ const QUESTIONS = [
   {
     "num": 4,
     "unit": "컴파일러구성",
-    "q": "First(A)는?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-1\">2번 문제의 지문·도표 보기 ↑</a></div><div class=\"shared-source-note\">공통 문법: <a href=\"#card-1\">2번 문제의 생성규칙 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (2~5) 공통 지문 참조</div>First(A)는?",
     "options": [
       "a",
       "a, c",
@@ -139,7 +139,7 @@ const QUESTIONS = [
   {
     "num": 5,
     "unit": "컴파일러구성",
-    "q": "Follow(A)는?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-1\">2번 문제의 지문·도표 보기 ↑</a></div><div class=\"shared-source-note\">공통 문법: <a href=\"#card-1\">2번 문제의 생성규칙 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (2~5) 공통 지문 참조</div>Follow(A)는?",
     "options": [
       "a",
       "a, b",
@@ -165,7 +165,7 @@ const QUESTIONS = [
   {
     "num": 7,
     "unit": "컴파일러구성",
-    "q": "다음 중 생성할 수 없는 터미널 문자열은?<pre class=\"compiler-pre\">P : S → aS | A\n    A → bB\n    B → c\n    C → f</pre>",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (7~8)</b> 다음 문법을 보고 물음에 답하시오.</div>다음 중 생성할 수 없는 터미널 문자열은?<div class=\"compiler-source-title\">〈문법〉</div><pre class=\"compiler-pre\">P : S → aS | A\n    A → bB\n    B → c\n    C → f</pre>",
     "options": [
       "f",
       "bc",
@@ -178,7 +178,7 @@ const QUESTIONS = [
   {
     "num": 8,
     "unit": "컴파일러구성",
-    "q": "터미널 문자열을 생성할 수 없는 불필요한 생성규칙은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-6\">7번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (7~8) 공통 지문 참조</div>터미널 문자열을 생성할 수 없는 불필요한 생성규칙은?",
     "options": [
       "S → aS",
       "A → bB",
@@ -243,7 +243,7 @@ const QUESTIONS = [
   {
     "num": 13,
     "unit": "컴파일러구성",
-    "q": "다음은 주어진 문법을 보고 id+id*id를 shift-reduce 구문분석 하는 과정이다. 빈칸을 채우시오. <b>빈칸 ‘가’</b>에 알맞은 것은?<pre class=\"compiler-pre\">1) E → E + E\n2) E → E * E\n3) E → id</pre><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>단계</th><th>스택</th><th>입력</th><th>구문분석 행동</th></tr></thead><tbody><tr><td>0</td><td>$</td><td>id+id*id $</td><td>shift id</td></tr><tr><td>1</td><td>$id</td><td>+id*id $</td><td>reduce E → id</td></tr><tr><td>2</td><td>$E</td><td>+id*id $</td><td>shift +</td></tr><tr><td>3</td><td>$E+</td><td>id*id $</td><td>shift id</td></tr><tr><td>4</td><td>$E+id</td><td>*id $</td><td>reduce E → id</td></tr><tr><td>5</td><td>$E+E</td><td>*id $</td><td>shift *</td></tr><tr><td>6</td><td>$E+E*</td><td>id $</td><td>shift <b>‘가’</b></td></tr><tr><td>7</td><td>$E+E*id</td><td>$</td><td>reduce <b>‘나’</b></td></tr><tr><td>8</td><td>$E+E*E</td><td>$</td><td>reduce <b>‘다’</b></td></tr><tr><td>9</td><td>$E+E</td><td>$</td><td>reduce <b>‘라’</b></td></tr><tr><td>10</td><td>$E</td><td>$</td><td>accept</td></tr></tbody></table></div>",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (13~16)</b> 다음은 주어진 문법을 보고 id+id*id를 shift-reduce 구문분석 하는 과정이다. 물음에 답하시오.</div>다음은 주어진 문법을 보고 id+id*id를 shift-reduce 구문분석 하는 과정이다. 빈칸을 채우시오. <b>빈칸 ‘가’</b>에 알맞은 것은?<div class=\"compiler-source-title\">〈문법〉</div><pre class=\"compiler-pre\">1) E → E + E\n2) E → E * E\n3) E → id</pre><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>단계</th><th>스택</th><th>입력</th><th>구문분석 행동</th></tr></thead><tbody><tr><td>0</td><td>$</td><td>id+id*id $</td><td>shift id</td></tr><tr><td>1</td><td>$id</td><td>+id*id $</td><td>reduce E → id</td></tr><tr><td>2</td><td>$E</td><td>+id*id $</td><td>shift +</td></tr><tr><td>3</td><td>$E+</td><td>id*id $</td><td>shift id</td></tr><tr><td>4</td><td>$E+id</td><td>*id $</td><td>reduce E → id</td></tr><tr><td>5</td><td>$E+E</td><td>*id $</td><td>shift *</td></tr><tr><td>6</td><td>$E+E*</td><td>id $</td><td>shift <b>‘가’</b></td></tr><tr><td>7</td><td>$E+E*id</td><td>$</td><td>reduce <b>‘나’</b></td></tr><tr><td>8</td><td>$E+E*E</td><td>$</td><td>reduce <b>‘다’</b></td></tr><tr><td>9</td><td>$E+E</td><td>$</td><td>reduce <b>‘라’</b></td></tr><tr><td>10</td><td>$E</td><td>$</td><td>accept</td></tr></tbody></table></div>",
     "options": [
       "id",
       "E → id",
@@ -256,7 +256,7 @@ const QUESTIONS = [
   {
     "num": 14,
     "unit": "컴파일러구성",
-    "q": "다음은 주어진 문법을 보고 id+id*id를 shift-reduce 구문분석 하는 과정이다. 빈칸을 채우시오. <b>빈칸 ‘나’</b>에 알맞은 것은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-12\">13번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (13~16) 공통 지문 참조</div><b>빈칸 ‘나’</b>에 알맞은 것은?",
     "options": [
       "id",
       "E → id",
@@ -269,7 +269,7 @@ const QUESTIONS = [
   {
     "num": 15,
     "unit": "컴파일러구성",
-    "q": "다음은 주어진 문법을 보고 id+id*id를 shift-reduce 구문분석 하는 과정이다. 빈칸을 채우시오. <b>빈칸 ‘다’</b>에 알맞은 것은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-12\">13번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (13~16) 공통 지문 참조</div><b>빈칸 ‘다’</b>에 알맞은 것은?",
     "options": [
       "id",
       "E → id",
@@ -282,7 +282,7 @@ const QUESTIONS = [
   {
     "num": 16,
     "unit": "컴파일러구성",
-    "q": "다음은 주어진 문법을 보고 id+id*id를 shift-reduce 구문분석 하는 과정이다. 빈칸을 채우시오. <b>빈칸 ‘라’</b>에 알맞은 것은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-12\">13번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (13~16) 공통 지문 참조</div><b>빈칸 ‘라’</b>에 알맞은 것은?",
     "options": [
       "id",
       "E → id",
@@ -308,7 +308,7 @@ const QUESTIONS = [
   {
     "num": 18,
     "unit": "컴파일러구성",
-    "q": "LR(0) 항목 집합의 Canonical Collection을 구하는 과정이다. I<sub>0</sub>를 보기에 고르면?<pre class=\"compiler-pre\"><b>증강 문법</b>\n0) S′ → E\n1) E → E + T\n2) E → T\n3) T → T * F\n4) T → F\n5) F → (E)\n6) F → id\n\n<b>Canonical Collection</b>\nI₀ = closure({S′ → • E})\nI₁ = GOTO(I₀, E)\nI₂ = GOTO(I₀, T)\nI₃ = GOTO(I₀, F)</pre><pre class=\"compiler-pre\">(가) {T → F •}\n(나) {S′ → E •, E → E • + T}\n(다) {E → T •, T → T • * F}\n(라) {S′ → • E, E → • E + T, E → • T, T → • T * F, T → • F, F → • (E), F → • id}</pre>",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (18~21)</b> 다음은 LR(0) 항목 집합의 Canonical Collection을 구하는 과정이다. 물음에 답하시오.</div>LR(0) 항목 집합의 Canonical Collection을 구하는 과정이다. I<sub>0</sub>를 보기에 고르면?<div class=\"compiler-source-title\">〈보기〉</div><pre class=\"compiler-pre\"><b>증강 문법</b>\n0) S′ → E\n1) E → E + T\n2) E → T\n3) T → T * F\n4) T → F\n5) F → (E)\n6) F → id\n\n<b>Canonical Collection</b>\nI₀ = closure({S′ → • E})\nI₁ = GOTO(I₀, E)\nI₂ = GOTO(I₀, T)\nI₃ = GOTO(I₀, F)</pre><pre class=\"compiler-pre\">(가) {T → F •}\n(나) {S′ → E •, E → E • + T}\n(다) {E → T •, T → T • * F}\n(라) {S′ → • E, E → • E + T, E → • T, T → • T * F, T → • F, F → • (E), F → • id}</pre>",
     "options": [
       "(가)",
       "(나)",
@@ -321,7 +321,7 @@ const QUESTIONS = [
   {
     "num": 19,
     "unit": "컴파일러구성",
-    "q": "LR(0) 항목 집합의 Canonical Collection을 구하는 과정이다. I<sub>1</sub>를 보기에 고르면?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-17\">18번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (18~21) 공통 지문 참조</div>I<sub>1</sub>를 보기에 고르면?",
     "options": [
       "(가)",
       "(나)",
@@ -334,7 +334,7 @@ const QUESTIONS = [
   {
     "num": 20,
     "unit": "컴파일러구성",
-    "q": "LR(0) 항목 집합의 Canonical Collection을 구하는 과정이다. I<sub>2</sub>를 보기에 고르면?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-17\">18번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (18~21) 공통 지문 참조</div>I<sub>2</sub>를 보기에 고르면?",
     "options": [
       "(가)",
       "(나)",
@@ -347,7 +347,7 @@ const QUESTIONS = [
   {
     "num": 21,
     "unit": "컴파일러구성",
-    "q": "LR(0) 항목 집합의 Canonical Collection을 구하는 과정이다. I<sub>3</sub>를 보기에 고르면?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-17\">18번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (18~21) 공통 지문 참조</div>I<sub>3</sub>를 보기에 고르면?",
     "options": [
       "(가)",
       "(나)",
@@ -360,7 +360,7 @@ const QUESTIONS = [
   {
     "num": 22,
     "unit": "컴파일러구성",
-    "q": "GOTO 그래프를 이용하여 SLR 파싱표를 구하는 과정이다. 빈칸 ‘가’에 알맞은 내용은?<div class=\"compiler-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 545 510\" role=\"img\" aria-label=\"원본 상태 전이도 재현\"><defs><marker id=\"arr\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#334155\"/></marker></defs><rect x=\"18\" y=\"140\" width=\"95\" height=\"115\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"65.5\" y=\"202.75\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I0</text><rect x=\"150\" y=\"35\" width=\"75\" height=\"44\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"187.5\" y=\"62.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I1</text><rect x=\"150\" y=\"100\" width=\"75\" height=\"44\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"187.5\" y=\"127.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I2</text><rect x=\"150\" y=\"165\" width=\"75\" height=\"44\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"187.5\" y=\"192.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I3</text><rect x=\"150\" y=\"285\" width=\"95\" height=\"110\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"197.5\" y=\"345.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I4</text><rect x=\"150\" y=\"435\" width=\"75\" height=\"40\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"187.5\" y=\"460.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I5</text><rect x=\"300\" y=\"30\" width=\"85\" height=\"75\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"342.5\" y=\"72.75\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I6</text><rect x=\"300\" y=\"160\" width=\"85\" height=\"75\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"342.5\" y=\"202.75\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I7</text><rect x=\"300\" y=\"340\" width=\"85\" height=\"55\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"342.5\" y=\"372.75\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I8</text><rect x=\"445\" y=\"30\" width=\"75\" height=\"40\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"482.5\" y=\"55.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I9</text><rect x=\"445\" y=\"150\" width=\"75\" height=\"40\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"482.5\" y=\"175.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I10</text><rect x=\"445\" y=\"270\" width=\"75\" height=\"40\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"482.5\" y=\"295.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I11</text><path d=\"M113 197.5 L150 57.0\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"131.5\" y=\"122.25\" font-size=\"12\" fill=\"#172033\">E</text><path d=\"M113 197.5 L150 122.0\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"131.5\" y=\"154.75\" font-size=\"12\" fill=\"#172033\">T</text><path d=\"M113 197.5 L150 187.0\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"131.5\" y=\"187.25\" font-size=\"12\" fill=\"#172033\">F</text><path d=\"M113 197.5 L150 340.0\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"131.5\" y=\"263.75\" font-size=\"12\" fill=\"#172033\">(</text><path d=\"M113 197.5 L150 455.0\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"131.5\" y=\"321.25\" font-size=\"12\" fill=\"#172033\">id</text><path d=\"M225 57.0 L300 67.5\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"262.5\" y=\"57.25\" font-size=\"12\" fill=\"#172033\">+</text><path d=\"M225 122.0 L300 67.5\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"262.5\" y=\"89.75\" font-size=\"12\" fill=\"#172033\">*</text><path d=\"M225 187.0 L300 197.5\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"262.5\" y=\"187.25\" font-size=\"12\" fill=\"#172033\">F</text><path d=\"M162 395 C115 430 115 300 162 300\" fill=\"none\" stroke=\"#334155\" marker-end=\"url(#arr)\"/><text x=\"130\" y=\"340.0\" font-size=\"12\">(</text><path d=\"M245 340.0 L300 367.5\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"272.5\" y=\"348.75\" font-size=\"12\" fill=\"#172033\">E</text><path d=\"M245 340.0 L150 455.0\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"197.5\" y=\"392.5\" font-size=\"12\" fill=\"#172033\">id</text><path d=\"M385 67.5 L300 197.5\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"342.5\" y=\"127.5\" font-size=\"12\" fill=\"#172033\">T</text><path d=\"M385 67.5 L445 50.0\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"415.0\" y=\"53.75\" font-size=\"12\" fill=\"#172033\">T</text><path d=\"M385 197.5 L445 170.0\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"415.0\" y=\"178.75\" font-size=\"12\" fill=\"#172033\">id</text><path d=\"M385 367.5 L445 290.0\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"415.0\" y=\"323.75\" font-size=\"12\" fill=\"#172033\">)</text></svg></div><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>상태</th><th>id</th><th>+</th><th>*</th><th>(</th><th>)</th><th>$</th><th>E</th><th>T</th><th>F</th></tr></thead><tbody><tr><td>0</td><td>S5</td><td></td><td></td><td><b>‘가’</b></td><td></td><td></td><td><b>‘다’</b></td><td></td><td></td></tr><tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td><b>‘나’</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (22~24)</b> 계속해서 GOTO 그래프를 이용하여 SLR 파싱표를 구하는 과정이다. 물음에 답하시오.</div>GOTO 그래프를 이용하여 SLR 파싱표를 구하는 과정이다. 빈칸 ‘가’에 알맞은 내용은?<div class=\"compiler-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 545 510\" role=\"img\" aria-label=\"원본 상태 전이도 재현\"><defs><marker id=\"arr\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#334155\"/></marker></defs><rect x=\"18\" y=\"140\" width=\"95\" height=\"115\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"65.5\" y=\"202.75\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I0</text><rect x=\"150\" y=\"35\" width=\"75\" height=\"44\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"187.5\" y=\"62.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I1</text><rect x=\"150\" y=\"100\" width=\"75\" height=\"44\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"187.5\" y=\"127.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I2</text><rect x=\"150\" y=\"165\" width=\"75\" height=\"44\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"187.5\" y=\"192.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I3</text><rect x=\"150\" y=\"285\" width=\"95\" height=\"110\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"197.5\" y=\"345.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I4</text><rect x=\"150\" y=\"435\" width=\"75\" height=\"40\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"187.5\" y=\"460.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I5</text><rect x=\"300\" y=\"30\" width=\"85\" height=\"75\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"342.5\" y=\"72.75\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I6</text><rect x=\"300\" y=\"160\" width=\"85\" height=\"75\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"342.5\" y=\"202.75\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I7</text><rect x=\"300\" y=\"340\" width=\"85\" height=\"55\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"342.5\" y=\"372.75\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I8</text><rect x=\"445\" y=\"30\" width=\"75\" height=\"40\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"482.5\" y=\"55.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I9</text><rect x=\"445\" y=\"150\" width=\"75\" height=\"40\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"482.5\" y=\"175.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I10</text><rect x=\"445\" y=\"270\" width=\"75\" height=\"40\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"482.5\" y=\"295.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">I11</text><path d=\"M113 180 H130 V57 H150\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"125\" y=\"72\" font-size=\"12\" fill=\"#172033\">E</text><path d=\"M113 191 H138 V122 H150\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"128\" y=\"115\" font-size=\"12\" fill=\"#172033\">T</text><path d=\"M113 202 H150\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"124\" y=\"195\" font-size=\"12\" fill=\"#172033\">F</text><path d=\"M113 215 H128 V325 H150\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"123\" y=\"280\" font-size=\"12\" fill=\"#172033\">(</text><path d=\"M113 236 H119 V455 H150\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"120\" y=\"420\" font-size=\"12\" fill=\"#172033\">id</text><path d=\"M225 57 H262 L300 67\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"262\" y=\"50\" font-size=\"12\" fill=\"#172033\">+</text><path d=\"M225 122 H265 L300 80\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"270\" y=\"103\" font-size=\"12\" fill=\"#172033\">*</text><path d=\"M225 187 H265 L300 197\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"265\" y=\"182\" font-size=\"12\" fill=\"#172033\">F</text><path d=\"M150 330 H136 V300 H150\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"120\" y=\"307\" font-size=\"12\" fill=\"#172033\">(</text><path d=\"M245 340 H270 L300 367\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"268\" y=\"337\" font-size=\"12\" fill=\"#172033\">E</text><path d=\"M245 375 H255 V455 H225\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"254\" y=\"427\" font-size=\"12\" fill=\"#172033\">id</text><path d=\"M385 67 H412 V50 H445\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"405\" y=\"44\" font-size=\"12\" fill=\"#172033\">T</text><path d=\"M385 85 H398 V197 H385\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"402\" y=\"133\" font-size=\"12\" fill=\"#172033\">T</text><path d=\"M385 197 H415 V170 H445\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"411\" y=\"165\" font-size=\"12\" fill=\"#172033\">id</text><path d=\"M385 367 H410 V290 H445\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"403\" y=\"317\" font-size=\"12\" fill=\"#172033\">)</text></svg></div><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>상태</th><th>id</th><th>+</th><th>*</th><th>(</th><th>)</th><th>$</th><th>E</th><th>T</th><th>F</th></tr></thead><tbody><tr><td>0</td><td>S5</td><td></td><td></td><td><b>‘가’</b></td><td></td><td></td><td><b>‘다’</b></td><td></td><td></td></tr><tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td><b>‘나’</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>",
     "options": [
       "S4",
       "S5",
@@ -373,7 +373,7 @@ const QUESTIONS = [
   {
     "num": 23,
     "unit": "컴파일러구성",
-    "q": "GOTO 그래프를 이용하여 SLR 파싱표를 구하는 과정이다. 빈칸 ‘나’에 알맞은 내용은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-21\">22번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (22~24) 공통 지문 참조</div>빈칸 ‘나’에 알맞은 내용은?",
     "options": [
       "r2",
       "r3",
@@ -386,7 +386,7 @@ const QUESTIONS = [
   {
     "num": 24,
     "unit": "컴파일러구성",
-    "q": "GOTO 그래프를 이용하여 SLR 파싱표를 구하는 과정이다. 빈칸 ‘다’에 알맞은 내용은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-21\">22번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (22~24) 공통 지문 참조</div>빈칸 ‘다’에 알맞은 내용은?",
     "options": [
       "1",
       "2",
@@ -399,7 +399,7 @@ const QUESTIONS = [
   {
     "num": 25,
     "unit": "컴파일러구성",
-    "q": "CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. 빈칸 ‘가’에 알맞은 것은?<div class=\"compiler-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 790 650\" role=\"img\" aria-label=\"원본 상태 전이도 재현\"><defs><marker id=\"arr\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#334155\"/></marker></defs><rect x=\"15\" y=\"18\" width=\"205\" height=\"86\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"38\" font-size=\"12\" font-family=\"monospace\">S′ → • S, $</text><text x=\"22\" y=\"55\" font-size=\"12\" font-family=\"monospace\">S → • C C, $</text><text x=\"22\" y=\"72\" font-size=\"12\" font-family=\"monospace\">C → • c C, c/d</text><text x=\"22\" y=\"89\" font-size=\"12\" font-family=\"monospace\">C → • d, c/d</text><rect x=\"310\" y=\"18\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"317\" y=\"38\" font-size=\"12\" font-family=\"monospace\">S′ → S •, $</text><rect x=\"310\" y=\"112\" width=\"205\" height=\"69\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"317\" y=\"132\" font-size=\"12\" font-family=\"monospace\">S → C • C, $</text><text x=\"317\" y=\"149\" font-size=\"12\" font-family=\"monospace\">C → • c C, $</text><text x=\"317\" y=\"166\" font-size=\"12\" font-family=\"monospace\">C → • d, $</text><rect x=\"15\" y=\"200\" width=\"205\" height=\"69\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"220\" font-size=\"12\" font-family=\"monospace\">C → c • C, c/d</text><text x=\"22\" y=\"237\" font-size=\"12\" font-family=\"monospace\">C → • c C, c/d</text><text x=\"22\" y=\"254\" font-size=\"12\" font-family=\"monospace\">C → • d, c/d</text><rect x=\"15\" y=\"380\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"400\" font-size=\"12\" font-family=\"monospace\">C → d •, c/d</text><rect x=\"550\" y=\"112\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"557\" y=\"132\" font-size=\"12\" font-family=\"monospace\">S → C C •, $</text><rect x=\"550\" y=\"230\" width=\"205\" height=\"69\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"557\" y=\"250\" font-size=\"12\" font-family=\"monospace\">C → c • C, $</text><text x=\"557\" y=\"267\" font-size=\"12\" font-family=\"monospace\">C → • c C, $</text><text x=\"557\" y=\"284\" font-size=\"12\" font-family=\"monospace\">C → • d, $</text><rect x=\"310\" y=\"380\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"317\" y=\"400\" font-size=\"12\" font-family=\"monospace\">C → d •, $</text><rect x=\"15\" y=\"500\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"520\" font-size=\"12\" font-family=\"monospace\">C → c C •, c/d</text><rect x=\"550\" y=\"380\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"557\" y=\"400\" font-size=\"12\" font-family=\"monospace\">C → c C •, $</text><path d=\"M220 48 L310 48\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"265.0\" y=\"43.0\" font-size=\"12\" fill=\"#172033\">S</text><path d=\"M220 48 L310 142\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"265.0\" y=\"90.0\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M75 104 L75 200\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"147.0\" font-size=\"12\" fill=\"#172033\">c</text><path d=\"M75 104 L75 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"237.0\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M515 142 L550 142\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"532.5\" y=\"137.0\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M515 142 L550 260\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"532.5\" y=\"196.0\" font-size=\"12\" fill=\"#172033\">c</text><path d=\"M370 181 L370 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"370.0\" y=\"275.5\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M75 269 L75 500\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"379.5\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M35 200 C-10 160 -15 265 30 255\" stroke=\"#334155\" fill=\"none\" marker-end=\"url(#arr)\"/><text x=\"-5\" y=\"215\" font-size=\"12\">c</text><path d=\"M75 269 L75 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"319.5\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M610 299 L610 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"610.0\" y=\"334.5\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M570 230 C525 190 520 295 565 285\" stroke=\"#334155\" fill=\"none\" marker-end=\"url(#arr)\"/><text x=\"530\" y=\"245\" font-size=\"12\">c</text><path d=\"M610 299 L370 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"490.0\" y=\"334.5\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M15 70 H4 V415 H15\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#arr)\"/><text x=\"7\" y=\"64\" font-size=\"13\">d</text></svg></div><div class=\"compiler-table-title\">CLR 파싱표 — 구문분석기의 행동(c, d, $) / GOTO 함수(S, C)</div><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>상태</th><th>c</th><th>d</th><th>$</th><th>S</th><th>C</th></tr></thead><tbody><tr><td>0</td><td>S3</td><td><b>‘가’</b></td><td></td><td>1</td><td>2</td></tr><tr><td>1</td><td></td><td></td><td>acc</td><td></td><td></td></tr><tr><td>2</td><td>S6</td><td>S7</td><td></td><td></td><td>5</td></tr><tr><td>3</td><td>S3</td><td>S4</td><td></td><td></td><td><b>‘나’</b></td></tr><tr><td>4</td><td>r3</td><td>r3</td><td></td><td></td><td></td></tr><tr><td>5</td><td></td><td></td><td>r1</td><td></td><td></td></tr><tr><td>6</td><td>S6</td><td>S7</td><td></td><td></td><td>9</td></tr><tr><td>7</td><td></td><td></td><td>r3</td><td></td><td></td></tr><tr><td>8</td><td><b>‘다’</b></td><td>r2</td><td></td><td></td><td></td></tr><tr><td>9</td><td></td><td></td><td>r2</td><td></td><td></td></tr></tbody></table></div>",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (25~27)</b> 다음은 CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. 물음에 답하시오.</div>CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. 빈칸 ‘가’에 알맞은 것은?<div class=\"compiler-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 790 650\" role=\"img\" aria-label=\"원본 상태 전이도 재현\"><defs><marker id=\"arr\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#334155\"/></marker></defs><rect x=\"15\" y=\"18\" width=\"205\" height=\"86\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"38\" font-size=\"12\" font-family=\"monospace\">S′ → • S, $</text><text x=\"22\" y=\"55\" font-size=\"12\" font-family=\"monospace\">S → • C C, $</text><text x=\"22\" y=\"72\" font-size=\"12\" font-family=\"monospace\">C → • c C, c/d</text><text x=\"22\" y=\"89\" font-size=\"12\" font-family=\"monospace\">C → • d, c/d</text><rect x=\"310\" y=\"18\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"317\" y=\"38\" font-size=\"12\" font-family=\"monospace\">S′ → S •, $</text><rect x=\"310\" y=\"112\" width=\"205\" height=\"69\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"317\" y=\"132\" font-size=\"12\" font-family=\"monospace\">S → C • C, $</text><text x=\"317\" y=\"149\" font-size=\"12\" font-family=\"monospace\">C → • c C, $</text><text x=\"317\" y=\"166\" font-size=\"12\" font-family=\"monospace\">C → • d, $</text><rect x=\"15\" y=\"200\" width=\"205\" height=\"69\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"220\" font-size=\"12\" font-family=\"monospace\">C → c • C, c/d</text><text x=\"22\" y=\"237\" font-size=\"12\" font-family=\"monospace\">C → • c C, c/d</text><text x=\"22\" y=\"254\" font-size=\"12\" font-family=\"monospace\">C → • d, c/d</text><rect x=\"15\" y=\"380\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"400\" font-size=\"12\" font-family=\"monospace\">C → d •, c/d</text><rect x=\"550\" y=\"112\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"557\" y=\"132\" font-size=\"12\" font-family=\"monospace\">S → C C •, $</text><rect x=\"550\" y=\"230\" width=\"205\" height=\"69\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"557\" y=\"250\" font-size=\"12\" font-family=\"monospace\">C → c • C, $</text><text x=\"557\" y=\"267\" font-size=\"12\" font-family=\"monospace\">C → • c C, $</text><text x=\"557\" y=\"284\" font-size=\"12\" font-family=\"monospace\">C → • d, $</text><rect x=\"310\" y=\"380\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"317\" y=\"400\" font-size=\"12\" font-family=\"monospace\">C → d •, $</text><rect x=\"15\" y=\"500\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"22\" y=\"520\" font-size=\"12\" font-family=\"monospace\">C → c C •, c/d</text><rect x=\"550\" y=\"380\" width=\"160\" height=\"35\" rx=\"3\" fill=\"white\" stroke=\"#475569\" stroke-width=\"1.5\"/><text x=\"557\" y=\"400\" font-size=\"12\" font-family=\"monospace\">C → c C •, $</text><path d=\"M220 48 L310 48\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"265.0\" y=\"43.0\" font-size=\"12\" fill=\"#172033\">S</text><path d=\"M220 48 L310 142\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"265.0\" y=\"90.0\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M75 104 L75 200\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"147.0\" font-size=\"12\" fill=\"#172033\">c</text><path d=\"M75 104 L75 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"237.0\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M515 142 L550 142\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"532.5\" y=\"137.0\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M515 142 L550 260\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"532.5\" y=\"196.0\" font-size=\"12\" fill=\"#172033\">c</text><path d=\"M370 181 L370 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"370.0\" y=\"275.5\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M75 269 L75 500\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"379.5\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M35 200 C-10 160 -15 265 30 255\" stroke=\"#334155\" fill=\"none\" marker-end=\"url(#arr)\"/><text x=\"-5\" y=\"215\" font-size=\"12\">c</text><path d=\"M75 269 L75 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"75.0\" y=\"319.5\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M610 299 L610 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"610.0\" y=\"334.5\" font-size=\"12\" fill=\"#172033\">C</text><path d=\"M570 230 C525 190 520 295 565 285\" stroke=\"#334155\" fill=\"none\" marker-end=\"url(#arr)\"/><text x=\"530\" y=\"245\" font-size=\"12\">c</text><path d=\"M610 299 L370 380\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"490.0\" y=\"334.5\" font-size=\"12\" fill=\"#172033\">d</text><path d=\"M15 70 H4 V415 H15\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.5\" marker-end=\"url(#arr)\"/><text x=\"7\" y=\"64\" font-size=\"13\">d</text></svg></div><div class=\"compiler-table-title\">CLR 파싱표 — 구문분석기의 행동(c, d, $) / GOTO 함수(S, C)</div><div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>상태</th><th>c</th><th>d</th><th>$</th><th>S</th><th>C</th></tr></thead><tbody><tr><td>0</td><td>S3</td><td><b>‘가’</b></td><td></td><td>1</td><td>2</td></tr><tr><td>1</td><td></td><td></td><td>acc</td><td></td><td></td></tr><tr><td>2</td><td>S6</td><td>S7</td><td></td><td></td><td>5</td></tr><tr><td>3</td><td>S3</td><td>S4</td><td></td><td></td><td><b>‘나’</b></td></tr><tr><td>4</td><td>r3</td><td>r3</td><td></td><td></td><td></td></tr><tr><td>5</td><td></td><td></td><td>r1</td><td></td><td></td></tr><tr><td>6</td><td>S6</td><td>S7</td><td></td><td></td><td>9</td></tr><tr><td>7</td><td></td><td></td><td>r3</td><td></td><td></td></tr><tr><td>8</td><td><b>‘다’</b></td><td>r2</td><td></td><td></td><td></td></tr><tr><td>9</td><td></td><td></td><td>r2</td><td></td><td></td></tr></tbody></table></div>",
     "options": [
       "S3",
       "S4",
@@ -412,7 +412,7 @@ const QUESTIONS = [
   {
     "num": 26,
     "unit": "컴파일러구성",
-    "q": "CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. 빈칸 ‘나’에 알맞은 것은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-24\">25번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (25~27) 공통 지문 참조</div>빈칸 ‘나’에 알맞은 것은?",
     "options": [
       "3",
       "5",
@@ -425,7 +425,7 @@ const QUESTIONS = [
   {
     "num": 27,
     "unit": "컴파일러구성",
-    "q": "CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. 빈칸 ‘다’에 알맞은 것은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-24\">25번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (25~27) 공통 지문 참조</div>빈칸 ‘다’에 알맞은 것은?",
     "options": [
       "S3",
       "S4",
@@ -438,7 +438,7 @@ const QUESTIONS = [
   {
     "num": 28,
     "unit": "컴파일러구성",
-    "q": "다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘가’에 알맞은 것은?<div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>단계</th><th>스택</th><th>입력기호</th><th>구문분석 내용</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>cdcd$</td><td>shift 3</td></tr><tr><td>1</td><td>0c3</td><td>dcd$</td><td>shift 4</td></tr><tr><td>2</td><td>0c3d4</td><td>cd$</td><td>reduce 3</td></tr><tr><td>3</td><td>0c3C</td><td>cd$</td><td>goto 8</td></tr><tr><td>4</td><td>0c3C8</td><td>cd$</td><td>reduce 2</td></tr><tr><td>5</td><td>0C</td><td>cd$</td><td><b>‘가’</b></td></tr><tr><td>6</td><td>0C2</td><td>cd$</td><td><b>‘나’</b></td></tr><tr><td>7</td><td>0C2c6</td><td>d$</td><td><b>‘다’</b></td></tr><tr><td>8</td><td>0C2c6d7</td><td>$</td><td><b>‘라’</b></td></tr></tbody></table></div>",
+    "q": "<div class=\"compiler-group-intro\"><b>※ (28~31)</b> 계속해서 다음은 앞에서 구해진 CLR 파싱표를 이용하여 구문분석하는 과정이다. 물음에 답하시오.</div>다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘가’에 알맞은 것은?<div class=\"compiler-table-wrap\"><table class=\"compiler-table\"><thead><tr><th>단계</th><th>스택</th><th>입력기호</th><th>구문분석 내용</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>cdcd$</td><td>shift 3</td></tr><tr><td>1</td><td>0c3</td><td>dcd$</td><td>shift 4</td></tr><tr><td>2</td><td>0c3d4</td><td>cd$</td><td>reduce 3</td></tr><tr><td>3</td><td>0c3C</td><td>cd$</td><td>goto 8</td></tr><tr><td>4</td><td>0c3C8</td><td>cd$</td><td>reduce 2</td></tr><tr><td>5</td><td>0C</td><td>cd$</td><td><b>‘가’</b></td></tr><tr><td>6</td><td>0C2</td><td>cd$</td><td><b>‘나’</b></td></tr><tr><td>7</td><td>0C2c6</td><td>d$</td><td><b>‘다’</b></td></tr><tr><td>8</td><td>0C2c6d7</td><td>$</td><td><b>‘라’</b></td></tr></tbody></table></div>",
     "options": [
       "shift 6",
       "shift 7",
@@ -451,7 +451,7 @@ const QUESTIONS = [
   {
     "num": 29,
     "unit": "컴파일러구성",
-    "q": "다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘나’에 알맞은 것은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-27\">28번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (28~31) 공통 지문 참조</div>다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘나’에 알맞은 것은?",
     "options": [
       "shift 6",
       "shift 7",
@@ -464,7 +464,7 @@ const QUESTIONS = [
   {
     "num": 30,
     "unit": "컴파일러구성",
-    "q": "다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘다’에 알맞은 것은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-27\">28번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (28~31) 공통 지문 참조</div>다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘다’에 알맞은 것은?",
     "options": [
       "shift 6",
       "shift 7",
@@ -477,7 +477,7 @@ const QUESTIONS = [
   {
     "num": 31,
     "unit": "컴파일러구성",
-    "q": "다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘라’에 알맞은 것은?<div class=\"shared-source-note\">공통 자료: <a href=\"#card-27\">28번 문제의 지문·도표 보기 ↑</a></div>",
+    "q": "<div class=\"compiler-group-ref\">※ (28~31) 공통 지문 참조</div>다음은 앞에서 구현된 CLR 파싱표를 이용하여 문장 cdcd에 대한 구문분석의 일부이다. 빈칸 ‘라’에 알맞은 것은?",
     "options": [
       "shift 6",
       "shift 7",
@@ -503,7 +503,7 @@ const QUESTIONS = [
   {
     "num": 33,
     "unit": "컴파일러구성",
-    "q": "다음 그림에서 빈칸의 A, B에 들어갈 내용으로 알맞은 것은?<div class=\"compiler-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 860 170\" role=\"img\" aria-label=\"원본 상태 전이도 재현\"><defs><marker id=\"arr\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#334155\"/></marker></defs><rect x=\"250\" y=\"20\" width=\"115\" height=\"42\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"307.5\" y=\"47.3\" text-anchor=\"middle\" font-size=\"18\" fill=\"#172033\">A</text><rect x=\"105\" y=\"103\" width=\"115\" height=\"42\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"162.5\" y=\"130.3\" text-anchor=\"middle\" font-size=\"18\" fill=\"#172033\">B</text><rect x=\"350\" y=\"103\" width=\"125\" height=\"42\" rx=\"3\" fill=\"#fff\" stroke=\"#475569\" stroke-width=\"1.4\"/><text x=\"412.5\" y=\"129.25\" text-anchor=\"middle\" font-size=\"15\" fill=\"#172033\">구문분석기</text><path d=\"M307 62 L307 103\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><path d=\"M220 124 L350 124\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"275\" y=\"115\" font-size=\"12\" fill=\"#172033\">토큰</text><path d=\"M475 124 L635 124\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"5\" y=\"119\" font-size=\"14\">원시 프로그램</text><path d=\"M92 124 L105 124\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.4\" marker-end=\"url(#arr)\"/><text x=\"245\" y=\"13\" font-size=\"13\">문법규칙과 수행코드</text><text x=\"650\" y=\"112\" font-size=\"12\">수행코드에 의해 생성된</text><text x=\"650\" y=\"129\" font-size=\"12\">구문분석기의 출력</text></svg></div>",
+    "q": "다음 그림에서 빈칸의 A, B에 들어갈 내용으로 알맞은 것은?<div class=\"compiler-svg\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 860 190\" role=\"img\" aria-label=\"어휘분석기 생성 과정\"><defs><marker id=\"arrow33\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 L8 4 L0 8 Z\" fill=\"#334155\"/></marker></defs><g fill=\"white\" stroke=\"#475569\" stroke-width=\"1.6\"><rect x=\"270\" y=\"48\" width=\"110\" height=\"40\"/><rect x=\"115\" y=\"125\" width=\"115\" height=\"40\"/><rect x=\"385\" y=\"125\" width=\"135\" height=\"40\"/></g><g font-size=\"17\" fill=\"#172033\" text-anchor=\"middle\"><text x=\"325\" y=\"74\">A</text><text x=\"172\" y=\"151\">B</text><text x=\"452\" y=\"151\">구문분석기</text></g><g stroke=\"#334155\" stroke-width=\"1.6\" fill=\"none\" marker-end=\"url(#arrow33)\"><path d=\"M325 20 V47\"/><path d=\"M325 88 V125 H385\"/><path d=\"M25 145 H115\"/><path d=\"M230 145 H385\"/><path d=\"M520 145 H630\"/></g><g fill=\"#172033\" font-size=\"13\"><text x=\"325\" y=\"15\" text-anchor=\"middle\">문법규칙과 수행코드</text><text x=\"5\" y=\"122\">원시 프로그램</text><text x=\"305\" y=\"137\">토큰</text><text x=\"643\" y=\"135\">수행코드에 의해 생성된</text><text x=\"643\" y=\"154\">구문분석기의 출력</text></g></svg></div>",
     "options": [
       "A: 어휘분석기, B: YACC",
       "A: YACC, B: 어휘분석기",
@@ -529,7 +529,7 @@ const QUESTIONS = [
   {
     "num": 35,
     "unit": "컴파일러구성",
-    "q": "산술식 S := E * 3.14 + C / E 에 대한 중간코드를 다음과 같이 표현한다면 어떤 방법인가?<pre class=\"compiler-pre\">S := E * 3.14 + C / E</pre><pre class=\"compiler-pre\">(*, E, 3.14, T₀)\n(/, C, E, T₁)\n(+, T₀, T₁, T₂)\n(:=, T₂, Φ, S)</pre>",
+    "q": "산술식 S := E * 3.14 + C / E 에 대한 중간코드를 다음과 같이 표현한다면 어떤 방법인가?<pre class=\"compiler-pre\">(*, E, 3.14, T₀)\n(/, C, E, T₁)\n(+, T₀, T₁, T₂)\n(:=, T₂, Φ, S)</pre>",
     "options": [
       "후위표현",
       "triple 표현",
