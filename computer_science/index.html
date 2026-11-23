@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport"/>
 <title>방송통신대 컴퓨터과학과 기말시험 통합 문제은행 (7과목)</title>
 <style>
   :root {
@@ -172,130 +173,117 @@
     color: #0f172a;
   }
 </style>
-<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795354934217&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_00000000acc88211b03bee6256ef7153%26fn%3Dindex-computer-science-2015-2019.html%26cd%3Dattachment%26ts%3D498710%26p%3Dfs%26cid%3D1%26sig%3Dad2ba31ef1046b47c624d35ec2e87f921cbd682c21e984277624d61738229ea0%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795354934217&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script></head>
+<script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795422037400&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_0000000069008211893d88f0f4c8aa77%26fn%3Dindex.html%26cd%3Dattachment%26ts%3D498729%26p%3Dfs%26cid%3D1%26sig%3Dcb44688b129f95a5e7970d4116fa70e75289fa7ce2ea5eaee0cdf8d8463c2998%26v%3D0&amp;app=brave.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="1ab657479fd24154b656d9e619d" src="//local.adguard.org?ts=1795422037400&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script></head>
 <body>
-
 <div class="hero">
-  <span class="badge">2026학년도 2학기 기말시험 대비 · 총 7과목 (📝 기출 보유 과목)</span>
-  <h1>컴퓨터과학과 기출 문제은행 포털</h1>
-  <p>과목별 과년도 기출 풀이 · 실시간 속도 측정 · A~D 취약 유형 자동 진단</p>
-  <div style="margin-top:14px;"><a href="./converter.html" style="display:inline-block; background:#38bdf8; color:#0f172a; padding:8px 16px; border-radius:99px; font-size:13px; font-weight:800; text-decoration:none;">⚙️ 기출 PDF → 문제은행 자동 변환기 열기</a></div>
+<span class="badge">2026학년도 2학기 기말시험 대비 · 총 7과목 (📝 기출 보유 과목)</span>
+<h1>컴퓨터과학과 기출 문제은행 포털</h1>
+<p>과목별 과년도 기출 풀이 · 실시간 속도 측정 · A~D 취약 유형 자동 진단</p>
+<div style="margin-top:14px;"><a href="./converter.html" style="display:inline-block; background:#38bdf8; color:#0f172a; padding:8px 16px; border-radius:99px; font-size:13px; font-weight:800; text-decoration:none;">⚙️ 기출 PDF → 문제은행 자동 변환기 열기</a></div>
 </div>
-
 <div class="container">
-  <div class="tab-bar" id="tab-bar">
-    <button type="button" class="tab-btn active" onclick="filterSubject('all', this)">전체</button>
-    <button type="button" class="tab-btn" onclick="filterSubject('computer-arch', this)">📝컴구조</button>
-    <button type="button" class="tab-btn" onclick="filterSubject('simulation', this)">📝시뮬</button>
-    <button type="button" class="tab-btn" onclick="filterSubject('cloud-computing', this)">클컴</button>
-    <button type="button" class="tab-btn" onclick="filterSubject('ai-literacy', this)">AI리</button>
-    <button type="button" class="tab-btn" onclick="filterSubject('intro-cs', this)">📝컴과개</button>
-    <button type="button" class="tab-btn" onclick="filterSubject('compiler', this)">📝컴파</button>
-    <button type="button" class="tab-btn" onclick="filterSubject('opensource-data', this)">오픈소스</button>
-  </div>
-
-  <div class="subject-grid" id="subject-grid">
-    <div class="subj-card" data-subj="computer-arch">
-      <div class="subj-header">
-        <h2 class="subj-title">📝 1. 컴퓨터구조</h2>
-        <span class="status-pill status-ready">4개년 자료 (140문항)</span>
-      </div>
-      <div class="exam-links">
-        <a class="exam-btn" href="./computer-arch/2016.html">
-          <span>2016학년도 기출 (35문항)</span>
-          <span class="arrow">→</span>
-        </a>
-        <a class="exam-btn" href="./computer-arch/2017.html">
-          <span>2017학년도 기출 (35문항)</span>
-          <span class="arrow">→</span>
-        </a>
-        <a class="exam-btn" href="computer-arch/2018.html"><span>2018학년도 기출 (35문항)</span><span>→</span></a>
-        <a class="exam-btn" href="./computer-arch/2019.html">
-          <span>2019학년도 기출 (35문항)</span>
-          <span class="arrow">→</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="subj-card" data-subj="simulation">
-      <div class="subj-header">
-        <h2 class="subj-title">📝 2. 시뮬레이션</h2>
-        <span class="status-pill status-ready">2017~2019년 105문항</span>
-      </div>
-      <div class="exam-links">
-        <a class="exam-btn" href="./simulation/2017.html">
-          <span>2017학년도 기출 (35문항)</span>
-          <span class="arrow">→</span>
-        </a>
-        <a class="exam-btn" href="./simulation/2018.html"><span>2018학년도 기출 (35문항)</span><span class="arrow">→</span></a>
-        <a class="exam-btn" href="./simulation/2019.html"><span>2019학년도 기출 (35문항)</span><span class="arrow">→</span></a>
-      </div>
-    </div>
-
-    <div class="subj-card" data-subj="cloud-computing">
-      <div class="subj-header">
-        <h2 class="subj-title">3. 클라우드컴퓨팅</h2>
-        <span class="status-pill status-wait">모의고사 문제은행 대기</span>
-      </div>
-      <div class="placeholder-box">
+<div class="tab-bar" id="tab-bar">
+<button class="tab-btn active" onclick="filterSubject('all', this)" type="button">전체</button>
+<button class="tab-btn" onclick="filterSubject('computer-arch', this)" type="button">📝컴퓨터구조</button>
+<button class="tab-btn" onclick="filterSubject('simulation', this)" type="button">📝시뮬레이션</button>
+<button class="tab-btn" onclick="filterSubject('cloud-computing', this)" type="button">클라우드컴퓨팅</button>
+<button class="tab-btn" onclick="filterSubject('ai-literacy', this)" type="button">AI리터러시</button>
+<button class="tab-btn" onclick="filterSubject('intro-cs', this)" type="button">📝컴퓨터과학개론</button>
+<button class="tab-btn" onclick="filterSubject('compiler', this)" type="button">📝컴파일러구성</button>
+<button class="tab-btn" onclick="filterSubject('opensource-data', this)" type="button">오픈소스기반데이터분석</button>
+</div>
+<div class="subject-grid" id="subject-grid">
+<div class="subj-card" data-subj="computer-arch">
+<div class="subj-header">
+<h2 class="subj-title">📝 1. 컴퓨터구조</h2>
+<span class="status-pill status-ready">4개년 자료 (140문항)</span>
+</div>
+<div class="exam-links">
+<a class="exam-btn" href="./computer-arch/2016.html">
+<span>2016학년도 기출 (35문항)</span>
+<span class="arrow">→</span>
+</a>
+<a class="exam-btn" href="./computer-arch/2017.html">
+<span>2017학년도 기출 (35문항)</span>
+<span class="arrow">→</span>
+</a>
+<a class="exam-btn" href="computer-arch/2018.html"><span>2018학년도 기출 (35문항)</span><span>→</span></a>
+<a class="exam-btn" href="./computer-arch/2019.html">
+<span>2019학년도 기출 (35문항)</span>
+<span class="arrow">→</span>
+</a>
+</div>
+</div>
+<div class="subj-card" data-subj="simulation">
+<div class="subj-header">
+<h2 class="subj-title">📝 2. 시뮬레이션</h2>
+<span class="status-pill status-ready">2017~2019년 105문항</span>
+</div>
+<div class="exam-links">
+<a class="exam-btn" href="./simulation/2017.html">
+<span>2017학년도 기출 (35문항)</span>
+<span class="arrow">→</span>
+</a>
+<a class="exam-btn" href="./simulation/2018.html"><span>2018학년도 기출 (35문항)</span><span class="arrow">→</span></a>
+<a class="exam-btn" href="./simulation/2019.html"><span>2019학년도 기출 (35문항)</span><span class="arrow">→</span></a>
+</div>
+</div>
+<div class="subj-card" data-subj="cloud-computing">
+<div class="subj-header">
+<h2 class="subj-title">3. 클라우드컴퓨팅</h2>
+<span class="status-pill status-wait">모의고사 문제은행 대기</span>
+</div>
+<div class="placeholder-box">
         폴더 경로: <code>./cloud-computing/</code> (강의안·형성평가 기반 모의고사 추가 가능)
       </div>
-    </div>
-
-    <div class="subj-card" data-subj="ai-literacy">
-      <div class="subj-header">
-        <h2 class="subj-title">4. AI리터러시</h2>
-        <span class="status-pill status-wait">모의고사 문제은행 대기</span>
-      </div>
-      <div class="placeholder-box">
+</div>
+<div class="subj-card" data-subj="ai-literacy">
+<div class="subj-header">
+<h2 class="subj-title">4. AI리터러시</h2>
+<span class="status-pill status-wait">모의고사 문제은행 대기</span>
+</div>
+<div class="placeholder-box">
         폴더 경로: <code>./ai-literacy/</code> (강의안·형성평가 기반 모의고사 추가 가능)
       </div>
-    </div>
-
-    <div class="subj-card" data-subj="intro-cs">
-      <div class="subj-header">
-        <h2 class="subj-title">📝 5. 컴퓨터과학 개론</h2>
-        <span class="status-pill status-ready">2015~2019년 175문항</span>
-      </div>
-      <div class="exam-links">
-        <a class="exam-btn" href="./computer-science/2015.html"><span>2015학년도 기출 (35문항)</span><span class="arrow">→</span></a>
-        <a class="exam-btn" href="./computer-science/2016.html"><span>2016학년도 기출 (35문항)</span><span class="arrow">→</span></a>
-        <a class="exam-btn" href="./computer-science/2017.html"><span>2017학년도 기출 (35문항)</span><span class="arrow">→</span></a>
-        <a class="exam-btn" href="./computer-science/2018.html"><span>2018학년도 기출 (35문항)</span><span class="arrow">→</span></a>
-        <a class="exam-btn" href="./computer-science/2019.html"><span>2019학년도 기출 (35문항)</span><span class="arrow">→</span></a>
-      </div>
-    </div>
-
-    <div class="subj-card" data-subj="compiler">
-      <div class="subj-header">
-        <h2 class="subj-title">📝 6. 컴파일러구성</h2>
-        <span class="status-pill status-wait">기출 문제은행 대기</span>
-      </div>
-      <div class="placeholder-box">
-        폴더 경로: <code>./compiler/</code> (기출 HTML 제작 후 파일 추가 시 연결 가능)
-      </div>
-    </div>
-
-    <div class="subj-card" data-subj="opensource-data">
-      <div class="subj-header">
-        <h2 class="subj-title">7. 오픈소스기반데이터분석</h2>
-        <span class="status-pill status-wait">모의고사 문제은행 대기</span>
-      </div>
-      <div class="placeholder-box">
-        폴더 경로: <code>./opensource-data/</code> (강의안·형성평가 기반 모의고사 추가 가능)
-      </div>
-    </div>
-  </div>
-
-  <div class="guide-card">
-    <h3>🗂️ GitHub Pages 확장 구조 안내</h3>
-    <ul>
-      <li><b>과목 구분 표시:</b> <code>📝</code> 이모지가 붙은 과목(컴퓨터구조, 시뮬레이션, 컴퓨터과학 개론, 컴파일러구성)은 과년도 기출문제가 제공되는 과목입니다.</li>
-      <li><b>A~D 유형 자가 진단:</b> 각 퀴즈 페이지에서 유형 체크 후 제출하면 단원별 정답률과 복습 우선순위 보고서가 자동 생성됩니다.</li>
-    </ul>
-  </div>
+</div>
+<div class="subj-card" data-subj="intro-cs">
+<div class="subj-header">
+<h2 class="subj-title">📝 5. 컴퓨터과학개론</h2>
+<span class="status-pill status-ready">2015~2019년 175문항</span>
+</div>
+<div class="exam-links">
+<a class="exam-btn" href="./intro-cs/2015.html"><span>2015학년도 기출 (35문항)</span><span class="arrow">→</span></a>
+<a class="exam-btn" href="./intro-cs/2016.html"><span>2016학년도 기출 (35문항)</span><span class="arrow">→</span></a>
+<a class="exam-btn" href="./intro-cs/2017.html"><span>2017학년도 기출 (35문항)</span><span class="arrow">→</span></a>
+<a class="exam-btn" href="./intro-cs/2018.html"><span>2018학년도 기출 (35문항)</span><span class="arrow">→</span></a>
+<a class="exam-btn" href="./intro-cs/2019.html"><span>2019학년도 기출 (35문항)</span><span class="arrow">→</span></a>
+</div>
+</div>
+<div class="subj-card" data-subj="compiler">
+<div class="subj-header">
+<h2 class="subj-title">📝 6. 컴파일러구성</h2>
+<span class="status-pill status-ready">2017~2019년 105문항</span>
 </div>
 
+<div class="exam-links"><a class="exam-btn" href="./compiler/2017.html"><span>2017학년도 기출 (35문항)</span><span class="arrow">→</span></a><a class="exam-btn" href="./compiler/2018.html"><span>2018학년도 기출 (35문항)</span><span class="arrow">→</span></a><a class="exam-btn" href="./compiler/2019.html"><span>2019학년도 기출 (35문항)</span><span class="arrow">→</span></a></div></div>
+<div class="subj-card" data-subj="opensource-data">
+<div class="subj-header">
+<h2 class="subj-title">7. 오픈소스기반데이터분석</h2>
+<span class="status-pill status-wait">모의고사 문제은행 대기</span>
+</div>
+<div class="placeholder-box">
+        폴더 경로: <code>./opensource-data/</code> (강의안·형성평가 기반 모의고사 추가 가능)
+      </div>
+</div>
+</div>
+<div class="guide-card">
+<h3>🗂️ GitHub Pages 확장 구조 안내</h3>
+<ul>
+<li><b>과목 구분 표시:</b> <code>📝</code> 이모지가 붙은 과목(컴퓨터구조, 시뮬레이션, 컴퓨터과학 개론, 컴파일러구성)은 과년도 기출문제가 제공되는 과목입니다.</li>
+<li><b>A~D 유형 자가 진단:</b> 각 퀴즈 페이지에서 유형 체크 후 제출하면 단원별 정답률과 복습 우선순위 보고서가 자동 생성됩니다.</li>
+</ul>
+</div>
+</div>
 <script>
 function filterSubject(subjKey, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
