@@ -1,0 +1,224 @@
+/* quiz.css - 방송통신대 기출 문제은행 공통 스타일 */
+:root {
+  --bg: #f4f6f9;
+  --card: #ffffff;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --ok: #16a34a;
+  --ok-bg: #dcfce7;
+  --bad: #dc2626;
+  --bad-bg: #fee2e2;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0; padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--bg); color: var(--text);
+  line-height: 1.55;
+}
+
+/* 상단 고정 바 & 메인으로 버튼 */
+.top-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: #0f172a; color: #fff;
+  padding: 12px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.top-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.btn-home {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #1e293b; color: #e2e8f0;
+  border: 1px solid #475569; border-radius: 6px;
+  padding: 6px 10px; font-size: 12px; font-weight: 700;
+  text-decoration: none; white-space: nowrap; flex-shrink: 0;
+  transition: all 0.15s;
+}
+.btn-home:hover {
+  background: #334155; color: #fff; border-color: #94a3b8;
+}
+.top-title { font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.top-sub { font-size: 12px; color: #94a3b8; }
+.timer-box { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.timer-val {
+  font-variant-numeric: tabular-nums;
+  font-size: 16px; font-weight: 700; color: #38bdf8;
+  background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px;
+}
+.btn-pause {
+  background: #334155; color: #fff; border: none;
+  padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 600;
+  cursor: pointer; white-space: nowrap;
+}
+
+/* 레이아웃 & 진행률 */
+.container { max-width: 760px; margin: 0 auto; padding: 16px 12px 80px; }
+.intro-card {
+  background: var(--card); border-radius: 12px; padding: 16px;
+  margin-bottom: 16px; border: 1px solid var(--border);
+}
+.intro-card h2 { margin: 0 0 6px; font-size: 17px; }
+.intro-card p { margin: 0; font-size: 13px; color: var(--muted); }
+.progress-wrap {
+  margin-top: 10px; background: #e2e8f0; height: 8px; border-radius: 99px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; background: var(--primary); width: 0%; transition: width 0.2s;
+}
+
+/* 문제 카드 & 지문/코드/다이어그램 */
+.q-card {
+  background: var(--card); border-radius: 12px; padding: 16px;
+  margin-bottom: 14px; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+.q-card.correct { border-color: var(--ok); background: #f7fee7; }
+.q-card.wrong { border-color: var(--bad); background: #fef2f2; }
+.q-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 8px; font-size: 12px;
+}
+.q-num { font-weight: 800; color: var(--primary); font-size: 14px; }
+.q-unit {
+  background: #eff6ff; color: #1d4ed8; padding: 2px 8px; border-radius: 99px; font-weight: 600;
+}
+.q-text { font-size: 15px; font-weight: 600; margin-bottom: 12px; word-break: keep-all; }
+.passage-box {
+  background: #f8fafc; border: 1.5px solid #94a3b8; border-radius: 10px;
+  padding: 12px 14px; margin: 10px 0 12px; font-size: 13px; font-weight: 500;
+}
+.passage-title {
+  font-weight: 800; color: #0f172a; margin-bottom: 6px; font-size: 13.5px;
+}
+.cond-box {
+  background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px;
+  padding: 8px 10px; margin: 6px 0; font-size: 12.5px;
+}
+.code-pre {
+  background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px;
+  padding: 10px 12px; margin: 6px 0 0; font-size: 12.5px; line-height: 1.45;
+  font-family: "SFMono-Regular", Consolas, "Malgun Gothic", monospace;
+  white-space: pre-wrap; overflow-x: auto;
+}
+.code-box, .diagram-box, .quote-box {
+  background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px;
+  padding: 10px 12px; margin: 10px 0; font-size: 13px; font-weight: 500;
+  font-family: "SFMono-Regular", Consolas, "Malgun Gothic", monospace;
+  overflow-x: auto;
+}
+.mem-wrap { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
+
+/* 표(Table) 깨짐 방지 (시뮬레이션/컴퓨터구조 다열 표 대응) */
+.tbl-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 8px 0;
+}
+.mini-tbl {
+  border-collapse: collapse; font-size: 12.5px; margin: 8px 0;
+  background: #fff; width: 100%;
+}
+.mem-wrap .mini-tbl { width: auto; }
+.tbl-wrap .mini-tbl { margin: 0; }
+.mini-tbl th, .mini-tbl td {
+  border: 1px solid #cbd5e1; padding: 7px 9px;
+  text-align: center; word-break: keep-all; white-space: nowrap;
+}
+.mini-tbl th { background: #f1f5f9; font-weight: 700; color: #0f172a; }
+/* 긴 보기 설명이 들어가는 셀(36번 등)은 줄바꿈 허용 */
+.mini-tbl td[style*="text-align:left"],
+.mini-tbl td.text-left {
+  white-space: normal;
+  min-width: 130px;
+}
+
+/* 선택지 & A~D 유형 버튼 */
+.opt-list { display: flex; flex-direction: column; gap: 8px; }
+.opt-label {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 11px 12px; border: 1.5px solid var(--border); border-radius: 10px;
+  cursor: pointer; font-size: 14px; background: #fff; transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.opt-label:hover { background: #f8fafc; border-color: #94a3b8; }
+.opt-label:active { background: #f1f5f9; }
+.opt-label input[type="radio"] {
+  margin-top: 3px; width: 18px; height: 18px; accent-color: var(--primary); flex-shrink: 0;
+}
+.opt-label.selected { border-color: var(--primary); background: #eff6ff; }
+.opt-label.ans-ok { border-color: var(--ok); background: var(--ok-bg); font-weight: 700; }
+.opt-label.ans-bad { border-color: var(--bad); background: var(--bad-bg); text-decoration: line-through; }
+
+.type-row {
+  margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;
+}
+.type-title { font-size: 12px; color: var(--muted); font-weight: 600; }
+.type-btns { display: flex; gap: 6px; }
+.t-btn {
+  border: 1px solid #cbd5e1; background: #f8fafc; color: #334155;
+  padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;
+}
+.t-btn.active { background: #0f172a; color: #fff; border-color: #0f172a; }
+
+.exp-box {
+  display: none; margin-top: 12px; padding: 12px; border-radius: 8px;
+  background: #f1f5f9; font-size: 13.5px; border-left: 4px solid var(--primary);
+}
+.exp-box.show { display: block; }
+
+/* 제출 및 진단 리포트 */
+.submit-wrap, .submit-area { margin-top: 24px; text-align: center; }
+.btn-submit {
+  width: 100%; padding: 15px; font-size: 16px; font-weight: 800;
+  background: var(--primary); color: #fff; border: none; border-radius: 12px;
+  cursor: pointer; box-shadow: 0 4px 12px rgba(37,99,235,0.28);
+}
+#report-section {
+  display: none; margin-top: 24px; background: var(--card);
+  border-radius: 14px; padding: 18px; border: 2px solid var(--primary);
+}
+.stat-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0;
+}
+.stat-box {
+  background: #f8fafc; padding: 12px; border-radius: 10px; text-align: center;
+  border: 1px solid var(--border);
+}
+.stat-num { font-size: 20px; font-weight: 800; color: var(--primary); }
+.stat-lbl { font-size: 12px; color: var(--muted); }
+.report-text {
+  width: 100%; height: 220px; font-size: 12.5px; padding: 10px;
+  border: 1px solid #cbd5e1; border-radius: 8px; background: #f8fafc;
+  font-family: inherit; margin-top: 10px;
+}
+.btn-copy {
+  width: 100%; margin-top: 10px; padding: 12px;
+  background: #0f172a; color: #fff; border: none; border-radius: 10px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.btn-home-bottom {
+  display: block; width: 100%; margin-top: 10px; padding: 12px;
+  background: #eff6ff; color: var(--primary); border: 1.5px solid var(--primary);
+  border-radius: 10px; font-size: 14px; font-weight: 800;
+  text-align: center; text-decoration: none;
+}
+.btn-home-bottom:hover {
+  background: var(--primary); color: #fff;
+}
+
+/* 원본 시험지에서 잘라낸 공통 지문과 표 */
+.original-passage { max-width:100%; margin:10px 0 14px; overflow-x:auto; }
+.original-passage img { display:block; width:100%; max-width:740px; height:auto; border:1px solid #ddd; background:white; }
+
+/* Tables in exam passages: responsive and readable */
+.table-scroll {max-width:100%;overflow-x:auto;margin:12px 0 16px;}
+.table-scroll .mini-tbl {width:100%;border-collapse:collapse;font-size:14px;line-height:1.55;}
+.table-scroll .mini-tbl th,.table-scroll .mini-tbl td {padding:8px 10px;border:1px solid #cbd5e1;vertical-align:top;}
+.table-scroll .mini-tbl th {background:#f1f5f9;}
