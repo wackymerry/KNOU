@@ -52,6 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div id="unit-breakdown"></div>
     <h3 style="margin:16px 0 6px; font-size:15px;">📋 일정 관리 대화 전달용 요약 보고서</h3>
     <textarea class="report-text" id="report-textarea" readonly></textarea>
+    <div id="score-receipt" class="score-receipt"></div>
     <button class="btn-copy" onclick="copyReport()">보고서 텍스트 복사하기</button>
     <a class="btn-home-bottom" href="../index.html">🏠 과목 메인 포털로 돌아가기</a>
   </div>
@@ -211,6 +212,7 @@ ${unitLines.join("\n")}
 7. 학습 속도 평가: ${speedEval}`;
 
   document.getElementById("report-textarea").value = reportText;
+  window.showScoreReceipt?.({correct: correctCnt, total: QUESTIONS.length, units: unitStats, report: document.getElementById("report-textarea").value});
   const repSec = document.getElementById("report-section");
   repSec.style.display = "block";
   repSec.scrollIntoView({ behavior: "smooth" });
@@ -233,5 +235,7 @@ document.querySelectorAll('.mini-tbl').forEach(tbl => {
   }
 });
 </script>
+<script src="../scores.js"></script>
 </body>
 </html>
+
