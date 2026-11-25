@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="container">
   <div class="intro-card">
     <h2>오픈소스기반데이터분석 전 범위 모의시험</h2>
-    <p>전체 144문항(교재 99 · 강의 45)에서 회당 35문항을 출제합니다. 교재 10개 장에서 각각 3~4문항씩 뽑습니다. 라디오버튼으로 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
+    <p>전체 156문항(교재 99 · 강의 45 · 강의 응용 12)에서 회당 35문항을 출제합니다. 교재 10개 장에서 각각 3~4문항씩 뽑으며, 이 중 5문항은 강의 응용입니다. 라디오버튼으로 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
     (A: 개념 알고 품 / B: 원리 모름 / C: 개념 생소 / D: 계산·적용 막힘)</p>
     <div class="progress-wrap"><div class="progress-fill" id="progress-fill"></div></div>
   </div>
@@ -1930,6 +1930,174 @@ const BANK = [
   ],
   "ans": 0,
   "exp": "같은 평가 자료로 많은 전략을 비교해 가장 좋아 보이는 것만 선택하면 우연한 패턴에 맞출 수 있다."
+ },
+ {
+  "unit": "1장 분석과 오픈소스",
+  "source": "강의 응용 01",
+  "q": "고객 분류 코드 10, 20, 30은 각각 개인, 학교, 기업을 뜻한다. 이 변수에 가장 알맞은 요약은?",
+  "options": [
+   "유형별 고객 수",
+   "코드의 산술평균",
+   "코드 간 거리의 중앙값",
+   "코드 증가율"
+  ],
+  "ans": 0,
+  "exp": "숫자는 이름표 역할을 한다. 학교와 기업의 차이를 10이라는 거리로 해석할 근거가 없다.",
+  "supplement": true
+ },
+ {
+  "unit": "2장 분석을 위한 파이썬",
+  "source": "강의 응용 02",
+  "q": "rows = [(&#x27;동&#x27;, 8), (&#x27;서&#x27;, 3), (&#x27;남&#x27;, 5)]일 때 [area for area, n in rows if n &gt;= 5]의 값은?",
+  "options": [
+   "[&#x27;동&#x27;, &#x27;남&#x27;]",
+   "[8, 5]",
+   "[&#x27;동&#x27;, &#x27;서&#x27;]",
+   "[(&#x27;동&#x27;, 8), (&#x27;남&#x27;, 5)]"
+  ],
+  "ans": 0,
+  "exp": "조건은 건수 n에 적용하지만 결과에는 area만 넣는다. 입력 순서도 유지된다.",
+  "supplement": true
+ },
+ {
+  "unit": "3장 수집과 저장",
+  "source": "강의 응용 03",
+  "q": "센서 식별자 007을 CSV에서 읽은 뒤 다른 표의 문자열 키 &#x27;007&#x27;과 연결하려 한다. 가장 적절한 읽기 방식은?",
+  "options": [
+   "pd.read_csv(path, dtype={&#x27;센서ID&#x27;: str})",
+   "pd.read_csv(path, index_col=False)만 지정",
+   "읽은 뒤 센서ID를 int로 변환",
+   "읽은 뒤 센서ID의 평균을 계산"
+  ],
+  "ans": 0,
+  "exp": "앞자리 0은 식별자의 일부다. 숫자로 읽어 7이 된 뒤 문자열로만 변환하면 &#x27;7&#x27;이 된다.",
+  "supplement": true
+ },
+ {
+  "unit": "4장 데이터 전처리",
+  "source": "강의 응용 04",
+  "q": "표에 (ID, 주문) 행이 (A, 10), (B, 20)이고 회원표에는 (ID, 등급) 행이 (A, 금), (A, 은), (C, 동)이다. ID로 내부 조인한 결과는?",
+  "options": [
+   "A의 주문 10이 두 행에 나타난다",
+   "A와 B가 한 행씩 나타난다",
+   "A의 첫 번째 등급만 남는다",
+   "A의 주문 금액이 자동으로 20으로 합산된다"
+  ],
+  "ans": 0,
+  "exp": "주문표의 A 한 행이 회원표의 A 두 행과 각각 연결된다. 조인 후 합계를 내기 전 키 중복을 확인해야 한다.",
+  "supplement": true
+ },
+ {
+  "unit": "4장 데이터 전처리",
+  "source": "강의 응용 05",
+  "q": "값이 [10, 20, 결측]인 한 열에서 결측을 먼저 0으로 채웠을 때 평균은 어떻게 달라지는가?",
+  "options": [
+   "15에서 10으로 줄어든다",
+   "10에서 15로 늘어난다",
+   "15로 유지된다",
+   "20에서 15로 줄어든다"
+  ],
+  "ans": 0,
+  "exp": "pandas의 기본 평균은 결측을 제외해 30/2다. 0을 관측값으로 넣으면 30/3이 된다.",
+  "supplement": true
+ },
+ {
+  "unit": "5장 데이터 분석",
+  "source": "강의 응용 06",
+  "q": "A 지점은 1건의 평균 대기시간이 20분이고 B 지점은 3건의 평균이 4분이다. 네 건 전체의 평균은?",
+  "options": [
+   "8분",
+   "12분",
+   "6분",
+   "16분"
+  ],
+  "ans": 0,
+  "exp": "총 대기시간은 1×20 + 3×4 = 32분이다. 지점 평균의 단순평균 12분은 두 지점의 건수가 다르다는 점을 놓친다.",
+  "supplement": true
+ },
+ {
+  "unit": "6장 데이터 시각화",
+  "source": "강의 응용 07",
+  "q": "방문자 수가 월요일 100명과 수요일 160명으로 기록됐다. 화요일은 수집 장애로 관측하지 못했다. 변화 그래프에서 가장 적절한 표시는?",
+  "options": [
+   "화요일을 결측으로 두고 수집 중단을 표시한다",
+   "화요일을 0명으로 확정한다",
+   "화요일을 130명으로 채우고 실측값으로 표시한다",
+   "수요일의 160명을 화요일 값으로 복사한다"
+  ],
+  "ans": 0,
+  "exp": "관측 실패와 실제 방문자 0명은 의미가 다르다. 보간한 경우에도 추정값임을 구분해야 한다.",
+  "supplement": true
+ },
+ {
+  "unit": "7장 정형 데이터 분석",
+  "source": "강의 응용 08",
+  "q": "대여 기록의 (구역, 분) 값은 (동, 10), (서, 50), (동, 30)이다. df.groupby(&#x27;구역&#x27;)[&#x27;분&#x27;].mean()에서 동 구역의 값은?",
+  "options": [
+   "20",
+   "2",
+   "40",
+   "30"
+  ],
+  "ans": 0,
+  "exp": "동 구역의 소요시간 10과 30만 평균 낸다. 2는 건수이고 40은 합계다.",
+  "supplement": true
+ },
+ {
+  "unit": "7장 정형 데이터 분석",
+  "source": "강의 응용 09",
+  "q": "s의 인덱스는 [2, 0, 1], 대응 값은 [80, 95, 60]이다. s.loc[0]과 s.iloc[0]의 값은 순서대로 무엇인가?",
+  "options": [
+   "95, 80",
+   "80, 95",
+   "80, 80",
+   "95, 95"
+  ],
+  "ans": 0,
+  "exp": "loc는 레이블 0을 찾아 95를 읽고 iloc는 위치 0인 첫 행에서 80을 읽는다.",
+  "supplement": true
+ },
+ {
+  "unit": "8장 반정형 데이터 분석",
+  "source": "강의 응용 10",
+  "q": "게시글마다 같은 단어가 여러 번 등장한다. &#x27;자전거를 언급한 게시글 수&#x27;를 세려면?",
+  "options": [
+   "각 글 안에서 단어를 중복 제거한 뒤 자전거가 있는 글의 수를 센다",
+   "모든 글을 합쳐 자전거의 총 출현 횟수를 센다",
+   "가장 긴 글에서만 빈도를 센다",
+   "전체 글에서 중복 단어를 한 번만 남긴 뒤 단어 수를 센다"
+  ],
+  "ans": 0,
+  "exp": "한 글에서 다섯 번 언급해도 해당 게시글은 한 건이다. 집계 단위는 단어 출현이 아니라 게시글이다.",
+  "supplement": true
+ },
+ {
+  "unit": "9장 비정형 데이터 분석",
+  "source": "강의 응용 11",
+  "q": "사진 설명 모델이 도로 사진을 보고 &#x27;빗길 사고&#x27;라고 요약했다. 사진에는 젖은 노면만 확인된다. 분석 표에 기록할 방법은?",
+  "options": [
+   "젖은 노면과 사고 여부를 분리하고 사고 여부는 미확인으로 둔다",
+   "생성된 문장을 그대로 사고 발생의 정답으로 쓴다",
+   "노면이 젖었으므로 사고 원인을 비로 확정한다",
+   "같은 모델에 재질문해 같은 답이면 사고를 확정한다"
+  ],
+  "ans": 0,
+  "exp": "이미지에서 관찰 가능한 특징과 모델의 추론은 근거 수준이 다르다. 반복 응답만으로 사실이 검증되지는 않는다.",
+  "supplement": true
+ },
+ {
+  "unit": "10장 시계열 데이터 분석",
+  "source": "강의 응용 12",
+  "q": "날짜순 종가가 10, 16, 22, 28이다. 네 번째 날의 종가를 장 시작 전에 예측할 때 쓸 수 있는 직전 3일 평균은?",
+  "options": [
+   "16",
+   "22",
+   "19",
+   "28"
+  ],
+  "ans": 0,
+  "exp": "예측 시점에는 앞선 세 종가만 알려져 있다. 네 번째 날을 포함한 평균 22를 쓰면 미래 정보가 섞인다.",
+  "supplement": true
  }
 ];
 
@@ -1947,9 +2115,17 @@ function drawExam() {
   const pool = shuffle(BANK).sort((a,b) => (counts[a.source] || 0) - (counts[b.source] || 0));
   const selected = new Set();
   const units = shuffle(new Set(BANK.map(q => q.unit)));
+  const supplements = pool.filter(q => q.supplement);
+  const bonusByUnit = new Map();
+  for (const q of supplements) {
+    if (!bonusByUnit.has(q.unit)) bonusByUnit.set(q.unit, q);
+    if (bonusByUnit.size === 5) break;
+  }
   units.forEach((unit, index) => {
     const quota = index < 5 ? 4 : 3;
-    pool.filter(q => q.unit === unit).slice(0, quota).forEach(q => selected.add(q));
+    const extra = bonusByUnit.get(unit);
+    if (extra) selected.add(extra);
+    pool.filter(q => q.unit === unit && !q.supplement).slice(0, quota - (extra ? 1 : 0)).forEach(q => selected.add(q));
   });
   const exam = shuffle(selected).map((q,i) => {
     counts[q.source] = (counts[q.source] || 0) + 1;
@@ -1959,8 +2135,8 @@ function drawExam() {
   try { localStorage.setItem("opensource144.counts", JSON.stringify(counts)); } catch {}
   return exam;
 }
-const QUESTIONS = history.state?.opensourceBalanced144 || drawExam();
-history.replaceState({opensourceBalanced144: QUESTIONS}, "");
+const QUESTIONS = history.state?.opensourceBalanced156 || drawExam();
+history.replaceState({opensourceBalanced156: QUESTIONS}, "");
 
 const userAns = new Array(QUESTIONS.length).fill(null);
 const userType = new Array(QUESTIONS.length).fill(null);
