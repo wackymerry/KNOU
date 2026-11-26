@@ -34,6 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="container">
   <div class="intro-card">
     <h2>오픈소스기반데이터분석 전 범위 모의시험</h2>
+    <p>기말 범위 · 교재 전체 (해당 멀티미디어 강의 포함)</p>
     <p>전체 156문항(교재 99 · 강의 45 · 강의 응용 12)에서 회당 35문항을 출제합니다. 교재 10개 장에서 각각 3~4문항씩 뽑으며, 이 중 5문항은 강의 응용입니다. 라디오버튼으로 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
     (A: 개념 알고 품 / B: 원리 모름 / C: 개념 생소 / D: 계산·적용 막힘)</p>
     <div class="progress-wrap"><div class="progress-fill" id="progress-fill"></div></div>
@@ -2110,12 +2111,17 @@ function shuffle(items) {
   }
   return out;
 }
+// 2026학년도 2학기 기말 범위: 교재 전체 (해당 멀티미디어 강의 포함)
+const examBank = BANK.filter(question => {
+  const match = /^(\d+)장/.exec(question.unit);
+  return match && Number(match[1]) >= 1 && Number(match[1]) <= 10;
+});
 function drawExam() {
   let counts = {};
   try { counts = JSON.parse(localStorage.getItem("opensource144.counts")) || {}; } catch {}
-  const pool = shuffle(BANK).sort((a,b) => (counts[a.source] || 0) - (counts[b.source] || 0));
+  const pool = shuffle(examBank).sort((a,b) => (counts[a.source] || 0) - (counts[b.source] || 0));
   const selected = new Set();
-  const units = shuffle(new Set(BANK.map(q => q.unit)));
+  const units = shuffle(new Set(examBank.map(q => q.unit)));
   const supplements = pool.filter(q => q.supplement);
   const bonusByUnit = new Map();
   for (const q of supplements) {
@@ -2136,8 +2142,8 @@ function drawExam() {
   try { localStorage.setItem("opensource144.counts", JSON.stringify(counts)); } catch {}
   return exam;
 }
-const QUESTIONS = history.state?.opensourceBalanced156 || drawExam();
-history.replaceState({opensourceBalanced156: QUESTIONS}, "");
+const QUESTIONS = history.state?.final2026s2_opensourceBalanced156 || drawExam();
+history.replaceState({final2026s2_opensourceBalanced156: QUESTIONS}, "");
 
 const userAns = new Array(QUESTIONS.length).fill(null);
 const userType = new Array(QUESTIONS.length).fill(null);
@@ -2318,4 +2324,5 @@ document.querySelectorAll('.mini-tbl').forEach(tbl => {
 <script src="../scores.js"></script>
 </body>
 </html>
+
 

@@ -36,6 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="container">
   <div class="intro-card">
     <h2>AI리터러시 전 범위 모의시험</h2>
+    <p>기말 범위 · 멀티미디어 강의 전체</p>
     <p>1~15강 강의록 기반 예상문제 90문항 중 35문항을 출제합니다. 라디오버튼으로 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
     (A: 개념 알고 품 / B: 원리 모름 / C: 개념 생소 / D: 계산·적용 막힘)</p>
     <div class="progress-wrap"><div class="progress-fill" id="progress-fill"></div></div>
@@ -71,12 +72,17 @@ function shuffle(items) {
   }
   return out;
 }
+// 2026학년도 2학기 기말 범위: 멀티미디어 강의 전체
+const examBank = BANK.filter(question => {
+  const match = /^(\d+)강/.exec(question.unit);
+  return match && Number(match[1]) >= 1 && Number(match[1]) <= 15;
+});
 function drawExam() {
   let counts = {};
   try { counts = JSON.parse(localStorage.getItem("aiLiteracy90.counts")) || {}; } catch {}
-  const pool = shuffle(BANK).sort((a,b) => (counts[a.source] || 0) - (counts[b.source] || 0));
+  const pool = shuffle(examBank).sort((a,b) => (counts[a.source] || 0) - (counts[b.source] || 0));
   const selected = new Set();
-  const units = shuffle(new Set(BANK.map(q => q.unit)));
+  const units = shuffle(new Set(examBank.map(q => q.unit)));
   units.forEach((unit, index) => {
     const quota = index < 5 ? 3 : 2;
     pool.filter(q => q.unit === unit).slice(0, quota).forEach(q => selected.add(q));
@@ -89,8 +95,8 @@ function drawExam() {
   try { localStorage.setItem("aiLiteracy90.counts", JSON.stringify(counts)); } catch {}
   return exam;
 }
-const QUESTIONS = history.state?.aiLiteracy90 || drawExam();
-history.replaceState({aiLiteracy90: QUESTIONS}, "");
+const QUESTIONS = history.state?.final2026s2_aiLiteracy90 || drawExam();
+history.replaceState({final2026s2_aiLiteracy90: QUESTIONS}, "");
 
 const userAns = new Array(QUESTIONS.length).fill(null);
 const userType = new Array(QUESTIONS.length).fill(null);
@@ -271,4 +277,5 @@ document.querySelectorAll('.mini-tbl').forEach(tbl => {
 <script src="../scores.js"></script>
 </body>
 </html>
+
 
