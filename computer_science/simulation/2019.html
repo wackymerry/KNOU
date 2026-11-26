@@ -38,6 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p style="font-size:13px;color:#a34b16">※ 공통 지문·표·수식·도식은 HTML 및 인라인 SVG로 표시됩니다.</p>
     <h2>2019학년도 2학기 기말시험 문제은행 (36~70번)</h2>
     <p>기말 범위 · 교재 2장~8장 2절 (해당 멀티미디어 강의 포함) · 아래는 해당 연도의 기출 원문 전체입니다.</p>
+<p>문항 검토 결과 · 35문항 중 범위 밖으로 판정한 문항 0개</p>
     <p>라디오버튼으로 정답을 선택하고, 필요시 하단의 <b>A~D 유형</b>을 체크하세요.<br>
     (A: 개념 알고 품 / B: 원리 모름 / C: 개념 생소 / D: 계산·적용 막힘)</p>
     <div class="progress-wrap"><div class="progress-fill" id="progress-fill"></div></div>
@@ -117,7 +118,7 @@ const QUESTIONS = [
   },
   {
     "num": 40,
-    "unit": "7장. 난수 발생",
+    "unit": "2장. 모델링과 시뮬레이션",
     "q": "<div class=\"sim-passage\"><p class=\"sim-note\">※ (40~41) 다음은 2차원 난수를 사용하여 π를 구하는 몬테칼로 시뮬레이션의 예이다.</p><p class=\"sim-note\">〈해결방법〉</p><p>반지름의 길이가 1인 원의 면적은 π 이므로 이 면적을 구하면 곧 π 값을 구하게 된다. 난수 U[0,1]를 두 개씩 발생시킨 후 앞의 것을 x축의 값을 y라 하면 좌표 (x, y)는 2차원 좌표에서 하나의 난수가 되어 아래 그림처럼 점으로 표현된다. 즉, 1사분면에 있는 면적이 1인 사각형과 1/4 원 A 안에 들어가는 각각의 점의 개수를 비율로 계산하면 π/4 값에 근사한 값을 구할 수 있다. 다음은 전체 알고리즘으로 2차원 난수 50,000개를 발생시켰다.</p><div class=\"sim-math\">50,000 : 사각형의 면적 = count : A<br>⇒ 50,000 : 1 = count : A<br>⇒ ∴ A = count / 50,000<br>⇒ ∴ π = 4 × A</div><svg viewBox=\"0 0 290 240\" role=\"img\" aria-label=\"사분원 A와 면적 1인 사각형\" style=\"max-width:290px;width:100%;display:block;margin:auto\"><defs><pattern id=\"dots19\" width=\"6\" height=\"6\" patternUnits=\"userSpaceOnUse\"><circle cx=\"2\" cy=\"2\" r=\"0.8\" fill=\"#3676bc\"/></pattern></defs><path d=\"M55 200 V40 A160 160 0 0 1 215 200 Z\" fill=\"url(#dots19)\" stroke=\"#1e293b\" stroke-width=\"2\"/><path d=\"M55 40 H215 V200\" fill=\"none\" stroke=\"#1e293b\"/><path d=\"M55 200 H250 M55 200 V15\" stroke=\"#1e293b\" stroke-width=\"2\"/><text x=\"40\" y=\"216\">0</text><text x=\"44\" y=\"35\">1</text><text x=\"210\" y=\"218\">1</text><text x=\"252\" y=\"207\">x</text><text x=\"38\" y=\"118\">y</text><text x=\"100\" y=\"138\" font-size=\"19\">A = π/4</text></svg><pre>while i ≤ limit do\n{\n    call random(n,U)\n        x=U\n    call random(n,U)\n        y=U\n    if x² + y² ≤ 1 then\n        count=count+1\n    i=i+1\n}\ns = count/limit\ns = s*4\nprint 'result', s</pre></div>난수 U는 총 몇 개 발생되는가?",
     "options": [
       "30,000",
@@ -130,7 +131,7 @@ const QUESTIONS = [
   },
   {
     "num": 41,
-    "unit": "7장. 난수 발생",
+    "unit": "2장. 모델링과 시뮬레이션",
     "q": "원안에 들어가는 점의 개수를 나타내는 변수는?",
     "options": [
       "s",
@@ -544,6 +545,10 @@ function togglePause() {
   document.getElementById("pauseBtn").textContent = paused ? "재개" : "일시정지";
 }
 
+const scopeNotes = {
+  "40": "올해 범위 포함 · 교재 2.4절 예제 2.1 (55~57쪽)",
+  "41": "올해 범위 포함 · 교재 2.4절 예제 2.1 (55~57쪽)"
+};
 function renderQuiz() {
   const list = document.getElementById("quiz-list");
   const numCircles = ["①", "②", "③", "④"];
@@ -553,6 +558,7 @@ function renderQuiz() {
         <span class="q-num">문제 ${item.num}</span>
         <span class="q-unit">${item.unit}</span>
       </div>
+      ${scopeNotes[item.num] ? `<p class="scope-note"><strong>${scopeNotes[item.num]}</strong></p>` : ""}
       <div class="q-text">${item.q}</div>
       <div class="opt-list">
         ${item.options.map((opt, oIdx) => `
