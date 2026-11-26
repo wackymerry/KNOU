@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport"/>
-<title>성적 관리 · 컴퓨터과학과</title>
+<title>내 풀이 기록 · 컴퓨터과학과</title>
 <link rel="stylesheet" href="./quiz.css">
 
 </head>
@@ -20,12 +20,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W88NH97K" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <main id="scores-page" class="scores-page">
-<a href="./index.html">← 과목 목록</a><h1>성적 관리</h1>
-<section><h2>과목별 성적</h2><label>과목 <select id="subject"></select></label>
+<a href="./index.html">← 과목 목록</a><h1>내 풀이 기록</h1>
+<section><h2>과목별 풀이 결과</h2><label>과목 <select id="subject"></select></label>
 <label>시험 유형 <select id="kind"><option value="all">전체</option><option value="past">기출</option><option value="mock">모의시험</option></select></label>
 <p id="empty" role="status"></p><div id="results" hidden><h3 id="summary"></h3>
-<figure><figcaption>응시 순서별 점수 · 왼쪽이 첫 회차</figcaption><svg id="graph" viewBox="0 0 600 125" role="img" aria-label="응시 순서별 점수 그래프. 각 점수는 아래 응시 기록에서 확인할 수 있습니다."></svg></figure>
-<div id="trends"></div><h3>단원별 누적 성적</h3><table class="mini-tbl"><thead><tr><th>단원</th><th>정답 / 출제</th><th>정답률</th><th>모의시험 3회씩 비교</th></tr></thead><tbody id="units"></tbody></table>
+<figure><figcaption>회차별 점수 변화 · 왼쪽이 첫 회차</figcaption><svg id="graph" viewBox="0 0 600 125" role="img" aria-label="회차별 점수 변화 그래프. 각 점수는 아래 응시 기록에서 확인할 수 있습니다."></svg></figure>
+<div id="trends"></div><h3>단원별 정답률</h3><table class="mini-tbl"><thead><tr><th>단원</th><th>정답 / 출제</th><th>정답률</th><th>모의시험 3회씩 비교</th></tr></thead><tbody id="units"></tbody></table>
 <h3>응시 기록</h3><div id="history"></div></div></section>
-<section><h2>저장 설정</h2><p id="notice"></p><label><input type="checkbox" id="save"> 앞으로 제출하는 성적표 자동 저장</label>
-<p><button id="delete" type="button">모든 성적표 삭제</button></p><p role="status" id="message"></p></section></main><script src="./scores.js"></script></body></html>
+<section><h2>저장 설정</h2><p id="notice"></p><label><input type="checkbox" id="save"> 앞으로 풀이 결과 자동 저장</label>
+<p><button id="delete" type="button">모든 풀이 기록 삭제</button></p><p role="status" id="message"></p></section></main><script src="./scores.js"></script></body></html>

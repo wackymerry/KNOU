@@ -4,7 +4,7 @@
   const preference = prefix + "preference";
   const records = prefix + "attempt.";
   const subjects = {"computer-arch":"컴퓨터구조","simulation":"시뮬레이션","cloud-computing":"클라우드컴퓨팅","ai-literacy":"AI리터러시","intro-cs":"컴퓨터과학개론","compiler":"컴파일러구성","opensource-data":"오픈소스기반데이터분석"};
-  const notice = "성적표는 이 기기의 현재 브라우저에만 저장됩니다. 다른 기기나 브라우저에는 자동으로 옮겨지지 않으며, 이 사이트의 데이터를 삭제하면 기록도 지워집니다.";
+  const notice = "풀이 기록은 이 기기의 현재 브라우저에만 저장됩니다. 다른 기기나 브라우저에는 자동으로 옮겨지지 않으며, 이 사이트의 데이터를 삭제하면 기록도 지워집니다.";
   const get = id => document.getElementById(id);
   function node(tag, value) {
     const el = document.createElement(tag);
@@ -27,26 +27,26 @@
     const [subject, file] = location.pathname.split("/").slice(-2);
     current = {...result, subject, exam: decodeURIComponent(file).replace(/\.html$/,""), date: Date.now()};
     const key = records + (globalThis.crypto?.randomUUID?.() || (Date.now()+"-"+Math.random()));
-    const link = node("a","성적 관리 열기 →");
+    const link = node("a","내 풀이 기록 보기 →");
     link.href = "../scores.html";
     function finish(message) {box.replaceChildren(node("p",message),link);}
     function save() {
       try {
         localStorage.setItem(key, JSON.stringify(current));
-        finish("이번 성적표를 저장했습니다.");
-      } catch {finish("성적표를 저장하지 못했습니다. 브라우저의 사이트 데이터 설정과 남은 공간을 확인해 주세요.");}
+        finish("이번 풀이 결과를 저장했습니다.");
+      } catch {finish("풀이 기록을 저장하지 못했습니다. 브라우저의 사이트 데이터 설정과 남은 공간을 확인해 주세요.");}
     }
     function choose(enabled) {
       try {localStorage.setItem(preference, enabled ? "on" : "off");}
       catch {finish("브라우저에서 저장 설정을 기록할 수 없습니다.");return;}
-      if (enabled) save(); else finish("성적표 저장이 꺼져 있습니다.");
+      if (enabled) save(); else finish("풀이 기록 저장이 꺼져 있습니다.");
     }
     try {
       const value = localStorage.getItem(preference);
       if (value === "on") save();
-      else if (value === "off") finish("성적표 저장이 꺼져 있습니다.");
-      else box.replaceChildren(node("h3","이 브라우저에 성적표를 저장할까요?"),node("p",notice),button("이번부터 저장",()=>choose(true)),button("저장하지 않기",()=>choose(false)));
-    } catch {finish("이 브라우저에서는 성적표 저장을 사용할 수 없습니다.");}
+      else if (value === "off") finish("풀이 기록 저장이 꺼져 있습니다.");
+      else box.replaceChildren(node("h3","이번부터 풀이 결과를 이 브라우저에 저장할까요?"),node("p",notice),button("이번부터 저장",()=>choose(true)),button("저장하지 않기",()=>choose(false)));
+    } catch {finish("이 브라우저에서는 풀이 기록 저장을 사용할 수 없습니다.");}
   };
   if (!get("scores-page")) return;
   const subject = get("subject"), kind = get("kind"), pick = get("save");
@@ -83,7 +83,7 @@
       const data=all.filter(r=>r.subject===subject.value && (kind.value==="all" || (r.exam==="mock"?"mock":"past")===kind.value));
       get("delete").disabled=!all.length;
       const panel=get("results");panel.hidden=!data.length;
-      get("empty").textContent=data.length?"":"선택한 과목과 시험 유형에 저장된 성적표가 없습니다.";
+      get("empty").textContent=data.length?"":"선택한 과목과 시험 유형에 저장된 풀이 기록이 없습니다.";
       if(!data.length)return;
       const last=data.at(-1);
       get("summary").textContent=data.length+"회 응시 · 최근 "+percent(last)+"점 · 최고 "+Math.max(...data.map(percent))+"점";
@@ -110,9 +110,10 @@
     } catch {get("empty").textContent="저장된 기록을 읽을 수 없습니다. 브라우저의 사이트 데이터 설정을 확인해 주세요.";get("results").hidden=true;}
   }
   subject.onchange=kind.onchange=refresh;
-  pick.onchange=()=>{try{localStorage.setItem(preference,pick.checked?"on":"off");get("message").textContent=pick.checked?"앞으로 제출한 성적표를 저장합니다.":"자동 저장을 껐습니다. 기존 기록은 유지됩니다.";}catch{pick.checked=!pick.checked;get("message").textContent="설정을 저장할 수 없습니다.";}};
-  get("delete").onclick=()=>{if(!confirm("이 브라우저에 저장된 모든 과목의 성적표를 삭제할까요? 되돌릴 수 없습니다."))return;try{for(const k of Object.keys(localStorage))if(k.startsWith(records))localStorage.removeItem(k);refresh();get("message").textContent="저장된 성적표를 모두 삭제했습니다.";}catch{get("message").textContent="삭제를 완료하지 못했습니다.";}};
+  pick.onchange=()=>{try{localStorage.setItem(preference,pick.checked?"on":"off");get("message").textContent=pick.checked?"앞으로 제출하는 풀이 결과를 저장합니다.":"자동 저장을 껐습니다. 기존 기록은 유지됩니다.";}catch{pick.checked=!pick.checked;get("message").textContent="설정을 저장할 수 없습니다.";}};
+  get("delete").onclick=()=>{if(!confirm("이 브라우저에 저장된 모든 과목의 풀이 기록을 삭제할까요? 되돌릴 수 없습니다."))return;try{for(const k of Object.keys(localStorage))if(k.startsWith(records))localStorage.removeItem(k);refresh();get("message").textContent="저장된 풀이 기록을 모두 삭제했습니다.";}catch{get("message").textContent="삭제를 완료하지 못했습니다.";}};
   window.addEventListener("storage",refresh);
   try {const last=readRecords().at(-1);if(last && subjects[last.subject])subject.value=last.subject;} catch {}
   get("notice").textContent=notice;refresh();
 })();
+
