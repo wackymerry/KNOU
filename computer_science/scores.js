@@ -3,7 +3,7 @@
   const prefix = "knou.cs.scores.v1.";
   const preference = prefix + "preference";
   const records = prefix + "attempt.";
-  const subjects = {"computer-arch":"컴퓨터구조","simulation":"시뮬레이션","cloud-computing":"클라우드컴퓨팅","ai-literacy":"AI리터러시","intro-cs":"컴퓨터과학개론","compiler":"컴파일러구성","opensource-data":"오픈소스기반데이터분석"};
+  const subjects = {"machine-learning":"머신러닝","computer-arch":"컴퓨터구조","simulation":"시뮬레이션","cloud-computing":"클라우드컴퓨팅","ai-literacy":"AI리터러시","intro-cs":"컴퓨터과학개론","compiler":"컴파일러구성","opensource-data":"오픈소스기반데이터분석"};
   const notice = "풀이 기록은 이 기기의 현재 브라우저에만 저장됩니다. 다른 기기나 브라우저에는 자동으로 옮겨지지 않으며, 이 사이트의 데이터를 삭제하면 기록도 지워집니다.";
   const get = id => document.getElementById(id);
   function node(tag, value) {
